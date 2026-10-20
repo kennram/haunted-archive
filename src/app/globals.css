@@ -33,3 +33,27 @@
 .animate-flicker {
   animation: flicker 0.15s infinite;
 }
+
+@keyframes swing {
+  0% { transform: rotate(5deg); }
+  50% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+.animate-swing {
+  animation: swing 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* Add to your global CSS or Tailwind config */
+@keyframes filmFlicker {
+  0% { opacity: 0.95; }
+  50% { opacity: 0.98; }
+  100% { opacity: 0.93; }
+}
+
+.film-grain {
+  animation: filmFlicker 0.15s infinite alternate;
+  background-image: radial-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
+                    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.3) 3px);
+}

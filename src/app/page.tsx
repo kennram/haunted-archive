@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import HorrorScene from '@/components/HorrorScene'
+import SwingingSign from '@/components/SwingingSign'
 import { soundFx } from '@/lib/audio'
 
 interface MovieTrivia {
@@ -132,6 +133,7 @@ export default function Home() {
   
   const [gameOver, setGameOver] = useState<boolean>(false)
   const [gameWon, setGameWon] = useState<boolean>(false)
+  const [lastRoundBonus, setLastRoundBonus] = useState<number>(0)
   const [isNewRecord, setIsNewRecord] = useState<boolean>(false)
   
   const [musicOn, setMusicOn] = useState<boolean>(false)
@@ -211,7 +213,6 @@ export default function Home() {
     setHasStarted(false)
   }
 
-  // CONSULT ARCHIVE MECHANIC (Limited to 1 use per level, -5s penalty)
   const handleConsultArchive = () => {
     if (gameOver || gameWon || hasConsultedThisLevel) return
     soundFx.playTrapSnap()
@@ -226,16 +227,15 @@ export default function Home() {
     setGuessedLetters(newGuessed)
     setHasConsultedThisLevel(true)
 
-    // Apply time penalty (-5s)
     setTimeLeft((prev) => Math.max(1, prev - 5))
 
-    // Check if revealing this letter wins the round
     const titleClean = currentMovie.title.replace(/[^A-Z]/g, '')
     const isWon = titleClean.split('').every((l) => newGuessed.includes(l))
     if (isWon) {
       soundFx.playWin()
-      setGameWon(true)
       const roundBonus = 100 * level + timeLeft * 10
+      setLastRoundBonus(roundBonus)
+      setGameWon(true)
       const newScore = score + roundBonus
       setScore(newScore)
       checkAndUpdateHighScore(newScore)
@@ -270,16 +270,10 @@ export default function Home() {
     if (gameWon) {
       const timer = setTimeout(() => {
         startNewGame(true)
-      }, 1800)
+      }, 2400)
       return () => clearTimeout(timer)
     }
   }, [gameWon])
-
-  const handleMusicToggle = () => {
-    const newState = !musicOn
-    setMusicOn(newState)
-    soundFx.toggleAmbientMusic(newState)
-  }
 
   const handleIntroMusicToggle = () => {
     const newState = !musicOn
@@ -328,8 +322,9 @@ export default function Home() {
     const isWon = titleClean.split('').every((l) => newGuessed.includes(l))
     if (isWon) {
       soundFx.playWin()
-      setGameWon(true)
       const roundBonus = 100 * level + timeLeft * 10
+      setLastRoundBonus(roundBonus)
+      setGameWon(true)
       const newScore = score + roundBonus
       setScore(newScore)
       checkAndUpdateHighScore(newScore)
@@ -338,10 +333,38 @@ export default function Home() {
 
   return (
     <main className="h-[100dvh] w-screen bg-[#0c0a09] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-4 relative overflow-hidden select-none">
+      {/* Scanline and CRT Ambient Overlays */}
       <div className="absolute inset-0 pointer-events-none z-50 opacity-15 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_4px]" />
       <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.15)_0%,rgba(12,10,9,0.95)_100%)]" />
 
-      <div className="relative z-10 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto">
+      {/* --- 35MM FILM PERFORATION BORDERS & EDGE-CODES --- */}
+      <div className="absolute left-1 sm:left-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <div key={i} className="flex flex-col items-center space-y-1">
+            <div className="w-3.5 h-2 bg-black border border-amber-900/80 rounded-sm shadow-inner" />
+            {i % 4 === 0 && (
+              <span className="text-[7px] font-mono text-amber-600/70 rotate-90 tracking-tighter uppercase font-bold">
+                35MM NITRATE
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute right-1 sm:right-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <div key={i} className="flex flex-col items-center space-y-1">
+            <div className="w-3.5 h-2 bg-black border border-amber-900/80 rounded-sm shadow-inner" />
+            {i % 4 === 2 && (
+              <span className="text-[7px] font-mono text-green-600/70 -rotate-90 tracking-tighter uppercase font-bold">
+                IFI-BOOTH
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="relative z-10 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto px-6 sm:px-10">
         {!hasStarted ? (
           /* --- PRIMARY INTRO SCREEN --- */
           <div className="w-full h-full flex flex-col items-center justify-center text-center space-y-4 sm:space-y-5 my-auto relative">
@@ -349,23 +372,21 @@ export default function Home() {
               🩸 IFI@HOME PRESENTS 🩸
             </div>
 
-            <div className="space-y-3 max-w-2xl px-2">
-              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[2px_2px_0px_#22c55e] md:drop-shadow-[5px_5px_0px_#22c55e] italic leading-none">
-                HAUNTED ARCHIVE
-              </h1>
-              <p className="text-zinc-200 font-mono text-xs sm:text-sm md:text-lg uppercase tracking-widest leading-relaxed max-w-xl mx-auto drop-shadow-md">
+            {/* Swinging Sign Title Component */}
+            <SwingingSign />
+
+            <div className="space-y-2 max-w-xl px-2">
+              <p className="text-zinc-200 font-mono text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow-md">
                 Unravel classic horror titles frame-by-frame before the projection booth locks you in forever.
               </p>
             </div>
 
-            {/* High Score Banner */}
             {highScore > 0 && (
               <div className="bg-zinc-900/90 border-2 border-yellow-400 px-5 py-2 rounded-xl font-mono text-xs md:text-sm text-yellow-300 font-black tracking-widest shadow-[0_0_25px_rgba(234,179,8,0.4)] animate-pulse">
                 🏆 ALL-TIME RECORD: {String(highScore).padStart(6, '0')} PTS
               </div>
             )}
 
-            {/* Top Control Bar on Intro Screen */}
             <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
               <button
                 onClick={handleIntroMusicToggle}
@@ -399,7 +420,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Rules Modal Overlay */}
             {showRulesMenu && (
               <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-green-500 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
                 <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
@@ -423,7 +443,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Config Modal Overlay */}
             {showSettingsMenu && (
               <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-red-600 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
                 <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
@@ -481,8 +500,6 @@ export default function Home() {
           <>
             {/* ACTIVE GAMEPLAY HEADER */}
             <div className="w-full relative shrink-0 bg-zinc-900/95 border-2 border-red-600/90 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.3)] overflow-hidden">
-              
-              {/* Real-time shrinking timer progress bar */}
               <div 
                 className={`h-1 transition-all duration-1000 ease-linear ${
                   timeLeft <= 10 ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]' : 'bg-yellow-400'
@@ -504,18 +521,12 @@ export default function Home() {
                     <span className="font-black text-red-400 text-base sm:text-lg drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]">{level}</span>
                   </div>
 
-                  {/* High-Visibility Escalating LED Clock Badge */}
                   <div 
                     className={`px-3 py-1 rounded border transition-all duration-300 ${
                       timeLeft <= 10 
                         ? 'bg-red-950/90 border-red-500 shadow-[0_0_25px_rgba(239,68,68,1)]' 
                         : 'bg-black/60 border-zinc-700'
                     }`}
-                    style={
-                      timeLeft <= 10 
-                        ? { transform: `scale(${1 + (11 - timeLeft) * 0.02})` } 
-                        : undefined
-                    }
                   >
                     <span className="text-[9px] text-zinc-300 block uppercase tracking-widest font-black text-center">TIME LEFT</span>
                     <span className={`font-black font-mono text-lg sm:text-xl block text-center ${
@@ -559,7 +570,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* 3D VIEWPORT WITH LAST 10 SECONDS ESCALATING COUNTDOWN */}
             <div className="w-full shrink-0 relative">
               <div className="h-36 sm:h-44 md:h-52 w-full">
                 <HorrorScene
@@ -570,7 +580,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* LAST 10 SECONDS DRAMATIC PULSATING COUNTDOWN DISPLAY */}
               {timeLeft > 0 && timeLeft <= 10 && !gameOver && !gameWon && (
                 <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-20 overflow-hidden">
                   <div className="absolute inset-0 bg-red-900/20 animate-ping opacity-30" />
@@ -607,12 +616,6 @@ export default function Home() {
                   )
                 })}
               </div>
-
-              {gameWon && (
-                <div className="text-green-400 font-mono font-bold uppercase tracking-widest text-[11px] animate-bounce pt-0.5">
-                  ✨ REEL {level} CLEARED! LOADING NEXT FEATURE...
-                </div>
-              )}
             </div>
 
             <div className="w-full flex flex-col items-center space-y-1.5 pt-0.5 shrink-0">
@@ -636,7 +639,6 @@ export default function Home() {
                 })}
               </div>
 
-              {/* CONSULT ARCHIVE BUTTON (LIMITED TO ONCE PER LEVEL) */}
               {!gameOver && !gameWon && (
                 <div className="w-full flex justify-center pt-2 px-1">
                   <button
@@ -658,37 +660,87 @@ export default function Home() {
 
       </div>
 
-      {/* GAME OVER MODAL OVERLAY */}
-      {gameOver && (
+      {/* ENHANCED ROUND WON / LEVEL CLEARED OVERLAY */}
+      {gameWon && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="relative bg-zinc-950 border-2 border-red-600/90 p-6 sm:p-8 rounded-xl shadow-[0_0_50px_rgba(220,38,38,0.5)] text-center max-w-md w-full space-y-5 -rotate-3 hover:rotate-0 transition-all duration-300">
+          <div className="relative bg-zinc-950 border-2 border-green-500 p-6 sm:p-8 rounded-xl shadow-[0_0_60px_rgba(34,197,94,0.4)] text-center max-w-md w-full space-y-4">
             
-            <div className="-rotate-3 transform py-1">
-              <h2 className="text-4xl sm:text-6xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[3px_3px_0px_#22c55e] italic leading-none">
-                GAME OVER
+            <div className="py-1">
+              <span className="text-[10px] sm:text-xs font-mono font-black text-green-400 uppercase tracking-widest bg-green-950 px-3 py-1 rounded-full border border-green-600">
+                PROJECTION SUCCESSFUL
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-black font-mono tracking-tighter text-green-400 uppercase drop-shadow-[2px_2px_0px_#22c55e] italic mt-2">
+                REEL {level} CLEARED!
               </h2>
             </div>
 
-            <div className="space-y-2 pt-1">
-              <div className="inline-block bg-zinc-900 border border-red-800 px-3 py-1 rounded-lg font-mono text-xs font-black text-zinc-200 uppercase tracking-widest shadow">
-                REACHED REEL {level} • SCORE: {score}
+            <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-lg font-mono space-y-1.5 text-left text-xs sm:text-sm">
+              <div className="flex justify-between text-zinc-300">
+                <span>SOLVED FILM:</span>
+                <span className="text-yellow-300 font-bold uppercase">{currentMovie.title}</span>
+              </div>
+              <div className="flex justify-between text-zinc-300">
+                <span>TIME REMAINING:</span>
+                <span className="text-yellow-400 font-bold">+{timeLeft}s</span>
+              </div>
+              <div className="flex justify-between text-zinc-300 pt-1 border-t border-zinc-800">
+                <span>ROUND BONUS:</span>
+                <span className="text-green-300 font-bold">+{lastRoundBonus} PTS</span>
+              </div>
+            </div>
+
+            <p className="text-zinc-400 font-mono text-[11px] animate-pulse pt-1">
+              Spooling next feature reel...
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* GOTHIC IFI@HOME GAME OVER MODAL OVERLAY */}
+      {gameOver && (
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-300">
+          {/* Ominous Red Pulsing Vignette Overlay */}
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,rgba(185,28,28,0.35)_100%)] animate-pulse" />
+
+          {/* Dark Oak & Wrought Iron Framed Box */}
+          <div className="relative bg-[#1c120d] border-4 border-amber-900/80 p-6 sm:p-8 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.9)] text-center max-w-md w-full space-y-5 transition-all duration-300 relative z-10 overflow-hidden">
+            
+            {/* Subtle Wood Grain Overlay matching Intro Sign */}
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#451a03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none rounded-lg" />
+
+            {/* Title Header */}
+            <div className="relative z-10 space-y-1">
+              <p className="text-green-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] font-black">
+                PROJECTION BOOTH LOCKED
+              </p>
+              <h1 className="text-4xl sm:text-6xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[3px_3px_0px_#22c55e] italic leading-none pt-1">
+                GAME OVER
+              </h1>
+            </div>
+
+            {/* Score Stats */}
+            <div className="relative z-10 space-y-2 pt-1">
+              <div className="inline-block bg-black/80 border border-amber-900/60 px-4 py-1.5 rounded-lg font-mono text-xs font-black text-zinc-300 uppercase tracking-widest shadow">
+                REACHED REEL {level} • SCORE: <span className="text-green-400">{score}</span>
               </div>
 
               {isNewRecord && (
-                <p className="text-yellow-300 font-mono text-xs font-black uppercase tracking-widest animate-bounce pt-1">
-                  🔥 NEW BEST RECORD ESTABLISHED! 🔥
+                <p className="text-yellow-400 font-mono text-xs font-black uppercase tracking-widest animate-bounce pt-1 drop-shadow-[0_0_10px_rgba(234,179,8,0.8)]">
+                  🏆 NEW BEST RECORD ESTABLISHED! 🏆
                 </p>
               )}
             </div>
 
-            <div className="bg-zinc-900/90 border border-zinc-800 p-3 rounded-lg font-mono text-zinc-200 text-xs">
-              <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-black block mb-1">CORRECT FILM</span>
-              <span className="text-yellow-300 font-black tracking-widest text-base sm:text-lg uppercase drop-shadow-[0_0_10px_rgba(253,224,71,0.6)]">
+            {/* Unsolved Title Reveal */}
+            <div className="relative z-10 bg-black/90 border border-zinc-800 p-3.5 rounded-xl font-mono text-zinc-200">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-black block mb-1">UNSOLVED FILM TITLE</span>
+              <span className="text-yellow-400 font-black tracking-widest text-base sm:text-xl uppercase drop-shadow-[0_0_12px_rgba(253,224,71,0.7)]">
                 {currentMovie.title}
               </span>
             </div>
 
-            <div className="space-y-2 pt-1">
+            {/* Action Buttons */}
+            <div className="relative z-10 space-y-2.5 pt-1">
               <button
                 onClick={() => startNewGame(false)}
                 className="w-full py-3.5 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
@@ -698,7 +750,7 @@ export default function Home() {
 
               <button
                 onClick={handleReturnToIntro}
-                className="w-full py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-mono text-xs font-black uppercase tracking-widest border border-zinc-700 rounded-lg transition-all"
+                className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-zinc-200 font-mono text-xs font-black uppercase tracking-widest border border-zinc-800 rounded-lg transition-all"
               >
                 🏠 MAIN MENU
               </button>
