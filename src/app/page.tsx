@@ -11,95 +11,97 @@ interface MovieTrivia {
   minLevel: number
 }
 
-// Complete Tiered Movie Trivia Database
 const MOVIES: MovieTrivia[] = [
-  // --- LEVEL 1: Iconic Mainstream Classics ---
+  // --- LEVEL 1: Mainstream Horror & Gateway Classics ---
   { title: 'HALLOWEEN', hint: 'Michael Myers haunts Haddonfield on a chilly autumn night.', category: 'SLASHER', minLevel: 1 },
   { title: 'PSYCHO', hint: 'Norman Bates runs a quiet motel with his mother.', category: 'SLASHER', minLevel: 1 },
-  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into madness.', category: 'SLASHER', minLevel: 1 },
-  { title: 'THE EXORCIST', hint: 'A young girl possessed in Georgetown requires a desperate rite.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
   { title: 'JAWS', hint: 'A great white terrorizes a New England summer resort town.', category: 'B-CREATURE FEAT', minLevel: 1 },
+  { title: 'THE EXORCIST', hint: 'A young girl possessed in Georgetown requires a desperate rite.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
+  { title: 'SCREAM', hint: 'Ghostface terrorizes Woodsboro teens with meta slasher rules.', category: 'SLASHER', minLevel: 1 },
+  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into winter madness.', category: 'SLASHER', minLevel: 1 },
   { title: 'CARRIE', hint: 'Telekinetic teenager takes revenge at her high school prom.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
-  { title: 'FRIDAY THE 13TH', hint: 'Camp Crystal Lake counselors face a shadowy killer.', category: 'SLASHER', minLevel: 1 },
-  { title: 'FRANKENSTEIN', hint: 'Mad scientist reanimates a creature constructed from corpses.', category: 'B-CREATURE FEAT', minLevel: 1 },
+  { title: 'FRANKENSTEIN', hint: 'Mad scientist reanimates a creature constructed from human corpses.', category: 'B-CREATURE FEAT', minLevel: 1 },
   { title: 'DRACULA', hint: 'Transylvanian count travels to England seeking fresh blood.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
+  { title: 'FRIDAY THE 13TH', hint: 'Camp Crystal Lake counselors face a shadowy vengeful killer.', category: 'SLASHER', minLevel: 1 },
 
-  // --- LEVEL 2: Popular Horror & Blockbuster Thrillers ---
-  { title: 'SCREAM', hint: 'Ghostface terrorizes Woodsboro teens with scary movie trivia.', category: 'SLASHER', minLevel: 2 },
-  { title: 'THE OMEN', hint: 'An American diplomat unknowingly adopts the Antichrist.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'POLTERGEIST', hint: 'Suburban family home built over a relocated cemetery.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'CHILD S PLAY', hint: 'A dying serial killer transfers his soul into a Chucky doll.', category: 'SLASHER', minLevel: 2 },
+  // --- LEVEL 2: Popular Thrillers & Contemporary IFI@Home Releases ---
+  { title: 'DOUBLE BLIND', hint: 'IFI Horror Season feature where experimental drug trial subjects die if they fall asleep.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'WE BURY THE DEAD', hint: 'IFI Horror Season survival thriller starring Daisy Ridley in a zombie-plagued military zone.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'THE SHROUDS', hint: 'David Cronenberg IFI feature where a grieving widower builds a tech device to connect with the deceased.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'ALIEN', hint: 'In space no one can hear you scream aboard the Nostromo.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'THE THING', hint: 'John Carpenter shape-shifting alien terrorizes an Antarctic research station.', category: 'B-CREATURE FEAT', minLevel: 2 },
+  { title: 'A NIGHTMARE ON ELM STREET', hint: 'Freddy Krueger hunts teenagers inside their dreams.', category: 'SLASHER', minLevel: 2 },
+  { title: 'THE SILENCE OF THE LAMBS', hint: 'FBI trainee seeks help from an incarcerated cannibalistic psychiatrist.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
   { title: 'THE RING', hint: 'A cursed videotape kills the viewer seven days after watching.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'THE SILENCE OF THE LAMBS', hint: 'FBI trainee seeks help from an incarcerated cannibal.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'IT', hint: 'Pennywise the Dancing Clown hunts children in Derry Maine.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
   { title: 'SAW', hint: 'Jigsaw places victims in lethal mechanical test traps.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'POLTERGEIST', hint: 'Suburban family home built over a relocated cemetery.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
 
-  // --- LEVEL 3: Monster Features & Classic Suspense ---
+  // --- LEVEL 3: Archival Monster Features, Folk Horror & Suspense ---
+  { title: 'GORGO', hint: '1961 monster feature in the IFI Horror Season where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3 },
+  { title: 'THE OUTCASTS', hint: '1982 Irish folk horror landmark from the IFI Archive set in rural Ireland exploring witchcraft.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'FUNNY GAMES', hint: 'Michael Haneke unsettling psychological thriller featured on IFI@Home about home intruders.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'ROSEMARY S BABY', hint: 'A Manhattan mother suspects her neighbors have sinister plans for her child.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'THE BLAIR WITCH PROJECT', hint: 'Film students vanish while investigating a Maryland legend.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'THE BIRDS', hint: 'Hitchcock thriller where avian swarms attack a coastal town.', category: 'B-CREATURE FEAT', minLevel: 3 },
   { title: 'MISERY', hint: 'An obsessed fan holds her favorite novelist captive in a remote cabin.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'NIGHT OF THE LIVING DEAD', hint: 'George Romero classic where reanimated corpses besiege a farmhouse.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'THE BLAIR WITCH PROJECT', hint: 'Film students vanish while investigating a Maryland legend.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'DON T LOOK NOW', hint: 'Grieving couple in Venice stalked by a mysterious figure in a red coat.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'TREMORS', hint: 'Giant subterranean carnivorous worms attack a Nevada desert town.', category: 'B-CREATURE FEAT', minLevel: 3 },
-  { title: 'GREMLINS', hint: 'Mischievous little monsters multiply when exposed to water.', category: 'B-CREATURE FEAT', minLevel: 3 },
 
-  // --- LEVEL 4: Cult 80s Classics & Paranormal Tales ---
-  { title: 'SUSPIRIA', hint: 'Dario Argento dance academy secretly run by witches.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'A NIGHTMARE ON ELM STREET', hint: 'Freddy Krueger hunts teenagers in their dreams.', category: 'SLASHER', minLevel: 4 },
-  { title: 'THE THING', hint: 'Shape-shifting alien terrorizes Antarctic research station.', category: 'B-CREATURE FEAT', minLevel: 4 },
-  { title: 'ALIEN', hint: 'In space no one can hear you scream aboard the Nostromo.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'THE HOWLING', hint: 'A television news anchor visits a secluded resort overrun by lycanthropes.', category: 'B-CREATURE FEAT', minLevel: 4 },
+  // --- LEVEL 4: Art-House Masterpieces & IFI@Home Selections ---
+  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'SISTER MIDNIGHT', hint: 'IFI Horror Season dark comedy horror following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'HOLY ISLAND', hint: 'Surreal Irish feature on IFI@Home following two souls trapped in an eerie port town.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'SUSPIRIA', hint: 'Dario Argento German dance academy secretly run by a coven of witches.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'EYES WITHOUT A FACE', hint: 'Guilt-ridden French surgeon attempts gruesome facial grafts for his daughter.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'THE WICKER MAN', hint: 'Police sergeant investigates a missing girl on a pagan Scottish island.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'CARNIVAL OF SOULS', hint: 'Surviving a car crash, an organist is drawn toward an abandoned Utah pavilion.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'BLACK SUNDAY', hint: 'Mario Bava Gothic masterwork about a witch executed in the 17th century.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'THE HOWLING', hint: 'A television news anchor visits a secluded retreat overrun by lycanthropes.', category: 'B-CREATURE FEAT', minLevel: 4 },
   { title: 'THE FOG', hint: 'John Carpenter tale of a glowing mist bringing vengeful leper ghosts.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'CREEPSHOW', hint: 'Stephen King and George Romero horror comic anthology.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'CHRISTINE', hint: 'A possessed 1958 Plymouth Fury develops a murderous appetite.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
 
-  // --- LEVEL 5: Body Horror & Sci-Fi Creatures ---
-  { title: 'THE FLY', hint: 'Cronenberg scientist teleports with insect consequences.', category: 'B-CREATURE FEAT', minLevel: 5 },
-  { title: 'DAWN OF THE DEAD', hint: 'Survivors barricade themselves inside a shopping mall.', category: 'VIDEO NASTY', minLevel: 5 },
+  // --- LEVEL 5: European Giallo & Cult Video Nasties ---
+  { title: 'FACES OF DEATH', hint: 'Infamous 1978 shocking horror compilation featured in the IFI Horror Season collection.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'THE TEXAS CHAINSAW MASSACRE', hint: 'Leatherface and his cannibal family in 1974 Texas.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'DEEP RED', hint: 'Dario Argento Giallo masterpiece involving a jazz pianist and a psychic reading.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'TENEBRAE', hint: 'American mystery author in Rome stalked by a razor-wielding maniac.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'BLOOD AND BLACK LACE', hint: 'Mario Bava haute couture salon targeted by a masked killer.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'PHANTASM', hint: 'The Tall Man harvests small-town bodies using flying silver spheres.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'THE FLY', hint: 'Cronenberg scientist teleports with tragic insect hybrid consequences.', category: 'B-CREATURE FEAT', minLevel: 5 },
+  { title: 'DAWN OF THE DEAD', hint: 'Zombie apocalypse survivors barricade themselves inside a shopping mall.', category: 'VIDEO NASTY', minLevel: 5 },
   { title: 'HELLRAISER', hint: 'Mysterious puzzle box summons extradimensional Cenobites.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'AN AMERICAN WEREWOLF IN LONDON', hint: 'Two American backpackers are attacked on the Yorkshire moors.', category: 'B-CREATURE FEAT', minLevel: 5 },
-  { title: 'PHANTASM', hint: 'The Tall Man harvests bodies using flying silver spheres.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
   { title: 'SCANNERS', hint: 'Telepathic renegades cause human heads to explode.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'BLOB', hint: 'Amorphous gelatinous alien consumes everything in its path.', category: 'B-CREATURE FEAT', minLevel: 5 },
 
-  // --- LEVEL 6: Regional Slashers & Splatter ---
-  { title: 'THE EVIL DEAD', hint: 'Friends unleash Sumerian demons in a remote cabin.', category: 'VIDEO NASTY', minLevel: 6 },
-  { title: 'RE-ANIMATOR', hint: 'Medical student creates glowing reagent that revives the dead.', category: 'B-CREATURE FEAT', minLevel: 6 },
+  // --- LEVEL 6: Regional Slashers, Splatter & Irish Avant-Garde ---
+  { title: 'SOLITAIRE', hint: 'Experimental Irish feature on IFI@Home directed by Maximilian Le Cain.', category: 'MIDNIGHT MOVIE', minLevel: 6 },
+  { title: 'THE EVIL DEAD', hint: 'Friends unleash Sumerian demonic forces via tape recorder in a remote cabin.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'RE-ANIMATOR', hint: 'Medical student creates a glowing green reagent that revives dead tissue.', category: 'B-CREATURE FEAT', minLevel: 6 },
+  { title: 'CANNIBAL HOLOCAUST', hint: 'Infamous documentary crew ventures deep into the Amazon basin.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'RABID', hint: 'David Cronenberg body horror triggered by experimental skin grafts.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'MY BLOODY VALENTINE', hint: 'Pickaxe-wielding killer terrorizes a small mining town on Valentine’s Day.', category: 'SLASHER', minLevel: 6 },
+  { title: 'SLEEPAWAY CAMP', hint: 'Serial killer strikes a summer camp leading to an infamous twist ending.', category: 'SLASHER', minLevel: 6 },
+  { title: 'THE BURNING', hint: 'Disfigured summer camp caretaker stalked by garden shears.', category: 'SLASHER', minLevel: 6 },
   { title: 'THE RETURN OF THE LIVING DEAD', hint: 'Trioxin gas creates brain-eating punk rock zombies.', category: 'B-CREATURE FEAT', minLevel: 6 },
-  { title: 'MY BLOODY VALENTINE', hint: 'A pickaxe-wielding killer terrorizes a small mining town.', category: 'SLASHER', minLevel: 6 },
-  { title: 'SLEEPAWAY CAMP', hint: 'Serial killer strikes a summer camp with a famous twist ending.', category: 'SLASHER', minLevel: 6 },
-  { title: 'THE BURNING', hint: 'Disfigured summer camp caretaker stalked by shears.', category: 'SLASHER', minLevel: 6 },
 
-  // --- LEVEL 7: European Giallo & 70s Video Nasties ---
-  { title: 'ERASERHEAD', hint: 'David Lynch surreal nightmare in black and white.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'THE TEXAS CHAINSAW MASSACRE', hint: 'Leatherface and his cannibal family in 1974.', category: 'VIDEO NASTY', minLevel: 7 },
-  { title: 'LAST HOUSE ON THE LEFT', hint: 'Wes Craven controversial revenge feature from 1972.', category: 'VIDEO NASTY', minLevel: 7 },
-  { title: 'HOUSE BY THE CEMETERY', hint: 'Lucio Fulci tale of Dr Freudstein lurking in the cellar.', category: 'VIDEO NASTY', minLevel: 7 },
-  { title: 'DON T LOOK NOW', hint: 'Grieving couple in Venice stalked by a figure in a red coat.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'SALEM S LOT', hint: 'Vampire takes over a small New England town.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  // --- LEVEL 7: Surrealism, Extreme Cinema & Body Nightmares ---
+  { title: 'PHANTOM ISLANDS', hint: 'Experimental Irish docu-fiction on IFI@Home exploring isolation and phantom terrain.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'ERASERHEAD', hint: 'David Lynch surreal industrial nightmare featuring a mutant infant.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'POSSESSION', hint: 'Andrzej Zulawski marital meltdown and tentacled entity in West Berlin.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'HOUSE', hint: 'Nobuhiko Obayashi psychedelic Japanese haunted house masterwork.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'VIDEODROME', hint: 'Cable TV executive discovers a hallucinatory broadcast signal.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'LAST HOUSE ON THE LEFT', hint: 'Wes Craven controversial 1972 directorial debut revenge thriller.', category: 'VIDEO NASTY', minLevel: 7 },
+  { title: 'HOUSE BY THE CEMETERY', hint: 'Lucio Fulci horror about Dr Freudstein lurking in a cellar.', category: 'VIDEO NASTY', minLevel: 7 },
+  { title: 'ALTERED STATES', hint: 'Sensory deprivation chamber experiments lead to primal regression.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
 
-  // --- LEVEL 8: Psychological & Extreme Cinema ---
-  { title: 'CANNIBAL HOLOCAUST', hint: 'Documentary crew ventures deep into the Amazon basin.', category: 'VIDEO NASTY', minLevel: 8 },
-  { title: 'POSSESSION', hint: 'Andrzej Zulawski psychological nightmare in West Berlin.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
-  { title: 'MANIAC', hint: 'William Lustig gritty slasher about a New York serial killer collecting scalps.', category: 'VIDEO NASTY', minLevel: 8 },
-  { title: 'BLACK CHRISTMAS', hint: '1974 proto-slasher set in a sorority house over winter break.', category: 'SLASHER', minLevel: 8 },
-  { title: 'I SPIT ON YOUR GRAVE', hint: 'Infamous 1978 controversial revenge thriller.', category: 'VIDEO NASTY', minLevel: 8 },
-  { title: 'THE HILLS HAVE EYES', hint: 'Stranded family targeted by mutants in the desert.', category: 'VIDEO NASTY', minLevel: 8 },
-
-  // --- LEVEL 9: Deep Cut Exploitation ---
-  { title: 'RABID', hint: 'David Cronenberg body horror triggered by skin grafts.', category: 'VIDEO NASTY', minLevel: 9 },
-  { title: 'TENEBRAE', hint: 'American writer in Rome stalked by a razor-wielding maniac.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  { title: 'DEEP RED', hint: 'Dario Argento Giallo masterpiece involving a psychic reading.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  { title: 'DRILLER KILLER', hint: 'An artist in NYC loses his sanity and turns to power tools.', category: 'VIDEO NASTY', minLevel: 9 },
-  { title: 'PHENOMENA', hint: 'Young girl at a Swiss boarding school telepathically controls insects.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  { title: 'CEMETERY MAN', hint: 'Italian graveyard watchman shoots reanimated corpses.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-
-  // --- LEVEL 10+: Hardcore Archival & Obscure Horror ---
-  { title: 'THE BEYOND', hint: 'Lucio Fulci Gothic horror where a hotel sits on a gateway to hell.', category: 'VIDEO NASTY', minLevel: 10 },
-  { title: 'VIDEODROME', hint: 'Television station CEO discovers a signal that causes hallucinations.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
-  { title: 'CANNIBAL FEROX', hint: 'Infamous 1981 exploitation film banned in 31 countries.', category: 'VIDEO NASTY', minLevel: 10 },
-  { title: 'ANGST', hint: 'Obscure Austrian masterpiece depicting an escaped convict on a rampage.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
-  { title: 'NEW YORK RIPPER', hint: 'Lucio Fulci gritty Giallo featuring a killer with a duck voice.', category: 'VIDEO NASTY', minLevel: 10 },
-  { title: 'BLOOD FOR DRACULA', hint: 'Andy Warhol and Paul Morrissey cult horror satire.', category: 'MIDNIGHT MOVIE', minLevel: 10 }
+  // --- LEVEL 8+: Hardcore Archival & Underground Obscurities ---
+  { title: 'AUDITION', hint: 'Japanese film producer holds a fake casting call with tragic consequences.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'THE BEYOND', hint: 'Lucio Fulci Gates of Hell entry set in a hotel sitting over hell.', category: 'VIDEO NASTY', minLevel: 8 },
+  { title: 'CANNIBAL FEROX', hint: 'Infamous 1981 exploitation film banned in 31 countries.', category: 'VIDEO NASTY', minLevel: 8 },
+  { title: 'ANGST', hint: 'Obscure Austrian masterpiece depicting an unhinged ex-con on a home invasion spree.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'NEW YORK RIPPER', hint: 'Gritty Giallo featuring a razor killer with a duck voice.', category: 'VIDEO NASTY', minLevel: 9 },
+  { title: 'BLOOD FOR DRACULA', hint: 'Andy Warhol and Paul Morrissey cult horror satire.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'SZAMAN', hint: 'Andrzej Zulawski psychological nightmare exploring Siberian shamanism.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'A FIELD IN ENGLAND', hint: 'Ben Wheatley psychedelic English Civil War mystical trip.', category: 'MIDNIGHT MOVIE', minLevel: 10 }
 ]
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
