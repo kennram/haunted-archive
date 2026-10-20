@@ -11,6 +11,7 @@ interface MovieTrivia {
   minLevel: number
 }
 
+// Complete Tiered Movie Trivia Database
 const MOVIES: MovieTrivia[] = [
   // --- LEVEL 1: Mainstream Horror & Gateway Classics ---
   { title: 'HALLOWEEN', hint: 'Michael Myers haunts Haddonfield on a chilly autumn night.', category: 'SLASHER', minLevel: 1 },
@@ -122,6 +123,7 @@ export default function Home() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
   const [wrongGuesses, setWrongGuesses] = useState<number>(0)
   const [curseLetters, setCurseLetters] = useState<string[]>([])
+  const [hasConsultedThisLevel, setHasConsultedThisLevel] = useState<boolean>(false)
   
   const [level, setLevel] = useState<number>(1)
   const [score, setScore] = useState<number>(0)
@@ -183,6 +185,7 @@ export default function Home() {
     setPlayedTitles([...currentPlayed, movie.title])
     setGuessedLetters([])
     setWrongGuesses(0)
+    setHasConsultedThisLevel(false)
     setGameOver(false)
     setGameWon(false)
 
@@ -206,6 +209,37 @@ export default function Home() {
     setGameOver(false)
     setGameWon(false)
     setHasStarted(false)
+  }
+
+  // CONSULT ARCHIVE MECHANIC (Limited to 1 use per level, -5s penalty)
+  const handleConsultArchive = () => {
+    if (gameOver || gameWon || hasConsultedThisLevel) return
+    soundFx.playTrapSnap()
+
+    const titleLetters = currentMovie.title.replace(/[^A-Z]/g, '').split('')
+    const unrevealed = titleLetters.filter((l) => !guessedLetters.includes(l))
+
+    if (unrevealed.length === 0) return
+
+    const letterToReveal = unrevealed[Math.floor(Math.random() * unrevealed.length)]
+    const newGuessed = [...guessedLetters, letterToReveal]
+    setGuessedLetters(newGuessed)
+    setHasConsultedThisLevel(true)
+
+    // Apply time penalty (-5s)
+    setTimeLeft((prev) => Math.max(1, prev - 5))
+
+    // Check if revealing this letter wins the round
+    const titleClean = currentMovie.title.replace(/[^A-Z]/g, '')
+    const isWon = titleClean.split('').every((l) => newGuessed.includes(l))
+    if (isWon) {
+      soundFx.playWin()
+      setGameWon(true)
+      const roundBonus = 100 * level + timeLeft * 10
+      const newScore = score + roundBonus
+      setScore(newScore)
+      checkAndUpdateHighScore(newScore)
+    }
   }
 
   useEffect(() => {
@@ -309,7 +343,7 @@ export default function Home() {
 
       <div className="relative z-10 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto">
         {!hasStarted ? (
-          /* --- PRIMARY INTRO SCREEN WITH ACCESS TO RULES & SETTINGS MENU --- */
+          /* --- PRIMARY INTRO SCREEN --- */
           <div className="w-full h-full flex flex-col items-center justify-center text-center space-y-4 sm:space-y-5 my-auto relative">
             <div className="tracking-widest font-mono text-xs sm:text-sm md:text-base font-black text-green-400 uppercase drop-shadow-[0_0_15px_rgba(34,197,94,1)]">
               🩸 IFI@HOME PRESENTS 🩸
@@ -365,7 +399,7 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Intro Rules Modal Overlay */}
+            {/* Rules Modal Overlay */}
             {showRulesMenu && (
               <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-green-500 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
                 <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
@@ -382,14 +416,14 @@ export default function Home() {
                     <p className="text-[10px] mt-0.5 text-zinc-300">6 wrong letter guesses spring the trap completely.</p>
                   </div>
                   <div>
-                    <p className="text-green-400 font-bold uppercase text-[11px]">3. CURSED</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Secret cursed letters trigger a +2 trap penalty instantly.</p>
+                    <p className="text-green-400 font-bold uppercase text-[11px]">3. ARCHIVE HINT</p>
+                    <p className="text-[10px] mt-0.5 text-zinc-300">Consult archive once per level to reveal a letter (-5s penalty).</p>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Intro Config Modal Overlay */}
+            {/* Config Modal Overlay */}
             {showSettingsMenu && (
               <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-red-600 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
                 <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
@@ -602,13 +636,19 @@ export default function Home() {
                 })}
               </div>
 
-              {!gameOver && (
-                <div className="w-full flex justify-end pt-0.5 px-1">
+              {/* CONSULT ARCHIVE BUTTON (LIMITED TO ONCE PER LEVEL) */}
+              {!gameOver && !gameWon && (
+                <div className="w-full flex justify-center pt-2 px-1">
                   <button
-                    onClick={() => startNewGame(true)}
-                    className="px-3 py-1 bg-red-800 hover:bg-red-700 text-white font-mono text-[10px] md:text-xs font-black uppercase tracking-widest transition-all border border-red-500 rounded shadow"
+                    onClick={handleConsultArchive}
+                    disabled={hasConsultedThisLevel}
+                    className={`w-full max-w-sm py-2 font-mono text-xs sm:text-sm font-black uppercase tracking-widest transition-all border-2 rounded-lg shadow active:scale-95 ${
+                      hasConsultedThisLevel
+                        ? 'bg-zinc-900 text-zinc-600 border-zinc-800 cursor-not-allowed shadow-none'
+                        : 'bg-yellow-500 hover:bg-yellow-400 text-black border-yellow-300 shadow-[0_0_20px_rgba(234,179,8,0.5)]'
+                    }`}
                   >
-                    SKIP FILM ➔
+                    {hasConsultedThisLevel ? '📖 ARCHIVE CONSULTED (USED)' : '📖 CONSULT ARCHIVE (-5s Penalty)'}
                   </button>
                 </div>
               )}
@@ -618,12 +658,11 @@ export default function Home() {
 
       </div>
 
-      {/* GAME OVER MODAL WITH BOTH RESTART AND MAIN MENU OPTIONS */}
+      {/* GAME OVER MODAL OVERLAY */}
       {gameOver && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="relative bg-zinc-950 border-2 border-red-600/90 p-6 sm:p-8 rounded-xl shadow-[0_0_50px_rgba(220,38,38,0.5)] text-center max-w-md w-full space-y-5 -rotate-3 hover:rotate-0 transition-all duration-300">
             
-            {/* Slanted Title Styled Exactly Like Intro Logo */}
             <div className="-rotate-3 transform py-1">
               <h2 className="text-4xl sm:text-6xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[3px_3px_0px_#22c55e] italic leading-none">
                 GAME OVER
