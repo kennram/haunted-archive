@@ -1,194 +1,207 @@
-'use client'
-
-class SoundController {
+class HorrorAudioEngine {
   private ctx: AudioContext | null = null
-  private ambientOsc: OscillatorNode | null = null
+  private masterGain: GainNode | null = null
   private ambientGain: GainNode | null = null
-  private isMuted: boolean = false
-  private masterVolume: number = 0.2
+  private musicInterval: any = null
+  private isMusicPlaying: boolean = false
+  private volume: number = 0.25
 
-  private init() {
+  public initCtx() {
     if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
       this.ctx = new AudioCtx()
+      this.masterGain = this.ctx.createGain()
+      this.masterGain.gain.value = this.volume
+      this.masterGain.connect(this.ctx.destination)
     }
     if (this.ctx.state === 'suspended') {
       this.ctx.resume()
     }
   }
 
-  setVolume(vol: number) {
-    this.masterVolume = vol
-    if (this.ambientGain) {
-      this.ambientGain.gain.setValueAtTime(vol * 0.15, this.ctx?.currentTime || 0)
+  public setVolume(val: number) {
+    this.volume = val
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setTargetAtTime(val, this.ctx.currentTime, 0.05)
     }
   }
 
-  toggleAmbientMusic(enable: boolean) {
-    this.init()
-    if (!this.ctx) return
-
-    if (enable) {
-      if (this.ambientOsc) return
-      this.ambientOsc = this.ctx.createOscillator()
-      this.ambientGain = this.ctx.createGain()
-
-      this.ambientOsc.type = 'sawtooth'
-      this.ambientOsc.frequency.setValueAtTime(55, this.ctx.currentTime)
-
-      this.ambientGain.gain.setValueAtTime(this.masterVolume * 0.15, this.ctx.currentTime)
-
-      this.ambientOsc.connect(this.ambientGain)
-      this.ambientGain.connect(this.ctx.destination)
-
-      this.ambientOsc.start()
-    } else {
-      if (this.ambientOsc) {
-        this.ambientOsc.stop()
-        this.ambientOsc.disconnect()
-        this.ambientOsc = null
-      }
-    }
+  public getVolume(): number {
+    return this.volume
   }
 
-  playClick() {
-    this.init()
-    if (!this.ctx) return
+  // --- Clean John Carpenter-Style Halloween Synth (No Drone) ---
+  public toggleAmbientMusic(enable: boolean) {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
+
+    if (!enable) {
+      this.stopAmbientMusic()
+      return
+    }
+
+    if (this.isMusicPlaying) return
+    this.isMusicPlaying = true
+
+    this.ambientGain = this.ctx.createGain()
+    this.ambientGain.gain.value = 0.22
+    this.ambientGain.connect(this.masterGain)
+
+    // Creepy Minor Arpeggio Sequence (F Minor Motif)
+    const notes = [174.61, 207.65, 174.61, 207.65, 174.61, 220.00, 174.61, 207.65] // F4, Ab4, F4, Ab4, F4, A4, F4, Ab4
+    let noteIdx = 0
+
+    // Play the first note immediately on trigger
     const now = this.ctx.currentTime
+    const firstOsc = this.ctx.createOscillator()
+    const firstGain = this.ctx.createGain()
+    firstOsc.type = 'square'
+    firstOsc.frequency.setValueAtTime(notes[0], now)
+    firstGain.gain.setValueAtTime(0.18, now)
+    firstGain.gain.exponentialRampToValueAtTime(0.001, now + 0.16)
+    firstOsc.connect(firstGain)
+    firstGain.connect(this.ambientGain)
+    firstOsc.start(now)
+    firstOsc.stop(now + 0.17)
+    noteIdx = 1
 
+    // High Arpeggiated Synth Loop (160 BPM)
+    this.musicInterval = setInterval(() => {
+      if (!this.ctx || !this.ambientGain || !this.isMusicPlaying) return
+      
+      const currentTime = this.ctx.currentTime
+      const osc = this.ctx.createOscillator()
+      const noteGain = this.ctx.createGain()
+
+      osc.type = 'square'
+      osc.frequency.setValueAtTime(notes[noteIdx], currentTime)
+
+      noteGain.gain.setValueAtTime(0.18, currentTime)
+      noteGain.gain.exponentialRampToValueAtTime(0.001, currentTime + 0.16)
+
+      osc.connect(noteGain)
+      noteGain.connect(this.ambientGain)
+
+      osc.start(currentTime)
+      osc.stop(currentTime + 0.17)
+
+      noteIdx = (noteIdx + 1) % notes.length
+    }, 187)
+  }
+
+  public stopAmbientMusic() {
+    this.isMusicPlaying = false
+    if (this.musicInterval) {
+      clearInterval(this.musicInterval)
+      this.musicInterval = null
+    }
+  }
+
+  // --- Sound Effects ---
+  public playClick() {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
     const osc = this.ctx.createOscillator()
     const gain = this.ctx.createGain()
 
-    osc.type = 'sine'
-    osc.frequency.setValueAtTime(800, now)
-    osc.frequency.exponentialRampToValueAtTime(200, now + 0.05)
+    osc.type = 'square'
+    osc.frequency.setValueAtTime(750, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.04)
 
-    gain.gain.setValueAtTime(this.masterVolume * 0.4, now)
-    gain.gain.linearRampToValueAtTime(0.01, now + 0.05)
+    gain.gain.setValueAtTime(0.15, this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.04)
 
     osc.connect(gain)
-    gain.connect(this.ctx.destination)
+    gain.connect(this.masterGain)
 
-    osc.start(now)
-    osc.stop(now + 0.05)
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.04)
   }
 
-  playTrapSnap() {
-    this.init()
-    if (!this.ctx) return
-    const now = this.ctx.currentTime
-
-    const bufferSize = this.ctx.sampleRate * 0.2
-    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate)
-    const data = buffer.getChannelData(0)
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = Math.random() * 2 - 1
-    }
-
-    const noise = this.ctx.createBufferSource()
-    noise.buffer = buffer
-
-    const filter = this.ctx.createBiquadFilter()
-    filter.type = 'lowpass'
-    filter.frequency.setValueAtTime(1200, now)
-    filter.frequency.exponentialRampToValueAtTime(100, now + 0.2)
-
-    const gain = this.ctx.createGain()
-    gain.gain.setValueAtTime(this.masterVolume * 0.8, now)
-    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2)
-
-    noise.connect(filter)
-    filter.connect(gain)
-    gain.connect(this.ctx.destination)
-
-    noise.start(now)
-  }
-
-  playWin() {
-    this.init()
-    if (!this.ctx) return
-    const now = this.ctx.currentTime
-
-    const notes = [261.63, 329.63, 392.0, 523.25]
-    notes.forEach((freq, idx) => {
-      if (!this.ctx) return
-      const osc = this.ctx.createOscillator()
-      const gain = this.ctx.createGain()
-
-      osc.type = 'triangle'
-      osc.frequency.setValueAtTime(freq, now + idx * 0.08)
-
-      gain.gain.setValueAtTime(this.masterVolume * 0.3, now + idx * 0.08)
-      gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.3)
-
-      osc.connect(gain)
-      gain.connect(this.ctx.destination)
-
-      osc.start(now + idx * 0.08)
-      osc.stop(now + idx * 0.08 + 0.3)
-    })
-  }
-
-  playGameOver() {
-    this.init()
-    if (!this.ctx) return
-    const now = this.ctx.currentTime
-
+  public playTrapSnap() {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
     const osc = this.ctx.createOscillator()
     const gain = this.ctx.createGain()
 
     osc.type = 'sawtooth'
-    osc.frequency.setValueAtTime(300, now)
-    osc.frequency.exponentialRampToValueAtTime(40, now + 1.2)
+    osc.frequency.setValueAtTime(180, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(25, this.ctx.currentTime + 0.35)
 
-    gain.gain.setValueAtTime(this.masterVolume * 0.5, now)
-    gain.gain.linearRampToValueAtTime(0.01, now + 1.2)
+    gain.gain.setValueAtTime(0.45, this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.35)
 
     osc.connect(gain)
-    gain.connect(this.ctx.destination)
+    gain.connect(this.masterGain)
 
-    osc.start(now)
-    osc.stop(now + 1.2)
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.35)
   }
 
-  // Double-thump low frequency heartbeat pulse
-  playHeartbeat(urgencyFactor: number = 1) {
-    this.init()
-    if (!this.ctx) return
+  public playHeartbeat(urgencyFactor: number = 0.5) {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
+
+    const freq = 45 + urgencyFactor * 25
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(freq, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(15, this.ctx.currentTime + 0.15)
+
+    gain.gain.setValueAtTime(0.5 * Math.min(urgencyFactor + 0.2, 1), this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.15)
+
+    osc.connect(gain)
+    gain.connect(this.masterGain)
+
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.15)
+  }
+
+  public playWin() {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
     const now = this.ctx.currentTime
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
 
-    // First thump (Lub)
-    const osc1 = this.ctx.createOscillator()
-    const gain1 = this.ctx.createGain()
-    osc1.type = 'sine'
-    osc1.frequency.setValueAtTime(60 + urgencyFactor * 10, now)
-    osc1.frequency.exponentialRampToValueAtTime(25, now + 0.12)
+    osc.type = 'triangle'
+    osc.frequency.setValueAtTime(220, now)
+    osc.frequency.setValueAtTime(330, now + 0.1)
+    osc.frequency.setValueAtTime(440, now + 0.2)
+    osc.frequency.setValueAtTime(660, now + 0.3)
 
-    gain1.gain.setValueAtTime(this.masterVolume * (0.3 + urgencyFactor * 0.3), now)
-    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.12)
+    gain.gain.setValueAtTime(0.25, now)
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5)
 
-    osc1.connect(gain1)
-    gain1.connect(this.ctx.destination)
+    osc.connect(gain)
+    gain.connect(this.masterGain)
 
-    osc1.start(now)
-    osc1.stop(now + 0.12)
+    osc.start(now)
+    osc.stop(now + 0.5)
+  }
 
-    // Second thump (Dub) - 0.15s offset
-    const osc2 = this.ctx.createOscillator()
-    const gain2 = this.ctx.createGain()
-    osc2.type = 'sine'
-    osc2.frequency.setValueAtTime(50 + urgencyFactor * 10, now + 0.15)
-    osc2.frequency.exponentialRampToValueAtTime(20, now + 0.25)
+  public playGameOver() {
+    this.initCtx()
+    if (!this.ctx || !this.masterGain) return
+    const now = this.ctx.currentTime
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
 
-    gain2.gain.setValueAtTime(this.masterVolume * (0.2 + urgencyFactor * 0.25), now + 0.15)
-    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.25)
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(180, now)
+    osc.frequency.exponentialRampToValueAtTime(30, now + 0.8)
 
-    osc2.connect(gain2)
-    gain2.connect(this.ctx.destination)
+    gain.gain.setValueAtTime(0.5, now)
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8)
 
-    osc2.start(now + 0.15)
-    osc2.stop(now + 0.25)
+    osc.connect(gain)
+    gain.connect(this.masterGain)
+
+    osc.start(now)
+    osc.stop(now + 0.8)
   }
 }
 
-export const soundFx = new SoundController()
+export const soundFx = new HorrorAudioEngine()
