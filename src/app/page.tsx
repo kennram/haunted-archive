@@ -11,26 +11,27 @@ interface MovieTrivia {
   hint: string
   category: 'SLASHER' | 'MIDNIGHT MOVIE' | 'VIDEO NASTY' | 'B-CREATURE FEAT'
   minLevel: number
+  ifiUrl?: string
 }
 
 // Complete Tiered Movie Trivia Database
 const MOVIES: MovieTrivia[] = [
   // --- LEVEL 1: Mainstream Horror & Gateway Classics ---
+  { title: 'DOUBLE BLIND', hint: 'IFI Horror Season feature where experimental drug trial subjects die if they fall asleep.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/double-blind/'},
   { title: 'HALLOWEEN', hint: 'Michael Myers haunts Haddonfield on a chilly autumn night.', category: 'SLASHER', minLevel: 1 },
   { title: 'PSYCHO', hint: 'Norman Bates runs a quiet motel with his mother.', category: 'SLASHER', minLevel: 1 },
   { title: 'JAWS', hint: 'A great white terrorizes a New England summer resort town.', category: 'B-CREATURE FEAT', minLevel: 1 },
   { title: 'THE EXORCIST', hint: 'A young girl possessed in Georgetown requires a desperate rite.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
   { title: 'SCREAM', hint: 'Ghostface terrorizes Woodsboro teens with meta slasher rules.', category: 'SLASHER', minLevel: 1 },
-  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into winter madness.', category: 'SLASHER', minLevel: 1 },
+  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into winter madness.', category: 'SLASHER', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/the-shining/'},
   { title: 'CARRIE', hint: 'Telekinetic teenager takes revenge at her high school prom.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
   { title: 'FRANKENSTEIN', hint: 'Mad scientist reanimates a creature constructed from human corpses.', category: 'B-CREATURE FEAT', minLevel: 1 },
-  { title: 'DRACULA', hint: 'Transylvanian count travels to England seeking fresh blood.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
+  { title: 'DRACULA', hint: 'Transylvanian count travels to England seeking fresh blood.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/dracula/'},
   { title: 'FRIDAY THE 13TH', hint: 'Camp Crystal Lake counselors face a shadowy vengeful killer.', category: 'SLASHER', minLevel: 1 },
 
   // --- LEVEL 2: Popular Thrillers & Contemporary IFI@Home Releases ---
-  { title: 'DOUBLE BLIND', hint: 'IFI Horror Season feature where experimental drug trial subjects die if they fall asleep.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'WE BURY THE DEAD', hint: 'IFI Horror Season survival thriller starring Daisy Ridley in a zombie-plagued military zone.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'THE SHROUDS', hint: 'David Cronenberg IFI feature where a grieving widower builds a tech device to connect with the deceased.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'WE BURY THE DEAD', hint: 'IFI Horror Season survival thriller starring Daisy Ridley in a zombie-plagued military zone.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/we-bury-the-dead/'},
+  { title: 'THE SHROUDS', hint: 'David Cronenberg IFI feature where a grieving widower builds a tech device to connect with the deceased.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/the-shrouds/'},
   { title: 'ALIEN', hint: 'In space no one can hear you scream aboard the Nostromo.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
   { title: 'THE THING', hint: 'John Carpenter shape-shifting alien terrorizes an Antarctic research station.', category: 'B-CREATURE FEAT', minLevel: 2 },
   { title: 'A NIGHTMARE ON ELM STREET', hint: 'Freddy Krueger hunts teenagers inside their dreams.', category: 'SLASHER', minLevel: 2 },
@@ -40,8 +41,8 @@ const MOVIES: MovieTrivia[] = [
   { title: 'POLTERGEIST', hint: 'Suburban family home built over a relocated cemetery.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
 
   // --- LEVEL 3: Archival Monster Features, Folk Horror & Suspense ---
-  { title: 'GORGO', hint: '1961 monster feature in the IFI Horror Season where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3 },
-  { title: 'THE OUTCASTS', hint: '1982 Irish folk horror landmark from the IFI Archive set in rural Ireland exploring witchcraft.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'GORGO', hint: '1961 monster feature in the IFI Horror Season where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/gorgo/'},
+  { title: 'THE OUTCASTS', hint: '1982 Irish folk horror landmark from the IFI Archive set in rural Ireland exploring witchcraft.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/the-outcasts/'},
   { title: 'FUNNY GAMES', hint: 'Michael Haneke unsettling psychological thriller featured on IFI@Home about home intruders.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'ROSEMARY S BABY', hint: 'A Manhattan mother suspects her neighbors have sinister plans for her child.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'THE BLAIR WITCH PROJECT', hint: 'Film students vanish while investigating a Maryland legend.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
@@ -52,19 +53,19 @@ const MOVIES: MovieTrivia[] = [
   { title: 'TREMORS', hint: 'Giant subterranean carnivorous worms attack a Nevada desert town.', category: 'B-CREATURE FEAT', minLevel: 3 },
 
   // --- LEVEL 4: Art-House Masterpieces & IFI@Home Selections ---
-  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'SISTER MIDNIGHT', hint: 'IFI Horror Season dark comedy horror following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'HOLY ISLAND', hint: 'Surreal Irish feature on IFI@Home following two souls trapped in an eerie port town.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'SUSPIRIA', hint: 'Dario Argento German dance academy secretly run by a coven of witches.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'EYES WITHOUT A FACE', hint: 'Guilt-ridden French surgeon attempts gruesome facial grafts for his daughter.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'THE WICKER MAN', hint: 'Police sergeant investigates a missing girl on a pagan Scottish island.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/red-rooms/'},
+  { title: 'SISTER MIDNIGHT', hint: 'IFI Horror Season dark comedy horror following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/sister-midnight/'},
+  { title: 'HOLY ISLAND', hint: 'Surreal Irish feature on IFI@Home following two souls trapped in an eerie port town.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/holy-island/'},
+  { title: 'SUSPIRIA', hint: 'Dario Argento German dance academy secretly run by a coven of witches.', category: 'MIDNIGHT MOVIE', minLevel: 4},
+  { title: 'EYES WITHOUT A FACE', hint: 'Guilt-ridden French surgeon attempts gruesome facial grafts for his daughter.', category: 'MIDNIGHT MOVIE', minLevel: 4},
+  { title: 'THE WICKER MAN', hint: 'Police sergeant investigates a missing girl on a pagan Scottish island.', category: 'MIDNIGHT MOVIE', minLevel: 4},
   { title: 'CARNIVAL OF SOULS', hint: 'Surviving a car crash, an organist is drawn toward an abandoned Utah pavilion.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
   { title: 'BLACK SUNDAY', hint: 'Mario Bava Gothic masterwork about a witch executed in the 17th century.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
   { title: 'THE HOWLING', hint: 'A television news anchor visits a secluded retreat overrun by lycanthropes.', category: 'B-CREATURE FEAT', minLevel: 4 },
   { title: 'THE FOG', hint: 'John Carpenter tale of a glowing mist bringing vengeful leper ghosts.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
 
   // --- LEVEL 5: European Giallo & Cult Video Nasties ---
-  { title: 'FACES OF DEATH', hint: 'Infamous 1978 shocking horror compilation featured in the IFI Horror Season collection.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'FACES OF DEATH', hint: 'Infamous 1978 shocking horror compilation featured in the IFI Horror Season collection.', category: 'VIDEO NASTY', minLevel: 5, ifiUrl: 'https://www.ifihome.ie/film/faces-of-death/'},
   { title: 'THE TEXAS CHAINSAW MASSACRE', hint: 'Leatherface and his cannibal family in 1974 Texas.', category: 'VIDEO NASTY', minLevel: 5 },
   { title: 'DEEP RED', hint: 'Dario Argento Giallo masterpiece involving a jazz pianist and a psychic reading.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
   { title: 'TENEBRAE', hint: 'American mystery author in Rome stalked by a razor-wielding maniac.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
@@ -176,14 +177,18 @@ export default function Home() {
     setLevel(newLevel)
     setTimeLeft(getLevelTimer(newLevel))
     
-    let eligibleMovies = MOVIES.filter((m) => m.minLevel <= newLevel)
+    let eligibleMovies = MOVIES.filter((m) => m.minLevel === newLevel)
     let unplayedMovies = eligibleMovies.filter((m) => !currentPlayed.includes(m.title))
 
     if (unplayedMovies.length === 0) {
-      unplayedMovies = eligibleMovies
+      eligibleMovies = MOVIES.filter((m) => m.minLevel <= newLevel)
+      unplayedMovies = eligibleMovies.filter((m) => !currentPlayed.includes(m.title))
+      if (unplayedMovies.length === 0) {
+        unplayedMovies = eligibleMovies.length > 0 ? eligibleMovies : MOVIES
+      }
     }
 
-    const movie = unplayedMovies[Math.floor(Math.random() * unplayedMovies.length)]
+    const movie = unplayedMovies[Math.floor(Math.random() * unplayedMovies.length)] || MOVIES[0]
     
     setCurrentMovie(movie)
     setPlayedTitles([...currentPlayed, movie.title])
@@ -216,7 +221,7 @@ export default function Home() {
   }
 
   const handleConsultArchive = () => {
-    if (gameOver || gameWon || hasConsultedThisLevel) return
+    if (gameOver || gameWon || hasConsultedThisLevel || !currentMovie) return
     soundFx.playTrapSnap()
 
     const titleLetters = currentMovie.title.replace(/[^A-Z]/g, '').split('')
@@ -290,7 +295,7 @@ export default function Home() {
   }
 
   const handleGuess = (letter: string) => {
-    if (guessedLetters.includes(letter) || gameOver || gameWon) return
+    if (guessedLetters.includes(letter) || gameOver || gameWon || !currentMovie) return
 
     soundFx.playClick()
     const newGuessed = [...guessedLetters, letter]
@@ -339,21 +344,26 @@ export default function Home() {
     }
   }
 
+  const filmLink = currentMovie?.ifiUrl || `https://www.ifiathome.ie/search?q=${encodeURIComponent(currentMovie?.title || '')}`
+
   return (
-    <main className={`h-[100dvh] w-screen bg-[#0c0a09] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-3 relative overflow-hidden select-none transition-colors duration-100 ${
-      trapFlash ? 'bg-red-950/80' : ''
+    <main className={`h-[100dvh] w-screen bg-gradient-to-b from-zinc-900 via-stone-900 to-zinc-950 text-zinc-100 flex flex-col items-center justify-between p-2 md:p-3 relative overflow-hidden select-none transition-colors duration-100 ${
+      trapFlash ? 'bg-red-900/90' : ''
     }`}>
-      {/* 35MM FILM GRAIN, DUST & CRT FLICKER OVERLAYS */}
-      <div className="absolute inset-0 pointer-events-none z-50 opacity-20 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.7)_50%)] bg-[length:100%_4px]" />
-      <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.18)_0%,rgba(12,10,9,0.96)_100%)]" />
+      {/* ILLUMINATED CINEMA PROJECTOR CONE LIGHT */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.18)_0%,rgba(0,0,0,0)_70%)] pointer-events-none z-10" />
+
+      {/* 35MM FILM GRAIN, DUST & CRT OVERLAYS */}
+      <div className="absolute inset-0 pointer-events-none z-50 opacity-15 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
+      <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.08)_0%,rgba(12,10,9,0.85)_100%)]" />
 
       {/* --- 35MM FILM PERFORATION BORDERS & EDGE-CODES --- */}
-      <div className="absolute left-1 sm:left-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
+      <div className="absolute left-1 sm:left-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-50 z-30 select-none">
         {Array.from({ length: 14 }).map((_, i) => (
           <div key={i} className="flex flex-col items-center space-y-1">
-            <div className="w-3.5 h-2 bg-black border border-amber-900/80 rounded-sm shadow-inner" />
+            <div className="w-3.5 h-2 bg-zinc-950 border border-amber-600/70 rounded-sm shadow" />
             {i % 4 === 0 && (
-              <span className="text-[7px] font-mono text-amber-600/70 rotate-90 tracking-tighter uppercase font-bold">
+              <span className="text-[7px] font-mono text-amber-400 rotate-90 tracking-tighter uppercase font-bold">
                 35MM NITRATE
               </span>
             )}
@@ -361,12 +371,12 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="absolute right-1 sm:right-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
+      <div className="absolute right-1 sm:right-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-50 z-30 select-none">
         {Array.from({ length: 14 }).map((_, i) => (
           <div key={i} className="flex flex-col items-center space-y-1">
-            <div className="w-3.5 h-2 bg-black border border-amber-900/80 rounded-sm shadow-inner" />
+            <div className="w-3.5 h-2 bg-zinc-950 border border-amber-600/70 rounded-sm shadow" />
             {i % 4 === 2 && (
-              <span className="text-[7px] font-mono text-green-600/70 -rotate-90 tracking-tighter uppercase font-bold">
+              <span className="text-[7px] font-mono text-green-400 -rotate-90 tracking-tighter uppercase font-bold">
                 IFI-BOOTH
               </span>
             )}
@@ -374,11 +384,11 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto px-6 sm:px-10">
+      <div className="relative z-20 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto px-6 sm:px-10">
         {!hasStarted ? (
-          /* --- PRIMARY INTRO SCREEN --- */
+          /* --- BRIGHTENED PRIMARY INTRO SCREEN --- */
           <div className="w-full h-full flex flex-col items-center justify-center text-center space-y-4 sm:space-y-5 my-auto relative">
-            <div className="tracking-widest font-mono text-xs sm:text-sm md:text-base font-black text-green-400 uppercase drop-shadow-[0_0_15px_rgba(34,197,94,1)]">
+            <div className="tracking-widest font-mono text-xs sm:text-sm md:text-base font-black text-amber-300 uppercase drop-shadow-[0_0_15px_rgba(245,158,11,0.8)]">
               🩸 IFI@HOME PRESENTS 🩸
             </div>
 
@@ -386,13 +396,13 @@ export default function Home() {
             <SwingingSign />
 
             <div className="space-y-2 max-w-xl px-2">
-              <p className="text-zinc-200 font-mono text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow-md">
+              <p className="text-zinc-100 font-mono text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow">
                 Unravel classic horror titles frame-by-frame before the projection booth locks you in forever.
               </p>
             </div>
 
             {highScore > 0 && (
-              <div className="bg-zinc-900/90 border-2 border-yellow-400 px-5 py-2 rounded-xl font-mono text-xs md:text-sm text-yellow-300 font-black tracking-widest shadow-[0_0_25px_rgba(234,179,8,0.4)] animate-pulse">
+              <div className="bg-amber-950/90 border-2 border-yellow-400 px-5 py-2 rounded-xl font-mono text-xs md:text-sm text-yellow-300 font-black tracking-widest shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse">
                 🏆 ALL-TIME RECORD: {String(highScore).padStart(6, '0')} PTS
               </div>
             )}
@@ -402,8 +412,8 @@ export default function Home() {
                 onClick={handleIntroMusicToggle}
                 className={`px-3 py-1.5 font-mono text-xs font-black uppercase tracking-widest rounded-lg border-2 transition-all ${
                   musicOn
-                    ? 'bg-red-950 text-red-400 border-red-600 shadow-[0_0_15px_rgba(220,38,38,0.5)]'
-                    : 'bg-zinc-900 text-zinc-400 border-zinc-700'
+                    ? 'bg-amber-900 text-yellow-200 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)]'
+                    : 'bg-zinc-800 text-zinc-300 border-zinc-600'
                 }`}
               >
                 {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
@@ -414,7 +424,7 @@ export default function Home() {
                   setShowSettingsMenu(!showSettingsMenu)
                   setShowRulesMenu(false)
                 }}
-                className="px-3 py-1.5 bg-zinc-950 hover:bg-red-950 text-red-400 hover:text-red-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-red-500 rounded-lg shadow"
+                className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-amber-400 hover:text-amber-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-amber-500 rounded-lg shadow"
               >
                 ⚙️ CONFIG
               </button>
@@ -424,17 +434,17 @@ export default function Home() {
                   setShowRulesMenu(!showRulesMenu)
                   setShowSettingsMenu(false)
                 }}
-                className="px-3 py-1.5 bg-zinc-950 hover:bg-green-950 text-green-400 hover:text-green-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-green-500 rounded-lg shadow"
+                className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-green-400 hover:text-green-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-green-500 rounded-lg shadow"
               >
                 📜 RULES
               </button>
             </div>
 
             {showRulesMenu && (
-              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-green-500 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
-                <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
+              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border-2 border-green-500 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
+                <div className="flex justify-between items-center pb-2 border-b border-zinc-700">
                   <span className="text-green-400 font-bold uppercase tracking-widest">ARCHIVE INSTRUCTIONS</span>
-                  <button onClick={() => setShowRulesMenu(false)} className="text-zinc-300 hover:text-white font-bold">✕ CLOSE</button>
+                  <button onClick={() => setShowRulesMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-100 text-left pt-1">
                   <div>
@@ -454,17 +464,17 @@ export default function Home() {
             )}
 
             {showSettingsMenu && (
-              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-950/98 border-2 border-red-600 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
-                <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
-                  <span className="text-red-400 font-bold uppercase tracking-widest">CONFIGURATION</span>
-                  <button onClick={() => setShowSettingsMenu(false)} className="text-zinc-300 hover:text-white font-bold">✕ CLOSE</button>
+              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border-2 border-amber-500 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
+                <div className="flex justify-between items-center pb-2 border-b border-zinc-700">
+                  <span className="text-amber-400 font-bold uppercase tracking-widest">CONFIGURATION</span>
+                  <button onClick={() => setShowSettingsMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <p className="text-zinc-200 font-bold uppercase text-[11px]">Audio System</p>
+                    <p className="text-zinc-100 font-bold uppercase text-[11px]">Audio System</p>
                     <button
                       onClick={handleIntroMusicToggle}
-                      className={`px-3 py-1 font-bold text-xs rounded ${musicOn ? 'bg-red-800 text-white' : 'bg-zinc-800 text-zinc-200 border border-zinc-700'}`}
+                      className={`px-3 py-1 font-bold text-xs rounded ${musicOn ? 'bg-amber-800 text-white' : 'bg-zinc-800 text-zinc-200 border border-zinc-700'}`}
                     >
                       {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
                     </button>
@@ -481,15 +491,15 @@ export default function Home() {
                         step="0.05"
                         value={volume}
                         onChange={handleVolumeChange}
-                        className="w-full accent-red-600 cursor-pointer"
+                        className="w-full accent-amber-500 cursor-pointer"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-zinc-200 font-bold uppercase text-[11px]">Accessibility</p>
+                    <p className="text-zinc-100 font-bold uppercase text-[11px]">Accessibility</p>
                     <label className="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" checked={highContrast} onChange={(e) => setHighContrast(e.target.checked)} className="accent-red-600 w-4 h-4" />
+                      <input type="checkbox" checked={highContrast} onChange={(e) => setHighContrast(e.target.checked)} className="accent-amber-500 w-4 h-4" />
                       <span className="text-[11px]">High Contrast Mode</span>
                     </label>
                   </div>
@@ -500,7 +510,7 @@ export default function Home() {
             <div className="w-full max-w-xs pt-2 px-4">
               <button
                 onClick={handleStartGame}
-                className="w-full py-4 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
+                className="w-full py-4 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-[0_0_35px_rgba(245,158,11,0.8)] transition-all hover:scale-105 active:scale-95 border-b-4 border-amber-800 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-300"
               >
                 ▶ PLAY FEATURE
               </button>
@@ -509,10 +519,10 @@ export default function Home() {
         ) : (
           <>
             {/* ACTIVE GAMEPLAY HEADER */}
-            <div className="w-full relative shrink-0 bg-zinc-900/95 border-2 border-red-600/90 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.3)] overflow-hidden">
+            <div className="w-full relative shrink-0 bg-zinc-900/90 border-2 border-amber-500/80 rounded-lg shadow-[0_0_20px_rgba(245,158,11,0.3)] overflow-hidden">
               <div 
-                className={`h-1 transition-all duration-1000 ease-linear ${
-                  timeLeft <= 10 ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]' : 'bg-yellow-400'
+                className={`h-1.5 transition-all duration-1000 ease-linear ${
+                  timeLeft <= 10 ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]' : 'bg-amber-400'
                 }`}
                 style={{ width: `${(timeLeft / getLevelTimer(level)) * 100}%` }}
               />
@@ -520,22 +530,22 @@ export default function Home() {
               <div className="flex items-center justify-between px-3 py-1.5">
                 <button
                   onClick={handleReturnToIntro}
-                  className="px-2.5 py-1 bg-zinc-950 hover:bg-red-950 text-zinc-300 hover:text-red-400 font-mono text-xs font-black uppercase tracking-wider transition-all border border-zinc-700 hover:border-red-500 rounded shadow"
+                  className="px-2.5 py-1 bg-zinc-950 hover:bg-zinc-800 text-amber-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-amber-600/80 rounded shadow"
                 >
                   🏠 MENU
                 </button>
 
                 <div className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 font-mono">
                   <div className="text-center">
-                    <span className="text-[9px] text-zinc-100 block uppercase tracking-widest font-black">REEL</span>
-                    <span className="font-black text-red-400 text-sm sm:text-base drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]">{level}</span>
+                    <span className="text-[9px] text-zinc-300 block uppercase tracking-widest font-black">REEL</span>
+                    <span className="font-black text-amber-400 text-sm sm:text-base drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">{level}</span>
                   </div>
 
                   <div 
                     className={`px-2.5 py-0.5 rounded border transition-all duration-300 ${
                       timeLeft <= 10 
                         ? 'bg-red-950/90 border-red-500 shadow-[0_0_25px_rgba(239,68,68,1)]' 
-                        : 'bg-black/60 border-zinc-700'
+                        : 'bg-black/60 border-amber-600/60'
                     }`}
                   >
                     <span className="text-[8px] text-zinc-300 block uppercase tracking-widest font-black text-center">TIME LEFT</span>
@@ -549,15 +559,15 @@ export default function Home() {
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[9px] text-zinc-100 block uppercase tracking-widest font-black">SCORE</span>
-                    <span className="font-black text-green-300 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(134,239,172,0.6)]">
+                    <span className="text-[9px] text-zinc-300 block uppercase tracking-widest font-black">SCORE</span>
+                    <span className="font-black text-green-400 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]">
                       {String(score).padStart(6, '0')}
                     </span>
                   </div>
 
                   <div className="text-right hidden sm:block">
                     <span className="text-[9px] text-yellow-400 block uppercase tracking-widest font-black">BEST</span>
-                    <span className="font-black text-yellow-300 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(253,224,71,0.6)]">
+                    <span className="font-black text-yellow-300 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(253,224,71,0.8)]">
                       {String(highScore).padStart(6, '0')}
                     </span>
                   </div>
@@ -566,34 +576,34 @@ export default function Home() {
             </div>
 
             {/* HIGH-IMPACT MOVIE CLUE / QUESTION MARQUIS */}
-            <div className="w-full relative my-1 shrink-0 rounded-xl bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border-2 border-amber-500/80 p-2.5 sm:p-3 text-center shadow-[0_0_25px_rgba(245,158,11,0.2)]">
+            <div className="w-full relative my-1 shrink-0 rounded-xl bg-gradient-to-r from-zinc-900 via-amber-950/40 to-zinc-900 border-2 border-amber-400/90 p-2.5 sm:p-3 text-center shadow-[0_0_30px_rgba(245,158,11,0.35)]">
               {/* Header Label Row */}
               <div className="flex items-center justify-between px-2 mb-1">
                 <div className="flex items-center space-x-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
-                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-amber-400 uppercase tracking-widest">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-amber-300 uppercase tracking-widest">
                     ARCHIVE REEL CLUE
                   </span>
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-green-400 uppercase tracking-wider px-2 py-0.5 bg-black border border-green-500/80 rounded-full shadow-sm">
-                    {currentMovie.category}
+                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-green-300 uppercase tracking-wider px-2 py-0.5 bg-zinc-950 border border-green-400/80 rounded-full shadow-sm">
+                    {currentMovie?.category}
                   </span>
-                  <span className="text-[10px] font-mono text-zinc-400">
-                    TRAPS: <strong className="text-red-500 font-black">{wrongGuesses}</strong>/{maxWrong}
+                  <span className="text-[10px] font-mono text-zinc-300">
+                    TRAPS: <strong className="text-red-400 font-black">{wrongGuesses}</strong>/{maxWrong}
                   </span>
                 </div>
               </div>
 
               {/* Highlighted Question / Hint Text */}
-              <p className="text-base sm:text-lg md:text-xl font-mono font-black text-amber-100 italic tracking-wide leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] px-2">
-                "{currentMovie.hint}"
+              <p className="text-base sm:text-lg md:text-xl font-mono font-black text-amber-50 italic tracking-wide leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] px-2">
+                "{currentMovie?.hint}"
               </p>
             </div>
 
             {/* CINEMATIC HORROR CANVAS */}
-            <div className="w-full h-36 sm:h-44 md:h-52 relative my-0.5 shrink-0 overflow-hidden rounded-xl border border-red-900/80 shadow-2xl bg-black">
+            <div className="w-full h-36 sm:h-44 md:h-52 relative my-0.5 shrink-0 overflow-hidden rounded-xl border-2 border-amber-900/80 shadow-2xl bg-black">
               <div className="absolute inset-0 w-full h-full">
                 <HorrorScene
                   wrongGuesses={wrongGuesses}
@@ -621,14 +631,14 @@ export default function Home() {
             </div>
 
             {/* DEDICATED HIGH-VISIBILITY TILED LETTER SLOT BAR */}
-            <div className="w-full flex items-center justify-center py-2 px-3 my-0.5 bg-zinc-950/95 border-2 border-green-500/60 rounded-xl shrink-0 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+            <div className="w-full flex items-center justify-center py-2 px-3 my-0.5 bg-zinc-900/95 border-2 border-amber-500/70 rounded-xl shrink-0 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
               <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 px-1">
-                {currentMovie.title.split('').map((char, index) => {
+                {currentMovie?.title.split('').map((char, index) => {
                   if (char === ' ') {
                     return (
                       <div 
                         key={index} 
-                        className="w-3 sm:w-5 h-8 sm:h-10 border-b-2 border-dashed border-zinc-600 my-auto" 
+                        className="w-3 sm:w-5 h-8 sm:h-10 border-b-2 border-dashed border-amber-600 my-auto" 
                       />
                     )
                   }
@@ -640,8 +650,8 @@ export default function Home() {
                       key={index}
                       className={`w-7 h-9 sm:w-9 sm:h-11 md:w-10 md:h-12 flex items-center justify-center font-mono text-lg sm:text-xl md:text-2xl font-black rounded-lg border-2 shadow-md transition-all ${
                         isRevealed
-                          ? 'bg-zinc-900 border-yellow-400 text-yellow-300 shadow-[0_0_12px_rgba(234,179,8,0.7)]'
-                          : 'bg-zinc-900 border-green-400 text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.4)]'
+                          ? 'bg-zinc-950 border-yellow-400 text-yellow-300 shadow-[0_0_15px_rgba(253,224,71,0.8)]'
+                          : 'bg-zinc-800 border-amber-400 text-amber-200 shadow-[0_0_10px_rgba(245,158,11,0.4)]'
                       }`}
                     >
                       {isRevealed ? char : '_'}
@@ -661,10 +671,10 @@ export default function Home() {
                       key={letter}
                       onClick={() => handleGuess(letter)}
                       disabled={isGuessed || gameOver || gameWon}
-                      className={`w-7 h-8 sm:w-8 sm:h-9 md:w-9 md:h-10 font-mono text-xs font-black transition-all flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 ${
+                      className={`w-7 h-8 sm:w-8 sm:h-9 md:w-9 md:h-10 font-mono text-xs font-black transition-all flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 ${
                         isGuessed
-                          ? 'bg-zinc-950 text-zinc-700 border border-zinc-900 cursor-not-allowed'
-                          : 'bg-zinc-800 hover:bg-red-900 text-white border border-zinc-600 hover:border-green-400 hover:text-green-300 shadow-sm'
+                          ? 'bg-zinc-950 text-zinc-600 border border-zinc-800 cursor-not-allowed'
+                          : 'bg-zinc-800 hover:bg-amber-600 text-amber-100 hover:text-white border border-amber-700/80 shadow'
                       }`}
                     >
                       {letter}
@@ -681,7 +691,7 @@ export default function Home() {
                     className={`w-full max-w-sm py-1.5 font-mono text-xs sm:text-sm font-black uppercase tracking-widest transition-all border-2 rounded-lg shadow active:scale-95 ${
                       hasConsultedThisLevel
                         ? 'bg-zinc-900 text-zinc-600 border-zinc-800 cursor-not-allowed shadow-none'
-                        : 'bg-yellow-500 hover:bg-yellow-400 text-black border-yellow-300 shadow-[0_0_20px_rgba(234,179,8,0.5)]'
+                        : 'bg-amber-500 hover:bg-amber-400 text-zinc-950 border-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.6)]'
                     }`}
                   >
                     {hasConsultedThisLevel ? '📖 ARCHIVE CONSULTED (USED)' : '📖 CONSULT ARCHIVE (-5s Penalty)'}
@@ -696,11 +706,11 @@ export default function Home() {
 
       {/* ENHANCED ROUND WON / LEVEL CLEARED OVERLAY */}
       {gameWon && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="relative bg-zinc-950 border-2 border-green-500 p-6 sm:p-8 rounded-xl shadow-[0_0_60px_rgba(34,197,94,0.4)] text-center max-w-md w-full space-y-4">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="relative bg-zinc-900 border-2 border-green-400 p-6 sm:p-8 rounded-xl shadow-[0_0_60px_rgba(34,197,94,0.5)] text-center max-w-md w-full space-y-4">
             
             <div className="py-1">
-              <span className="text-[10px] sm:text-xs font-mono font-black text-green-400 uppercase tracking-widest bg-green-950 px-3 py-1 rounded-full border border-green-600">
+              <span className="text-[10px] sm:text-xs font-mono font-black text-green-300 uppercase tracking-widest bg-green-950 px-3 py-1 rounded-full border border-green-500">
                 PROJECTION SUCCESSFUL
               </span>
               <h2 className="text-3xl sm:text-5xl font-black font-mono tracking-tighter text-green-400 uppercase drop-shadow-[2px_2px_0px_#22c55e] italic mt-2">
@@ -708,22 +718,22 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-lg font-mono space-y-1.5 text-left text-xs sm:text-sm">
-              <div className="flex justify-between text-zinc-300">
+            <div className="bg-zinc-950 border border-zinc-800 p-3 rounded-lg font-mono space-y-1.5 text-left text-xs sm:text-sm">
+              <div className="flex justify-between text-zinc-200">
                 <span>SOLVED FILM:</span>
-                <span className="text-yellow-300 font-bold uppercase">{currentMovie.title}</span>
+                <span className="text-yellow-300 font-bold uppercase">{currentMovie?.title}</span>
               </div>
-              <div className="flex justify-between text-zinc-300">
+              <div className="flex justify-between text-zinc-200">
                 <span>TIME REMAINING:</span>
                 <span className="text-yellow-400 font-bold">+{timeLeft}s</span>
               </div>
-              <div className="flex justify-between text-zinc-300 pt-1 border-t border-zinc-800">
+              <div className="flex justify-between text-zinc-200 pt-1 border-t border-zinc-800">
                 <span>ROUND BONUS:</span>
-                <span className="text-green-300 font-bold">+{lastRoundBonus} PTS</span>
+                <span className="text-green-400 font-bold">+{lastRoundBonus} PTS</span>
               </div>
             </div>
 
-            <p className="text-zinc-400 font-mono text-[11px] animate-pulse pt-1">
+            <p className="text-zinc-300 font-mono text-[11px] animate-pulse pt-1">
               Spooling next feature reel...
             </p>
           </div>
@@ -732,19 +742,17 @@ export default function Home() {
 
       {/* GRAINY DISTRESSED GAME OVER SCREEN WITH SWINGING SIGN */}
       {gameOver && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
-          {/* Intense Nitrate Red Vignette & Grain Blur Overlay */}
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_10%,rgba(185,28,28,0.45)_100%)] animate-pulse" />
-          <div className="absolute inset-0 pointer-events-none opacity-25 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.8)_50%)] bg-[length:100%_4px]" />
 
           {/* SWINGING SIGNPOST HEADER */}
           <GameOverSign />
 
           {/* GAME OVER STATS PANEL */}
-          <div className="relative bg-[#1a110c] border-2 border-amber-900/80 p-5 sm:p-6 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.95)] text-center max-w-md w-full space-y-4 relative z-10 overflow-hidden mt-1">
+          <div className="relative bg-[#221610] border-2 border-amber-800/80 p-5 sm:p-6 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.95)] text-center max-w-md w-full space-y-4 relative z-10 overflow-hidden mt-1">
             
             <div className="relative z-10 space-y-1.5">
-              <div className="inline-block bg-black/80 border border-amber-900/60 px-4 py-1.5 rounded-lg font-mono text-xs font-black text-zinc-300 uppercase tracking-widest shadow">
+              <div className="inline-block bg-black/80 border border-amber-800/60 px-4 py-1.5 rounded-lg font-mono text-xs font-black text-zinc-200 uppercase tracking-widest shadow">
                 REACHED REEL {level} • SCORE: <span className="text-green-400">{score}</span>
               </div>
 
@@ -755,26 +763,53 @@ export default function Home() {
               )}
             </div>
 
-            {/* Unsolved Movie Reveal */}
-            <div className="relative z-10 bg-black/90 border border-zinc-800 p-3 rounded-xl font-mono text-zinc-200">
-              <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-black block mb-0.5">UNSOLVED FILM TITLE</span>
-              <span className="text-yellow-400 font-black tracking-widest text-base sm:text-xl uppercase drop-shadow-[0_0_12px_rgba(253,224,71,0.7)]">
-                {currentMovie.title}
-              </span>
+            {/* Unsolved Movie Reveal with IFI@Home Archival Vault Link */}
+            <div className="relative z-10 bg-black/90 border-2 border-yellow-500/70 p-3.5 rounded-xl font-mono text-zinc-200 shadow-[0_0_20px_rgba(234,179,8,0.2)] text-left">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[9px] text-amber-400 uppercase tracking-[0.2em] font-black">
+                  🔍 ARCHIVAL VAULT SELECTION
+                </span>
+                <span className="text-[9px] text-zinc-400">IFI@HOME</span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-1">
+                <a
+                  href={filmLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center space-x-1.5"
+                >
+                  <span className="text-yellow-400 font-black tracking-widest text-base sm:text-lg uppercase drop-shadow-[0_0_12px_rgba(253,224,71,0.7)] group-hover:text-amber-300 group-hover:underline">
+                    {currentMovie?.title}
+                  </span>
+                  <span className="text-xs text-amber-400 group-hover:translate-x-0.5 transition-transform">
+                    ↗
+                  </span>
+                </a>
+
+                <a
+                  href={filmLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1 bg-amber-950/90 hover:bg-amber-900 border border-amber-600 text-amber-200 font-mono text-[10px] font-black uppercase tracking-wider rounded transition-all shadow"
+                >
+                  🎟️ STREAM FILM
+                </a>
+              </div>
             </div>
 
             {/* Modal Controls */}
             <div className="relative z-10 space-y-2 pt-1">
               <button
                 onClick={() => startNewGame(false)}
-                className="w-full py-3 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
+                className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(245,158,11,0.8)] transition-all hover:scale-105 active:scale-95 border-b-4 border-amber-800 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-300"
               >
                 ▶ PLAY FEATURE
               </button>
 
               <button
                 onClick={handleReturnToIntro}
-                className="w-full py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-zinc-200 font-mono text-xs font-black uppercase tracking-widest border border-zinc-800 rounded-lg transition-all"
+                className="w-full py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white font-mono text-xs font-black uppercase tracking-widest border border-zinc-700 rounded-lg transition-all"
               >
                 🏠 MAIN MENU
               </button>
