@@ -2,151 +2,183 @@
 
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, PerspectiveCamera, Text } from '@react-three/drei'
+import { PerspectiveCamera, Float, Sparkles } from '@react-three/drei'
 import * as THREE from 'three'
 
 interface HorrorSceneProps {
   wrongGuesses: number
-  maxGuesses?: number
+  maxGuesses: number
   highContrast?: boolean
   reduceMotion?: boolean
 }
 
-function SceneContent({ wrongGuesses, highContrast, reduceMotion }: { wrongGuesses: number; highContrast?: boolean; reduceMotion?: boolean }) {
-  const lightRef = useRef<THREE.PointLight>(null)
-  const victimRef = useRef<THREE.Group>(null)
+function ProjectorAndReel({ wrongGuesses, maxGuesses }: { wrongGuesses: number; maxGuesses: number }) {
+  const reelRef = useRef<THREE.Group>(null)
+  const chassisRef = useRef<THREE.Group>(null)
+  const beamRef = useRef<THREE.Mesh>(null)
 
-  useFrame(({ clock }) => {
-    if (!reduceMotion && lightRef.current) {
-      const time = clock.getElapsedTime()
-      lightRef.current.intensity = 2.2 + wrongGuesses * 0.4 + Math.sin(time * 12) * 0.5
+  const progress = wrongGuesses / maxGuesses
+
+  const beamColor = progress >= 1 ? '#ef4444' : progress > 0.5 ? '#f59e0b' : '#22c55e'
+  const heatColor = progress >= 1 ? '#ef4444' : progress > 0.3 ? '#f97316' : '#27272a'
+
+  useFrame((state, delta) => {
+    if (reelRef.current) {
+      const spinSpeed = progress >= 1 ? 0 : Math.max(0.1, 3.5 - progress * 3.0)
+      reelRef.current.rotation.z -= delta * spinSpeed
+
+      if (wrongGuesses > 0) {
+        const intensity = progress * 0.25
+        reelRef.current.position.x = (Math.random() - 0.5) * intensity
+        reelRef.current.position.y = (Math.random() - 0.5) * intensity
+        reelRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 15) * intensity
+        reelRef.current.rotation.y = Math.cos(state.clock.elapsedTime * 12) * intensity
+      } else {
+        reelRef.current.position.set(0, 0, 0)
+        reelRef.current.rotation.x = 0
+        reelRef.current.rotation.y = 0
+      }
     }
-    if (!reduceMotion && victimRef.current && wrongGuesses >= 4) {
-      const time = clock.getElapsedTime()
-      victimRef.current.rotation.z = Math.sin(time * 3) * 0.06
+
+    if (chassisRef.current && wrongGuesses > 0) {
+      chassisRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 25) * 0.02 * wrongGuesses
+      chassisRef.current.position.y = (Math.random() - 0.5) * 0.03 * wrongGuesses
+    }
+
+    if (beamRef.current) {
+      const flicker = Math.sin(state.clock.elapsedTime * (15 + wrongGuesses * 10)) * 0.15
+      beamRef.current.scale.x = 1 + flicker
+      beamRef.current.scale.z = 1 + flicker
     }
   })
 
-  const beamColor = wrongGuesses >= 5 ? '#ff0000' : '#ff3333'
-  // Bright amber wood color for maximum visibility
-  const postColor = highContrast ? '#ffffff' : '#f59e0b'
-  const victimColor = highContrast ? '#ff0000' : '#450a0a'
-
   return (
-    <>
-      <color attach="background" args={['#080808']} />
-      
-      {/* High-intensity lighting */}
-      <ambientLight intensity={1.2} />
-      <directionalLight position={[3, 5, 4]} intensity={2.5} color="#ffffff" />
-      
-      <pointLight
-        ref={lightRef}
-        position={[0, 2, 2]}
-        color={beamColor}
-        distance={12}
-        decay={1}
-      />
-
-      {/* Projection Screen Background - Sepia Film Tone */}
-      <mesh position={[0, 0, -2.2]}>
-        <planeGeometry args={[14, 10]} />
-        <meshStandardMaterial
-          color={highContrast ? '#111111' : '#c2a888'}
-          roughness={0.5}
+    <group ref={chassisRef} position={[0, 0.1, 0]}>
+      {/* PROJECTOR CHASSIS */}
+      <mesh position={[-1.2, -0.4, 0]}>
+        <boxGeometry args={[1.8, 1.4, 1.2]} />
+        <meshStandardMaterial 
+          color={heatColor} 
+          roughness={0.4} 
+          metalness={0.7}
+          emissive={heatColor}
+          emissiveIntensity={progress * 0.8}
         />
       </mesh>
 
-      {/* Countdown Leader Rings on Screen */}
-      <mesh position={[0, 0, -2.1]}>
-        <ringGeometry args={[2.0, 2.1, 32]} />
-        <meshBasicMaterial color="#554433" />
-      </mesh>
-      <mesh position={[0, 0, -2.1]}>
-        <ringGeometry args={[3.2, 3.25, 32]} />
-        <meshBasicMaterial color="#443322" />
+      {/* Vent Grille */}
+      <mesh position={[-1.2, 0.31, 0]}>
+        <boxGeometry args={[1.2, 0.05, 0.8]} />
+        <meshStandardMaterial color={wrongGuesses > 2 ? '#ef4444' : '#18181b'} emissive={wrongGuesses > 2 ? '#ef4444' : '#000000'} emissiveIntensity={0.6} />
       </mesh>
 
-      {/* Countdown Number */}
-      <Text
-        position={[0, 0.1, -2.0]}
-        fontSize={3.5}
-        color="#332211"
-        anchorX="center"
-        anchorY="middle"
-      >
-        10
-      </Text>
-
-      {/* --- BRIGHT GALLOWS FRAME --- */}
-      {/* Vertical Post */}
-      <mesh position={[-1.4, -0.1, 0]}>
-        <boxGeometry args={[0.35, 4.5, 0.35]} />
-        <meshStandardMaterial color={postColor} emissive="#78350f" emissiveIntensity={0.5} roughness={0.3} />
-      </mesh>
-      
-      {/* Top Beam */}
-      <mesh position={[-0.1, 2.0, 0]}>
-        <boxGeometry args={[2.8, 0.35, 0.35]} />
-        <meshStandardMaterial color={postColor} emissive="#78350f" emissiveIntensity={0.5} roughness={0.3} />
+      {/* Lens Barrel */}
+      <mesh position={[-0.1, -0.2, 0]} rotation={[0, 0, -Math.PI / 2]}>
+        <cylinderGeometry args={[0.3, 0.25, 0.6, 16]} />
+        <meshStandardMaterial color={wrongGuesses > 3 ? '#991b1b' : '#52525b'} roughness={0.2} metalness={0.9} />
       </mesh>
 
-      {/* --- PROGRESSIVE TRAP MECHANISMS --- */}
-      {wrongGuesses >= 1 && (
-        <mesh position={[-0.9, 1.5, 0]} rotation={[0, 0, -Math.PI / 4]}>
-          <boxGeometry args={[1.1, 0.25, 0.25]} />
-          <meshStandardMaterial color={postColor} emissive="#78350f" emissiveIntensity={0.5} roughness={0.3} />
+      {/* Lens Glow */}
+      <mesh position={[0.2, -0.2, 0]} rotation={[0, 0, -Math.PI / 2]}>
+        <cylinderGeometry args={[0.24, 0.24, 0.05, 16]} />
+        <meshBasicMaterial color={beamColor} />
+      </mesh>
+
+      {/* 35MM REEL */}
+      <group position={[-1.2, 1.1, 0]}>
+        <mesh position={[0, -0.4, 0]}>
+          <boxGeometry args={[0.2, 0.8, 0.2]} />
+          <meshStandardMaterial color="#3f3f46" roughness={0.5} />
         </mesh>
-      )}
 
-      {wrongGuesses >= 2 && (
-        <mesh position={[1.1, 1.8, 0]}>
-          <boxGeometry args={[0.3, 0.3, 0.3]} />
-          <meshStandardMaterial color="#404040" metalness={0.9} roughness={0.2} />
-        </mesh>
-      )}
-
-      {wrongGuesses >= 3 && (
-        <mesh position={[1.1, 1.2, 0]}>
-          <cylinderGeometry args={[0.04, 0.04, 0.9]} />
-          <meshStandardMaterial color="#ffffff" metalness={0.8} roughness={0.1} />
-        </mesh>
-      )}
-
-      {/* Hanging Victim Rig */}
-      <group ref={victimRef} position={[1.1, 0.3, 0]}>
-        {wrongGuesses >= 4 && (
-          <mesh position={[0, 0.55, 0]}>
-            <sphereGeometry args={[0.32, 20, 20]} />
-            <meshStandardMaterial color={highContrast ? '#ffffff' : '#fcd34d'} roughness={0.3} />
+        <group ref={reelRef}>
+          <mesh>
+            <torusGeometry args={[0.8, 0.06, 16, 32]} />
+            <meshStandardMaterial color={progress >= 1 ? '#7f1d1d' : '#e4e4e7'} roughness={0.3} metalness={0.8} />
           </mesh>
-        )}
-        
-        {wrongGuesses >= 5 && (
-          <mesh position={[0, -0.2, 0]}>
-            <cylinderGeometry args={[0.24, 0.18, 1.0]} />
-            <meshStandardMaterial color={victimColor} roughness={0.4} />
+          <mesh>
+            <cylinderGeometry args={[0.74, 0.74, 0.1, 32]} />
+            <meshStandardMaterial color="#18181b" roughness={0.9} />
           </mesh>
-        )}
-
-        {wrongGuesses >= 6 && (
-          <mesh position={[0, -0.9, 0]}>
-            <boxGeometry args={[0.75, 0.5, 0.4]} />
-            <meshStandardMaterial color="#dc2626" metalness={0.6} roughness={0.2} />
-          </mesh>
-        )}
+          {[0, Math.PI / 3, (2 * Math.PI) / 3].map((angle, i) => (
+            <mesh key={i} rotation={[0, 0, angle]}>
+              <boxGeometry args={[1.5, 0.08, 0.04]} />
+              <meshStandardMaterial color="#a1a1aa" roughness={0.3} metalness={0.8} />
+            </mesh>
+          ))}
+        </group>
       </group>
-    </>
+
+      {/* PROJECTION BEAM */}
+      <mesh ref={beamRef} position={[2.2, -0.2, 0]} rotation={[0, 0, -Math.PI / 2]}>
+        <coneGeometry args={[1.2, 3.8, 32, 1, true]} />
+        <meshBasicMaterial
+          color={beamColor}
+          transparent
+          opacity={progress >= 1 ? 0.45 : 0.25}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <pointLight
+        position={[0.3, -0.2, 0]}
+        intensity={progress >= 1 ? 14 : 5 + wrongGuesses * 1.5}
+        color={beamColor}
+        distance={6}
+      />
+
+      {wrongGuesses > 1 && (
+        <pointLight
+          position={[-1.2, -0.2, 0]}
+          intensity={wrongGuesses * 3}
+          color="#ef4444"
+          distance={3}
+        />
+      )}
+    </group>
   )
 }
 
-export default function HorrorScene({ wrongGuesses, maxGuesses = 6, highContrast = false, reduceMotion = false }: HorrorSceneProps) {
+export default function HorrorScene({
+  wrongGuesses,
+  maxGuesses,
+  highContrast = false,
+  reduceMotion = false,
+}: HorrorSceneProps) {
+  const progress = wrongGuesses / maxGuesses
+
   return (
-    <div className="w-full h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-red-950/80 shadow-[0_0_35px_rgba(0,0,0,0.95)] bg-black relative group">
-      <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 0.1, 4.6]} fov={52} />
-        <SceneContent wrongGuesses={wrongGuesses} highContrast={highContrast} reduceMotion={reduceMotion} />
-        <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 3} />
+    <div className="w-full h-full relative bg-black">
+      <Canvas gl={{ antialias: true }}>
+        <PerspectiveCamera
+          makeDefault
+          position={[0, 0.2, 6.5]}
+          fov={48}
+        />
+
+        <ambientLight intensity={highContrast ? 0.7 : 0.4} />
+        <directionalLight position={[4, 6, 4]} intensity={1.5} color="#fef08a" castShadow />
+        <pointLight position={[-3, -1, -2]} intensity={0.6} color="#22c55e" />
+
+        <color attach="background" args={['#0c0a09']} />
+
+        {!reduceMotion && (
+          <Sparkles
+            count={wrongGuesses > 0 ? 20 + wrongGuesses * 15 : 15}
+            scale={[7, 5, 5]}
+            size={wrongGuesses > 2 ? 3.5 : 2.0}
+            speed={wrongGuesses > 2 ? 1.4 : 0.4}
+            color={progress >= 1 ? '#dc2626' : wrongGuesses > 2 ? '#f97316' : '#22c55e'}
+          />
+        )}
+
+        <Float
+          speed={reduceMotion ? 0 : 1.0 + progress * 1.5}
+          rotationIntensity={0.05 + progress * 0.1}
+          floatIntensity={0.15}
+        >
+          <ProjectorAndReel wrongGuesses={wrongGuesses} maxGuesses={maxGuesses} />
+        </Float>
       </Canvas>
     </div>
   )

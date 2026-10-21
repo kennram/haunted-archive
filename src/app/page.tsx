@@ -138,6 +138,7 @@ export default function Home() {
   
   const [musicOn, setMusicOn] = useState<boolean>(false)
   const [volume, setVolume] = useState<number>(0.25)
+  const [trapFlash, setTrapFlash] = useState<boolean>(false)
 
   const [highContrast, setHighContrast] = useState<boolean>(true)
   const [reduceMotion, setReduceMotion] = useState<boolean>(false)
@@ -271,7 +272,7 @@ export default function Home() {
       const timer = setTimeout(() => {
         startNewGame(true)
       }, 2400)
-      return () => clearTimeout(timer)
+      return () => clearInterval(timer)
     }
   }, [gameWon])
 
@@ -298,6 +299,9 @@ export default function Home() {
 
     if (!currentMovie.title.includes(letter)) {
       soundFx.playTrapSnap()
+      setTrapFlash(true)
+      setTimeout(() => setTrapFlash(false), 250)
+
       const newWrong = wrongGuesses + 1
       setWrongGuesses(newWrong)
       if (newWrong >= maxWrong) {
@@ -307,6 +311,9 @@ export default function Home() {
       }
     } else if (isCurse) {
       soundFx.playTrapSnap()
+      setTrapFlash(true)
+      setTimeout(() => setTrapFlash(false), 250)
+
       setWrongGuesses((prev) => {
         const updated = Math.min(prev + 2, maxWrong)
         if (updated >= maxWrong) {
@@ -332,7 +339,9 @@ export default function Home() {
   }
 
   return (
-    <main className="h-[100dvh] w-screen bg-[#0c0a09] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-4 relative overflow-hidden select-none">
+    <main className={`h-[100dvh] w-screen bg-[#0c0a09] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-3 relative overflow-hidden select-none transition-colors duration-100 ${
+      trapFlash ? 'bg-red-950/80' : ''
+    }`}>
       {/* Scanline and CRT Ambient Overlays */}
       <div className="absolute inset-0 pointer-events-none z-50 opacity-15 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_4px]" />
       <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.15)_0%,rgba(12,10,9,0.95)_100%)]" />
@@ -396,7 +405,7 @@ export default function Home() {
                     : 'bg-zinc-900 text-zinc-400 border-zinc-700'
                 }`}
               >
-                {musicOn ? 'MUSIC: ON' : 'MUSIC: OFF'}
+                {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
               </button>
 
               <button
@@ -456,7 +465,7 @@ export default function Home() {
                       onClick={handleIntroMusicToggle}
                       className={`px-3 py-1 font-bold text-xs rounded ${musicOn ? 'bg-red-800 text-white' : 'bg-zinc-800 text-zinc-200 border border-zinc-700'}`}
                     >
-                      {musicOn ? 'MUSIC: ON' : 'MUSIC: OFF'}
+                      {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
                     </button>
 
                     <div className="pt-2 space-y-1">
@@ -507,29 +516,29 @@ export default function Home() {
                 style={{ width: `${(timeLeft / getLevelTimer(level)) * 100}%` }}
               />
 
-              <div className="flex items-center justify-between px-3 py-2">
+              <div className="flex items-center justify-between px-3 py-1.5">
                 <button
                   onClick={handleReturnToIntro}
-                  className="px-3 py-1.5 bg-zinc-950 hover:bg-red-950 text-zinc-300 hover:text-red-400 font-mono text-xs font-black uppercase tracking-wider transition-all border border-zinc-700 hover:border-red-500 rounded shadow"
+                  className="px-2.5 py-1 bg-zinc-950 hover:bg-red-950 text-zinc-300 hover:text-red-400 font-mono text-xs font-black uppercase tracking-wider transition-all border border-zinc-700 hover:border-red-500 rounded shadow"
                 >
                   🏠 MENU
                 </button>
 
                 <div className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 font-mono">
                   <div className="text-center">
-                    <span className="text-[10px] text-zinc-100 block uppercase tracking-widest font-black">REEL</span>
-                    <span className="font-black text-red-400 text-base sm:text-lg drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]">{level}</span>
+                    <span className="text-[9px] text-zinc-100 block uppercase tracking-widest font-black">REEL</span>
+                    <span className="font-black text-red-400 text-sm sm:text-base drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]">{level}</span>
                   </div>
 
                   <div 
-                    className={`px-3 py-1 rounded border transition-all duration-300 ${
+                    className={`px-2.5 py-0.5 rounded border transition-all duration-300 ${
                       timeLeft <= 10 
                         ? 'bg-red-950/90 border-red-500 shadow-[0_0_25px_rgba(239,68,68,1)]' 
                         : 'bg-black/60 border-zinc-700'
                     }`}
                   >
-                    <span className="text-[9px] text-zinc-300 block uppercase tracking-widest font-black text-center">TIME LEFT</span>
-                    <span className={`font-black font-mono text-lg sm:text-xl block text-center ${
+                    <span className="text-[8px] text-zinc-300 block uppercase tracking-widest font-black text-center">TIME LEFT</span>
+                    <span className={`font-black font-mono text-base sm:text-lg block text-center ${
                       timeLeft <= 10 
                         ? 'text-red-500 animate-pulse drop-shadow-[0_0_15px_rgba(239,68,68,1)]' 
                         : 'text-yellow-300'
@@ -539,15 +548,15 @@ export default function Home() {
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[10px] text-zinc-100 block uppercase tracking-widest font-black">SCORE</span>
-                    <span className="font-black text-green-300 text-base sm:text-lg drop-shadow-[0_0_10px_rgba(134,239,172,0.6)]">
+                    <span className="text-[9px] text-zinc-100 block uppercase tracking-widest font-black">SCORE</span>
+                    <span className="font-black text-green-300 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(134,239,172,0.6)]">
                       {String(score).padStart(6, '0')}
                     </span>
                   </div>
 
                   <div className="text-right hidden sm:block">
-                    <span className="text-[10px] text-yellow-400 block uppercase tracking-widest font-black">BEST</span>
-                    <span className="font-black text-yellow-300 text-base sm:text-lg drop-shadow-[0_0_10px_rgba(253,224,71,0.6)]">
+                    <span className="text-[9px] text-yellow-400 block uppercase tracking-widest font-black">BEST</span>
+                    <span className="font-black text-yellow-300 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(253,224,71,0.6)]">
                       {String(highScore).padStart(6, '0')}
                     </span>
                   </div>
@@ -555,23 +564,24 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full text-center space-y-1 py-1 px-3 bg-zinc-900/90 border border-red-900/80 rounded-lg shadow shrink-0">
+            <div className="w-full text-center space-y-0.5 py-1 px-3 bg-zinc-900/90 border border-red-900/80 rounded-lg shadow shrink-0">
               <div className="flex justify-center items-center space-x-3">
-                <span className="text-[9px] uppercase font-mono tracking-widest text-green-400 font-black px-2 py-0.5 bg-black border border-green-500 rounded-full shadow">
+                <span className="text-[8px] uppercase font-mono tracking-widest text-green-400 font-black px-2 py-0.5 bg-black border border-green-500 rounded-full shadow">
                   {currentMovie.category}
                 </span>
-                <span className="text-[11px] font-mono text-zinc-200">
+                <span className="text-[10px] font-mono text-zinc-200">
                   TRAPS: <strong className="text-red-500 font-black text-xs">{wrongGuesses}</strong> / {maxWrong}
                 </span>
               </div>
 
-              <p className="text-sm sm:text-base md:text-xl font-black font-mono text-white italic tracking-wide leading-tight drop-shadow">
+              <p className="text-xs sm:text-sm md:text-base font-black font-mono text-white italic tracking-wide leading-tight drop-shadow">
                 "{currentMovie.hint}"
               </p>
             </div>
 
-            <div className="w-full shrink-0 relative">
-              <div className="h-36 sm:h-44 md:h-52 w-full">
+            {/* CINEMATIC HORROR CANVAS */}
+            <div className="w-full h-36 sm:h-44 md:h-52 relative my-0.5 shrink-0 overflow-hidden rounded-xl border border-red-900/80 shadow-2xl bg-black">
+              <div className="absolute inset-0 w-full h-full">
                 <HorrorScene
                   wrongGuesses={wrongGuesses}
                   maxGuesses={maxWrong}
@@ -586,7 +596,7 @@ export default function Home() {
                   <div 
                     className="font-mono font-black text-red-500 italic drop-shadow-[0_0_35px_rgba(239,68,68,1)] uppercase tracking-tighter transition-all duration-300"
                     style={{
-                      fontSize: `${Math.max(4, 11 - timeLeft)}rem`,
+                      fontSize: `${Math.max(3, 9 - timeLeft)}rem`,
                       transform: `scale(${1 + (11 - timeLeft) * 0.08})`,
                       animation: `pulse ${Math.max(0.25, timeLeft * 0.08)}s infinite alternate`
                     }}
@@ -597,18 +607,28 @@ export default function Home() {
               )}
             </div>
 
-            <div className="w-full flex flex-col items-center justify-center py-1 shrink-0">
-              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-3 max-w-full px-1">
+            {/* DEDICATED HIGH-VISIBILITY TILED LETTER SLOT BAR */}
+            <div className="w-full flex items-center justify-center py-2 px-3 my-0.5 bg-zinc-950/95 border-2 border-green-500/60 rounded-xl shrink-0 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+              <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 px-1">
                 {currentMovie.title.split('').map((char, index) => {
-                  if (char === ' ') return <div key={index} className="w-3 sm:w-5" />
+                  if (char === ' ') {
+                    return (
+                      <div 
+                        key={index} 
+                        className="w-3 sm:w-5 h-8 sm:h-10 border-b-2 border-dashed border-zinc-600 my-auto" 
+                      />
+                    )
+                  }
+
                   const isRevealed = guessedLetters.includes(char) || gameOver || gameWon
+
                   return (
                     <div
                       key={index}
-                      className={`w-7 h-9 sm:w-9 sm:h-11 md:w-11 md:h-13 flex items-center justify-center font-mono text-xl sm:text-2xl md:text-3xl font-black transition-all border-b-2 sm:border-b-4 ${
+                      className={`w-7 h-9 sm:w-9 sm:h-11 md:w-10 md:h-12 flex items-center justify-center font-mono text-lg sm:text-xl md:text-2xl font-black rounded-lg border-2 shadow-md transition-all ${
                         isRevealed
-                          ? 'border-yellow-400 text-yellow-300 drop-shadow-[0_0_10px_rgba(234,179,8,0.9)]'
-                          : 'border-zinc-600 text-transparent'
+                          ? 'bg-zinc-900 border-yellow-400 text-yellow-300 shadow-[0_0_12px_rgba(234,179,8,0.7)]'
+                          : 'bg-zinc-900 border-green-400 text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.4)]'
                       }`}
                     >
                       {isRevealed ? char : '_'}
@@ -618,8 +638,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full flex flex-col items-center space-y-1.5 pt-0.5 shrink-0">
-              <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5 md:gap-2 max-w-3xl px-1">
+            {/* COMPACT KEYBOARD & CONTROLS */}
+            <div className="w-full flex flex-col items-center space-y-1 shrink-0 pt-0.5">
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5 max-w-3xl px-1">
                 {ALPHABET.map((letter) => {
                   const isGuessed = guessedLetters.includes(letter)
                   return (
@@ -627,7 +648,7 @@ export default function Home() {
                       key={letter}
                       onClick={() => handleGuess(letter)}
                       disabled={isGuessed || gameOver || gameWon}
-                      className={`w-8 h-9 sm:w-9 sm:h-10 md:w-10 md:h-11 font-mono text-xs sm:text-sm font-black transition-all flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 ${
+                      className={`w-7 h-8 sm:w-8 sm:h-9 md:w-9 md:h-10 font-mono text-xs font-black transition-all flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 ${
                         isGuessed
                           ? 'bg-zinc-950 text-zinc-700 border border-zinc-900 cursor-not-allowed'
                           : 'bg-zinc-800 hover:bg-red-900 text-white border border-zinc-600 hover:border-green-400 hover:text-green-300 shadow-sm'
@@ -640,11 +661,11 @@ export default function Home() {
               </div>
 
               {!gameOver && !gameWon && (
-                <div className="w-full flex justify-center pt-2 px-1">
+                <div className="w-full flex justify-center pt-1 px-1">
                   <button
                     onClick={handleConsultArchive}
                     disabled={hasConsultedThisLevel}
-                    className={`w-full max-w-sm py-2 font-mono text-xs sm:text-sm font-black uppercase tracking-widest transition-all border-2 rounded-lg shadow active:scale-95 ${
+                    className={`w-full max-w-sm py-1.5 font-mono text-xs sm:text-sm font-black uppercase tracking-widest transition-all border-2 rounded-lg shadow active:scale-95 ${
                       hasConsultedThisLevel
                         ? 'bg-zinc-900 text-zinc-600 border-zinc-800 cursor-not-allowed shadow-none'
                         : 'bg-yellow-500 hover:bg-yellow-400 text-black border-yellow-300 shadow-[0_0_20px_rgba(234,179,8,0.5)]'
@@ -698,7 +719,7 @@ export default function Home() {
 
       {/* GOTHIC IFI@HOME GAME OVER MODAL OVERLAY */}
       {gameOver && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
           {/* Ominous Red Pulsing Vignette Overlay */}
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,rgba(185,28,28,0.35)_100%)] animate-pulse" />
 
@@ -745,7 +766,7 @@ export default function Home() {
                 onClick={() => startNewGame(false)}
                 className="w-full py-3.5 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
               >
-                ▶ PLAY AGAIN
+                ▶ PLAY FEATURE
               </button>
 
               <button

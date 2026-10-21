@@ -1,226 +1,199 @@
-let audioCtx: AudioContext | null = null;
-let masterVolume = 0.25;
+// Web Audio API Sound Synthesizer for IFI@Home Archival Experience
+class SoundFX {
+  private ctx: AudioContext | null = null
+  private ambientGain: GainNode | null = null
+  private projectorOsc: OscillatorNode | null = null
+  private projectorNoise: AudioBufferSourceNode | null = null
+  private isAmbientPlaying: boolean = false
+  private volume: number = 0.25
 
-let isMusicPlaying = false;
-let omenLoopInterval: ReturnType<typeof setInterval> | null = null;
-let omenStep = 0;
-
-const getAudioContext = () => {
-  if (typeof window === 'undefined') return null;
-  if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    if (AudioContextClass) {
-      audioCtx = new AudioContextClass();
+  private initCtx() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      this.ctx = new AudioCtx()
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume()
     }
   }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+
+  public setVolume(vol: number) {
+    this.volume = vol
+    if (this.ambientGain && this.ctx) {
+      this.ambientGain.gain.setTargetAtTime(vol * 0.3, this.ctx.currentTime, 0.1)
+    }
   }
-  return audioCtx;
-};
 
-export const soundFx = {
-  setVolume: (vol: number) => {
-    masterVolume = Math.max(0, Math.min(1, vol));
-  },
+  // --- 35MM VINTAGE PROJECTOR AMBIENT LOOP ---
+  public toggleAmbientMusic(enable: boolean) {
+    this.initCtx()
+    if (!this.ctx) return
 
-  playClick: () => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+    if (enable && !this.isAmbientPlaying) {
+      this.isAmbientPlaying = true
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(320, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.04);
+      // Master Ambient Gain
+      this.ambientGain = this.ctx.createGain()
+      this.ambientGain.gain.setValueAtTime(this.volume * 0.3, this.ctx.currentTime)
+      this.ambientGain.connect(this.ctx.destination)
 
-      gain.gain.setValueAtTime(0.2 * masterVolume, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+      // 1. Low Motor Hum (35mm Motor)
+      this.projectorOsc = this.ctx.createOscillator()
+      this.projectorOsc.type = 'sawtooth'
+      this.projectorOsc.frequency.setValueAtTime(48, this.ctx.currentTime)
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+      const humFilter = this.ctx.createBiquadFilter()
+      humFilter.type = 'lowpass'
+      humFilter.frequency.setValueAtTime(120, this.ctx.currentTime)
 
-      osc.start();
-      osc.stop(ctx.currentTime + 0.04);
-    } catch (e) {
-      console.error('Audio click error:', e);
-    }
-  },
+      this.projectorOsc.connect(humFilter)
+      humFilter.connect(this.ambientGain)
+      this.projectorOsc.start()
 
-  playTrapSnap: () => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      // 2. Film Mechanical Clatter / Flutter Noise
+      const bufferSize = this.ctx.sampleRate * 2
+      const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate)
+      const output = noiseBuffer.getChannelData(0)
 
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(90, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.15);
-
-      gain.gain.setValueAtTime(0.4 * masterVolume, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.15);
-    } catch (e) {
-      console.error('Audio trap error:', e);
-    }
-  },
-
-  playHeartbeat: (urgency: number = 0.5) => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(65 + urgency * 20, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.12);
-
-      gain.gain.setValueAtTime((0.3 + urgency * 0.3) * masterVolume, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.12);
-    } catch (e) {
-      console.error('Audio heartbeat error:', e);
-    }
-  },
-
-  playWin: () => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const now = ctx.currentTime;
-      [440, 554.37, 659.25, 880].forEach((freq, idx) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-        gain.gain.setValueAtTime(0.2 * masterVolume, now + idx * 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now + idx * 0.08);
-        osc.stop(now + idx * 0.08 + 0.25);
-      });
-    } catch (e) {
-      console.error('Audio win error:', e);
-    }
-  },
-
-  playGameOver: () => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const now = ctx.currentTime;
-      [150, 130, 110, 80].forEach((freq, idx) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.15);
-        gain.gain.setValueAtTime(0.3 * masterVolume, now + idx * 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.15 + 0.3);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now + idx * 0.15);
-        osc.stop(now + idx * 0.15 + 0.3);
-      });
-    } catch (e) {
-      console.error('Audio gameover error:', e);
-    }
-  },
-
-  toggleAmbientMusic: async (enable: boolean) => {
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-
-      if (ctx.state === 'suspended') {
-        await ctx.resume();
+      for (let i = 0; i < bufferSize; i++) {
+        const t = i / this.ctx.sampleRate
+        const shutterPulse = Math.sin(2 * Math.PI * 24 * t) > 0.7 ? 1 : 0.05 // 24 FPS shutter pulse
+        output[i] = (Math.random() * 2 - 1) * shutterPulse
       }
 
-      if (enable && !isMusicPlaying) {
-        isMusicPlaying = true;
-        omenStep = 0;
+      this.projectorNoise = this.ctx.createBufferSource()
+      this.projectorNoise.buffer = noiseBuffer
+      this.projectorNoise.loop = true
 
-        // Omen-style Gregorian/Gothic rhythm sequence in C minor
-        // Frequencies: C2 (65.41 Hz), Eb2 (77.78 Hz), F2 (87.31 Hz), G2 (98.00 Hz), Ab2 (103.83 Hz)
-        const sequence = [
-          { bass: 65.41, organ: 130.81 }, // C2 / C3
-          { bass: 65.41, organ: 130.81 },
-          { bass: 77.78, organ: 155.56 }, // Eb2 / Eb3
-          { bass: 65.41, organ: 130.81 },
-          { bass: 87.31, organ: 174.61 }, // F2 / F3
-          { bass: 77.78, organ: 155.56 },
-          { bass: 103.83, organ: 207.65 }, // Ab2 / Ab3 (dissonant peak)
-          { bass: 98.00, organ: 196.00 }   // G2 / G3
-        ];
+      const noiseFilter = this.ctx.createBiquadFilter()
+      noiseFilter.type = 'bandpass'
+      noiseFilter.frequency.setValueAtTime(800, this.ctx.currentTime)
+      noiseFilter.Q.setValueAtTime(2.0, this.ctx.currentTime)
 
-        omenLoopInterval = setInterval(() => {
-          if (!isMusicPlaying || !audioCtx) return;
+      this.projectorNoise.connect(noiseFilter)
+      noiseFilter.connect(this.ambientGain)
+      this.projectorNoise.start()
 
-          const now = audioCtx.currentTime;
-          const note = sequence[omenStep % sequence.length];
-          omenStep++;
-
-          // 1. Low Guttural Bass March (Sawtooth with Low-Pass filter)
-          const bassOsc = audioCtx.createOscillator();
-          const bassFilter = audioCtx.createBiquadFilter();
-          const bassGain = audioCtx.createGain();
-
-          bassOsc.type = 'sawtooth';
-          bassOsc.frequency.setValueAtTime(note.bass, now);
-
-          bassFilter.type = 'lowpass';
-          bassFilter.frequency.setValueAtTime(220, now);
-
-          bassGain.gain.setValueAtTime(0.25 * masterVolume, now);
-          bassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-
-          bassOsc.connect(bassFilter);
-          bassFilter.connect(bassGain);
-          bassGain.connect(audioCtx.destination);
-
-          bassOsc.start(now);
-          bassOsc.stop(now + 0.45);
-
-          // 2. Staccato Gothic Organ / Choir Accent (Square wave)
-          const organOsc = audioCtx.createOscillator();
-          const organGain = audioCtx.createGain();
-
-          organOsc.type = 'square';
-          organOsc.frequency.setValueAtTime(note.organ, now);
-
-          organGain.gain.setValueAtTime(0.12 * masterVolume, now);
-          organGain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-
-          organOsc.connect(organGain);
-          organGain.connect(audioCtx.destination);
-
-          organOsc.start(now);
-          organOsc.stop(now + 0.35);
-
-        }, 500); // 120 BPM martial pulse
-
-      } else if (!enable && isMusicPlaying) {
-        isMusicPlaying = false;
-        if (omenLoopInterval) {
-          clearInterval(omenLoopInterval);
-          omenLoopInterval = null;
-        }
+    } else if (!enable && this.isAmbientPlaying) {
+      this.isAmbientPlaying = false
+      if (this.projectorOsc) {
+        this.projectorOsc.stop()
+        this.projectorOsc.disconnect()
       }
-    } catch (e) {
-      console.error('Ambient music error:', e);
+      if (this.projectorNoise) {
+        this.projectorNoise.stop()
+        this.projectorNoise.disconnect()
+      }
     }
   }
-};
+
+  // --- UI SOUND EFFECTS ---
+  public playClick() {
+    this.initCtx()
+    if (!this.ctx) return
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(600, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(150, this.ctx.currentTime + 0.04)
+    gain.gain.setValueAtTime(this.volume * 0.4, this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.04)
+    osc.connect(gain)
+    gain.connect(this.ctx.destination)
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.04)
+  }
+
+  public playTrapSnap() {
+    this.initCtx()
+    if (!this.ctx) return
+
+    const now = this.ctx.currentTime
+
+    // 1. Mechanical Metal Snap
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(320, now)
+    osc.frequency.exponentialRampToValueAtTime(40, now + 0.15)
+    gain.gain.setValueAtTime(this.volume * 0.8, now)
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15)
+    osc.connect(gain)
+    gain.connect(this.ctx.destination)
+    osc.start(now)
+    osc.stop(now + 0.15)
+
+    // 2. High-Frequency Film Arc / Tear Noise Burst
+    const bufferSize = this.ctx.sampleRate * 0.1
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate)
+    const output = noiseBuffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = (Math.random() * 2 - 1)
+    }
+
+    const noise = this.ctx.createBufferSource()
+    noise.buffer = noiseBuffer
+    const noiseGain = this.ctx.createGain()
+    noiseGain.gain.setValueAtTime(this.volume * 0.6, now)
+    noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.1)
+
+    noise.connect(noiseGain)
+    noiseGain.connect(this.ctx.destination)
+    noise.start(now)
+  }
+
+  public playHeartbeat(urgency: number) {
+    this.initCtx()
+    if (!this.ctx) return
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
+    osc.type = 'sine'
+    const freq = 55 + urgency * 35
+    osc.frequency.setValueAtTime(freq, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(25, this.ctx.currentTime + 0.12)
+    gain.gain.setValueAtTime(this.volume * (0.5 + urgency * 0.4), this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.12)
+    osc.connect(gain)
+    gain.connect(this.ctx.destination)
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.12)
+  }
+
+  public playWin() {
+    this.initCtx()
+    if (!this.ctx) return
+    const now = this.ctx.currentTime
+    const notes = [261.63, 329.63, 392.00, 523.25]
+    notes.forEach((freq, idx) => {
+      if (!this.ctx) return
+      const osc = this.ctx.createOscillator()
+      const gain = this.ctx.createGain()
+      osc.type = 'triangle'
+      osc.frequency.setValueAtTime(freq, now + idx * 0.08)
+      gain.gain.setValueAtTime(this.volume * 0.5, now + idx * 0.08)
+      gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.3)
+      osc.connect(gain)
+      gain.connect(this.ctx.destination)
+      osc.start(now + idx * 0.08)
+      osc.stop(now + idx * 0.08 + 0.3)
+    })
+  }
+
+  public playGameOver() {
+    this.initCtx()
+    if (!this.ctx) return
+    const osc = this.ctx.createOscillator()
+    const gain = this.ctx.createGain()
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(180, this.ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(35, this.ctx.currentTime + 0.8)
+    gain.gain.setValueAtTime(this.volume * 0.8, this.ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.8)
+    osc.connect(gain)
+    gain.connect(this.ctx.destination)
+    osc.start()
+    osc.stop(this.ctx.currentTime + 0.8)
+  }
+}
+
+export const soundFx = new SoundFX()
