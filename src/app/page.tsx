@@ -14,172 +14,343 @@ interface MovieTrivia {
   ifiUrl?: string
 }
 
-// Complete Tiered Movie Trivia Database
+// Complete Tiered Movie Trivia Database with Scaled Clue Complexity
 const MOVIES: MovieTrivia[] = [
-  // --- LEVEL 1: Mainstream Horror & Gateway Classics ---
-  { title: 'DOUBLE BLIND', hint: 'IFI Horror Season feature where experimental drug trial subjects die if they fall asleep.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/double-blind/'},
+  // --- LEVEL 1: Mainstream Horror & Gateway Classics (Direct Plot Hooks) ---
+  { title: 'DOUBLE BLIND', hint: 'Experimental drug trial subjects face a lethal rule: if they fall asleep, they die.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/double-blind/' },
   { title: 'HALLOWEEN', hint: 'Michael Myers haunts Haddonfield on a chilly autumn night.', category: 'SLASHER', minLevel: 1 },
   { title: 'PSYCHO', hint: 'Norman Bates runs a quiet motel with his mother.', category: 'SLASHER', minLevel: 1 },
   { title: 'JAWS', hint: 'A great white terrorizes a New England summer resort town.', category: 'B-CREATURE FEAT', minLevel: 1 },
   { title: 'THE EXORCIST', hint: 'A young girl possessed in Georgetown requires a desperate rite.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
   { title: 'SCREAM', hint: 'Ghostface terrorizes Woodsboro teens with meta slasher rules.', category: 'SLASHER', minLevel: 1 },
-  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into winter madness.', category: 'SLASHER', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/the-shining/'},
+  { title: 'THE SHINING', hint: 'Overlook Hotel caretaker descends into winter madness.', category: 'SLASHER', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/the-shining/' },
   { title: 'CARRIE', hint: 'Telekinetic teenager takes revenge at her high school prom.', category: 'MIDNIGHT MOVIE', minLevel: 1 },
   { title: 'FRANKENSTEIN', hint: 'Mad scientist reanimates a creature constructed from human corpses.', category: 'B-CREATURE FEAT', minLevel: 1 },
-  { title: 'DRACULA', hint: 'Transylvanian count travels to England seeking fresh blood.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/dracula/'},
+  { title: 'DRACULA', hint: 'Transylvanian count travels to England seeking fresh blood.', category: 'MIDNIGHT MOVIE', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/dracula/' },
   { title: 'FRIDAY THE 13TH', hint: 'Camp Crystal Lake counselors face a shadowy vengeful killer.', category: 'SLASHER', minLevel: 1 },
-  { title: 'IT', hint: 'Tim Curry plays a shape-shifting entity posing as a sinister clown in Derry, Maine.', category: 'SLASHER', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/it/'},
+  { title: 'IT', hint: 'Tim Curry plays a shape-shifting entity posing as a sinister clown in Derry, Maine.', category: 'SLASHER', minLevel: 1, ifiUrl: 'https://www.ifihome.ie/film/it/' },
 
-  // --- LEVEL 2: Popular Thrillers & Contemporary IFI@Home Releases ---
-  { title: 'WE BURY THE DEAD', hint: 'IFI Horror Season survival thriller starring Daisy Ridley in a zombie-plagued military zone.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/we-bury-the-dead/'},
-  { title: 'THE SHROUDS', hint: 'David Cronenberg IFI feature where a grieving widower builds a tech device to connect with the deceased.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/the-shrouds/'},
-  { title: 'ALIEN', hint: 'In space no one can hear you scream aboard the Nostromo.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'THE THING', hint: 'John Carpenter shape-shifting alien terrorizes an Antarctic research station.', category: 'B-CREATURE FEAT', minLevel: 2 },
-  { title: 'A NIGHTMARE ON ELM STREET', hint: 'Freddy Krueger hunts teenagers inside their dreams.', category: 'SLASHER', minLevel: 2 },
-  { title: 'THE SILENCE OF THE LAMBS', hint: 'FBI trainee seeks help from an incarcerated cannibalistic psychiatrist.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'THE RING', hint: 'A cursed videotape kills the viewer seven days after watching.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'SAW', hint: 'Jigsaw places victims in lethal mechanical test traps.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'POLTERGEIST', hint: 'Suburban family home built over a relocated cemetery.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
-  { title: 'DOCTOR SLEEP', hint: 'An adult Dan Torrance must protect a young girl with similar psychic abilities from a cult.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/doctor-sleep/'},
-  // --- LEVEL 2: Popular Thrillers & Contemporary Releases ---
+  // --- LEVEL 2: Popular Thrillers & Modern Contemporary (Cast & Synopsis) ---
+  { title: 'WE BURY THE DEAD', hint: 'Survival thriller starring Daisy Ridley traversing a zombie-plagued military containment zone.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/we-bury-the-dead/' },
+  { title: 'THE SHROUDS', hint: 'David Cronenberg feature where a grieving widower builds a device connecting with the deceased.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/the-shrouds/' },
+  { title: 'ALIEN', hint: 'In space no one can hear you scream aboard the commercial vessel Nostromo.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'THE THING', hint: 'John Carpenter shape-shifting alien terrorizes an isolated Antarctic research station.', category: 'B-CREATURE FEAT', minLevel: 2 },
+  { title: 'A NIGHTMARE ON ELM STREET', hint: 'A disfigured killer stalks teenagers inside their shared dreamscape.', category: 'SLASHER', minLevel: 2 },
+  { title: 'THE SILENCE OF THE LAMBS', hint: 'An FBI trainee consults an incarcerated cannibalistic psychiatrist to catch a killer.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'THE RING', hint: 'A cursed videotape marks its viewers for death precisely seven days after viewing.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'SAW', hint: 'Two men awaken chained in a subterranean bathroom at the mercy of the Jigsaw killer.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'POLTERGEIST', hint: 'A suburban family communicates with spirits through their television set.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
+  { title: 'DOCTOR SLEEP', hint: 'An adult Dan Torrance protects a young psychic girl from a soul-harvesting cult.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/doctor-sleep/' },
+  { title: 'SINNERS', hint: 'Ryan Coogler Southern Gothic horror starring Michael B. Jordan in dual twin roles facing a local threat.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/sinners/' },
+  { title: 'DRACULA A LOVE TALE', hint: 'Luc Besson dark romantic reimagining starring Caleb Landry Jones as a cursed warrior count.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/dracula/' },
+
+  // --- LEVEL 3: Archival Classics, Folk Horror & Suspense (Auteur & Setting) ---
+  { title: 'GORGO', hint: '1961 British Kaiju feature where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/gorgo/' },
+  { title: 'THE OUTCASTS', hint: '1982 landmark Irish folk horror set in rural 19th-century Ireland exploring witchcraft and isolation.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/the-outcasts/' },
+  { title: 'FUNNY GAMES', hint: 'Michael Haneke rigorous psychological home-invasion thriller analyzing spectator violence.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/funny-games/' },
+  { title: 'ROSEMARY S BABY', hint: 'A pregnant Manhattan wife grows paranoid that her ambition-driven husband made a pact with neighbors.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'THE BLAIR WITCH PROJECT', hint: '1999 found-footage landmark tracking three film students who vanish in Maryland woods.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'THE BIRDS', hint: 'Alfred Hitchcock thriller examining unexplained avian hostility in Bodega Bay.', category: 'B-CREATURE FEAT', minLevel: 3 },
+  { title: 'MISERY', hint: 'Rob Reiner adaptation where an obsessed fan holds her favorite novelist captive in a snowy cabin.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'NIGHT OF THE LIVING DEAD', hint: 'George Romero independent black-and-white debut besieging survivors in a Pennsylvania farmhouse.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'DON T LOOK NOW', hint: 'Nicolas Roeg grief-stricken Venetian mystery featuring non-linear editing and a red-coated figure.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'TREMORS', hint: 'Subterranean carnivorous worms hunt by acoustic vibration beneath a desert valley town.', category: 'B-CREATURE FEAT', minLevel: 3 },
+  { title: 'STRANGERS ON A TRAIN', hint: 'Alfred Hitchcock suspense classic involving a psychopathic proposal to trade murders.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/strangers-on-a-train/' },
+  { title: 'LIES WE TELL', hint: 'Lisa Mulcahy period thriller following an orphaned heiress combating greed and coercion.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/lies-we-tell/' },
+
+  // --- LEVEL 4: Art-House & Festival Selections (Stylistic & Thematic) ---
+  { title: 'RED ROOMS', hint: 'Pascal Plante cyber-thriller detailing a young woman’s obsession with a dark-web trial.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/red-rooms-les-chambres-rouges/' },
+  { title: 'SISTER MIDNIGHT', hint: 'Karan Kandhari genre-blending dark comedy following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/sister-midnight/' },
+  { title: 'HOLY ISLAND', hint: 'Surreal Irish feature following two lost souls stranded in an eerie, timeless port town.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/holy-island/' },
+  { title: 'SUSPIRIA', hint: 'Dario Argento technicolor nightmare centering on a Freiburg dance academy secretly run by a coven.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'EYES WITHOUT A FACE', hint: 'Georges Franju poetic horror concerning a surgeon performing skin grafts to restore his daughter’s face.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'THE WICKER MAN', hint: 'Robin Hardy pagan folk horror tracking a devout police officer investigating a missing girl on Summerisle.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'CARNIVAL OF SOULS', hint: 'Herk Harvey low-budget eerie masterpiece following a sole crash survivor drawn to an abandoned pavilion.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'BLACK SUNDAY', hint: 'Mario Bava Gothic masterpiece starring Barbara Steele as a resurrected 17th-century Moldavian witch.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'THE HOWLING', hint: 'Joe Dante satire blending news media culture with transformative werewolf effects.', category: 'B-CREATURE FEAT', minLevel: 4 },
+  { title: 'THE FOG', hint: 'John Carpenter atmospheric tale of a glowing sea mist carrying vengeful phantom sailors.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+  { title: 'MATCH', hint: 'Danishka Esterhazy thriller where an online date leads to a secluded estate filled with dark secrets.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifiathome.ie/film/match' },
+
+  // --- LEVEL 5: European Giallo & Cult Nasties (Transgressive Cinema) ---
+  { title: 'FACES OF DEATH', hint: 'Infamous 1978 shockumentary compiling real and staged gruesome footage, central to video nasty lore.', category: 'VIDEO NASTY', minLevel: 5, ifiUrl: 'https://www.ifihome.ie/film/faces-of-death/' },
+  { title: 'THE TEXAS CHAINSAW MASSACRE', hint: 'Tobe Hooper 1974 raw horror classic depicting rural Texas cannibalism and industrial noise design.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'DEEP RED', hint: 'Dario Argento seminal Giallo featuring a jazz musician, telepathic clues, and Goblin score.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'TENEBRAE', hint: 'Dario Argento meta-Giallo about an American crime novelist in Rome whose work inspires real murders.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'BLOOD AND BLACK LACE', hint: 'Mario Bava foundational Giallo utilizing vibrant lighting and masked stalkers in a fashion house.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'PHANTASM', hint: 'Don Coscarelli surreal cult entry featuring the Tall Man, silver flying spheres, and dimensional portals.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'THE FLY', hint: 'David Cronenberg tragic body-horror tragedy detailing genetic decay and insect metamorphosis.', category: 'B-CREATURE FEAT', minLevel: 5 },
+  { title: 'DAWN OF THE DEAD', hint: 'George Romero satirical apocalyptic masterpiece staging zombie survival inside a suburban mall.', category: 'VIDEO NASTY', minLevel: 5 },
+  { title: 'HELLRAISER', hint: 'Clive Barker dark fantasy exploring sadomasochistic extradimensional Cenobites summoned by a puzzle box.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+  { title: 'SCANNERS', hint: 'David Cronenberg sci-fi horror investigating telepathic warfare, private defense firms, and explosive heads.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
+
+  // --- LEVEL 6: Regional Splatter & Avant-Garde (Underground Techniques) ---
+  { title: 'SOLITAIRE', hint: 'Maximilian Le Cain experimental Irish feature exploring memory, decay, and non-narrative video art.', category: 'MIDNIGHT MOVIE', minLevel: 6 },
+  { title: 'THE EVIL DEAD', hint: 'Sam Raimi kinetic low-budget cabin horror utilizing aggressive steadicam and Necronomicon lore.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'RE-ANIMATOR', hint: 'Stuart Gordon Lovecraft adaptation following a medical student obsessed with glowing green reagent serum.', category: 'B-CREATURE FEAT', minLevel: 6 },
+  { title: 'CANNIBAL HOLOCAUST', hint: 'Ruggero Deodato controversial 1980 mockumentary investigating a lost film crew in the Amazon.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'RABID', hint: 'David Cronenberg Canadian body horror tracking an outbreak originating from experimental plastic surgery.', category: 'VIDEO NASTY', minLevel: 6 },
+  { title: 'MY BLOODY VALENTINE', hint: '1981 Canadian regional slasher featuring pickaxe murders inside an abandoned coal mine.', category: 'SLASHER', minLevel: 6 },
+  { title: 'SLEEPAWAY CAMP', hint: '1983 slasher renowned for its psychological twist ending and summer camp atmosphere.', category: 'SLASHER', minLevel: 6 },
+  { title: 'THE BURNING', hint: 'Tom Savini special-effects slasher revolving around a disfigured caretaker wielding garden shears.', category: 'SLASHER', minLevel: 6 },
+  { title: 'THE RETURN OF THE LIVING DEAD', hint: 'Dan O Bannon punk-rock horror comedy introducing fast, brain-hungry zombies caused by military gas.', category: 'B-CREATURE FEAT', minLevel: 6 },
+
+  // --- LEVEL 7: Surrealism, Extreme Cinema & Cosmic Horror (Psychological Nightmare) ---
+  { title: 'PHANTOM ISLANDS', hint: 'Experimental Irish docu-fiction blending performance art, island terrain, and psychological decay.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'ERASERHEAD', hint: 'David Lynch industrial surrealist nightmare detailing anxieties of parenthood and physical deformity.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'POSSESSION', hint: 'Andrzej Żuławski intense breakdown of a Berlin marriage featuring hysterics and a tentacled entity.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'HOUSE', hint: 'Nobuhiko Obayashi psychedelic Japanese haunted-house frenzy incorporating collage and playful absurdity.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'VIDEODROME', hint: 'David Cronenberg media-theory horror investigating hallucination-inducing broadcast signals.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'LAST HOUSE ON THE LEFT', hint: 'Wes Craven controversial 1972 debut adapting Bergman’s Virgin Spring into grit splatter.', category: 'VIDEO NASTY', minLevel: 7 },
+  { title: 'HOUSE BY THE CEMETERY', hint: 'Lucio Fulci splatter classic revolving around Dr. Freudstein lurking beneath an old New England house.', category: 'VIDEO NASTY', minLevel: 7 },
+  { title: 'ALTERED STATES', hint: 'Ken Russell hallucinatory sci-fi exploring sensory deprivation, genetic memory, and primal regression.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+  { title: 'IT ENDS', hint: 'Alex Ullom cosmic horror feature following friends trapped on an infinitely stretching two-lane highway.', category: 'MIDNIGHT MOVIE', minLevel: 7, ifiUrl: 'https://www.ifihome.ie/film/it-ends/' },
+
+  // --- LEVEL 8: Archival Curatorial & Hardcore Transgressive (Movement & History) ---
+  { title: 'AUDITION', hint: 'Takashi Miike psychological horror shifting from quiet drama into visceral torture-cinema.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'THE BEYOND', hint: 'Lucio Fulci surreal Southern Gothic horror where a Louisiana hotel sits atop one of the Seven Gates of Hell.', category: 'VIDEO NASTY', minLevel: 8 },
+  { title: 'CANNIBAL FEROX', hint: 'Umberto Lenzi exploitation feature infamous for its global ban history and jungle staging.', category: 'VIDEO NASTY', minLevel: 8 },
+  { title: 'THE LURE', hint: 'Agnieszka Smoczyńska 1980s Polish synth-pop musical horror reimagining sirens in a Warsaw nightclub.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'GANJA AND HESS', hint: 'Bill Gunn 1973 avant-garde Black horror masterpiece exploring addiction, religion, and ancient vampirism.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'BERBERIAN SOUND STUDIO', hint: 'Peter Strickland psychological nightmare following a sound engineer unravelling while mixing a Giallo.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'CURE', hint: 'Kiyoshi Kurosawa 1997 Japanese neo-noir masterpiece centering on hypnotically induced, X-marked murders.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  // --- LEVEL 8 EXPANSION: Hardcore Archival & Transgressive Cult ---
   { 
-    title: 'SINNERS', 
-    hint: 'Ryan Coogler Southern Gothic horror starring Michael B. Jordan as twin brothers facing a supernatural threat.', 
+    title: 'KWAIDAN', 
+    hint: 'Masaki Kobayashi 1964 painted-set anthology depicting four traditional Japanese ghost folklore tales.', 
     category: 'MIDNIGHT MOVIE', 
-    minLevel: 2,
-    ifiUrl: 'https://www.ifihome.ie/film/sinners/' 
+    minLevel: 8 
   },
   { 
-    title: 'DRACULA A LOVE TALE', 
-    hint: 'Luc Besson Gothic romantic reimagining starring Caleb Landry Jones as the cursed warrior Count.', 
+    title: 'ONIBABA', 
+    hint: 'Kaneto Shindo 1964 stark medieval drama following two women murdering stranded samurai in tall pampas grass.', 
     category: 'MIDNIGHT MOVIE', 
-    minLevel: 2,
-    ifiUrl: 'https://www.ifihome.ie/film/dracula/' 
+    minLevel: 8 
+  },
+  { 
+    title: 'THE TENANT', 
+    hint: 'Roman Polanski 1976 paranoia trilogy entry following a quiet clerk assimilating into his predecessor’s suicide.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'THE DEVILS', 
+    hint: 'Ken Russell 1971 controversial historical drama detailing religious hysteria and exorcisms in 17th-century Loudun.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'VAMPYR', 
+    hint: 'Carl Theodor Dreyer 1932 dreamlike atmospheric masterwork tracking a traveler’s surreal encounter in Courtempierre.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'SISTERS', 
+    hint: 'Brian De Palma 1972 Hitchcock homage utilizing split-screen composition and split personalities.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'PEEPING TOM', 
+    hint: 'Michael Powell 1960 psychological horror examining voyeurism through a murderer who films his victims’ terror.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'THE HUNGER', 
+    hint: 'Tony Scott 1983 sleek gothic entry starring Catherine Deneuve and David Bowie as stylish urban vampires.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 8 
+  },
+  { 
+    title: 'LIZARD IN A WOMAN S SKIN', 
+    hint: 'Lucio Fulci 1971 psychedelic Giallo blending acid-trip hallucinations, London upper-class scandal, and dogs.', 
+    category: 'VIDEO NASTY', 
+    minLevel: 8 
   },
 
-  // --- LEVEL 3: Archival Monster Features, Folk Horror & Suspense ---
-  { title: 'GORGO', hint: '1961 monster feature in the IFI Horror Season where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/gorgo/'},
-  { title: 'THE OUTCASTS', hint: '1982 Irish folk horror landmark from the IFI Archive set in rural Ireland exploring witchcraft.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/the-outcasts/'},
-  { title: 'FUNNY GAMES', hint: 'Michael Haneke unsettling psychological thriller featured on IFI@Home about home intruders.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/funny-games/'},
-  { title: 'ROSEMARY S BABY', hint: 'A Manhattan mother suspects her neighbors have sinister plans for her child.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'THE BLAIR WITCH PROJECT', hint: 'Film students vanish while investigating a Maryland legend.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'THE BIRDS', hint: 'Hitchcock thriller where avian swarms attack a coastal town.', category: 'B-CREATURE FEAT', minLevel: 3 },
-  { title: 'MISERY', hint: 'An obsessed fan holds her favorite novelist captive in a remote cabin.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'NIGHT OF THE LIVING DEAD', hint: 'George Romero classic where reanimated corpses besiege a farmhouse.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'DON T LOOK NOW', hint: 'Grieving couple in Venice stalked by a mysterious figure in a red coat.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
-  { title: 'TREMORS', hint: 'Giant subterranean carnivorous worms attack a Nevada desert town.', category: 'B-CREATURE FEAT', minLevel: 3 },
-  { title: 'STRANGERS ON A TRAIN', hint: 'Hitchcock suspense masterpiece where two passengers discuss swapping murders.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/strangers-on-a-train/'},
+  // --- LEVEL 9: Extreme Underground & Film Movement Rarities ---
+  { title: 'ANGST', hint: 'Gerald Kargl 1983 Austrian masterpiece featuring radical movement camerawork and real-time home invasion.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'NEW YORK RIPPER', hint: 'Lucio Fulci gritty Giallo featuring a razor-wielding killer communicating in a duck voice.', category: 'VIDEO NASTY', minLevel: 9 },
+  { title: 'BLOOD FOR DRACULA', hint: 'Paul Morrissey and Andy Warhol satyr-horror examining decadent aristocracy and virgin blood.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'VALERIE AND HER WEEK OF WONDERS', hint: '1970 Czechoslovak New Wave surrealist Gothic fantasy blending folk motifs and coming-of-age symbolism.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'SANTA SANGRE', hint: 'Alejandro Jodorowsky surrealist psychodrama following a circus performer bound to his cult-leader mother.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'A PAGE OF MADNESS', hint: '1926 Japanese silent avant-garde masterpiece set in an asylum, utilizing radical montage and dreamscapes.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'NOVEMBER', hint: 'Rainer Sarnet stark black-and-white Estonian folk horror blending paganism and mechanical animism.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  // --- LEVEL 9 EXPANSION: Extreme Underground & Film Movement Rarities ---
   { 
-  title: 'LIES WE TELL', 
-  hint: 'Irish period thriller directed by Lisa Mulcahy following an orphaned heiress fighting for survival.', 
-  category: 'MIDNIGHT MOVIE', 
-  minLevel: 3,
-  ifiUrl: 'https://www.ifihome.ie/film/lies-we-tell/'
-},
-
-  // --- LEVEL 4: Art-House Masterpieces & IFI@Home Selections ---
-  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/red-rooms-les-chambres-rouges/'},
-  { title: 'SISTER MIDNIGHT', hint: 'IFI Horror Season dark comedy horror following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/sister-midnight/'},
-  { title: 'HOLY ISLAND', hint: 'Surreal Irish feature on IFI@Home following two souls trapped in an eerie port town.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/holy-island/'},
-  { title: 'SUSPIRIA', hint: 'Dario Argento German dance academy secretly run by a coven of witches.', category: 'MIDNIGHT MOVIE', minLevel: 4},
-  { title: 'EYES WITHOUT A FACE', hint: 'Guilt-ridden French surgeon attempts gruesome facial grafts for his daughter.', category: 'MIDNIGHT MOVIE', minLevel: 4},
-  { title: 'THE WICKER MAN', hint: 'Police sergeant investigates a missing girl on a pagan Scottish island.', category: 'MIDNIGHT MOVIE', minLevel: 4},
-  { title: 'CARNIVAL OF SOULS', hint: 'Surviving a car crash, an organist is drawn toward an abandoned Utah pavilion.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'BLACK SUNDAY', hint: 'Mario Bava Gothic masterwork about a witch executed in the 17th century.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
-  { title: 'THE HOWLING', hint: 'A television news anchor visits a secluded retreat overrun by lycanthropes.', category: 'B-CREATURE FEAT', minLevel: 4 },
-  { title: 'THE FOG', hint: 'John Carpenter tale of a glowing mist bringing vengeful leper ghosts.', category: 'MIDNIGHT MOVIE', minLevel: 4 },
+    title: 'BENNY S VIDEO', 
+    hint: 'Michael Haneke early media-critique drama exploring an alienated teenager who records an unprovoked murder.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
   { 
-  title: 'MATCH', 
-  hint: 'Danishka Esterhazy thriller on IFI@Home where an online suitor’s house holds horrifying secrets.', 
-  category: 'MIDNIGHT MOVIE', 
-  minLevel: 4, 
-  ifiUrl: 'https://www.ifiathome.ie/film/match' 
-},
-
-  // --- LEVEL 5: European Giallo & Cult Video Nasties ---
-  { title: 'FACES OF DEATH', hint: 'Infamous 1978 shocking horror compilation featured in the IFI Horror Season collection.', category: 'VIDEO NASTY', minLevel: 5, ifiUrl: 'https://www.ifihome.ie/film/faces-of-death/'},
-  { title: 'THE TEXAS CHAINSAW MASSACRE', hint: 'Leatherface and his cannibal family in 1974 Texas.', category: 'VIDEO NASTY', minLevel: 5 },
-  { title: 'DEEP RED', hint: 'Dario Argento Giallo masterpiece involving a jazz pianist and a psychic reading.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'TENEBRAE', hint: 'American mystery author in Rome stalked by a razor-wielding maniac.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'BLOOD AND BLACK LACE', hint: 'Mario Bava haute couture salon targeted by a masked killer.', category: 'VIDEO NASTY', minLevel: 5 },
-  { title: 'PHANTASM', hint: 'The Tall Man harvests small-town bodies using flying silver spheres.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'THE FLY', hint: 'Cronenberg scientist teleports with tragic insect hybrid consequences.', category: 'B-CREATURE FEAT', minLevel: 5 },
-  { title: 'DAWN OF THE DEAD', hint: 'Zombie apocalypse survivors barricade themselves inside a shopping mall.', category: 'VIDEO NASTY', minLevel: 5 },
-  { title: 'HELLRAISER', hint: 'Mysterious puzzle box summons extradimensional Cenobites.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-  { title: 'SCANNERS', hint: 'Telepathic renegades cause human heads to explode.', category: 'MIDNIGHT MOVIE', minLevel: 5 },
-
-  // --- LEVEL 6: Regional Slashers, Splatter & Irish Avant-Garde ---
-  { title: 'SOLITAIRE', hint: 'Experimental Irish feature on IFI@Home directed by Maximilian Le Cain.', category: 'MIDNIGHT MOVIE', minLevel: 6 },
-  { title: 'THE EVIL DEAD', hint: 'Friends unleash Sumerian demonic forces via tape recorder in a remote cabin.', category: 'VIDEO NASTY', minLevel: 6 },
-  { title: 'RE-ANIMATOR', hint: 'Medical student creates a glowing green reagent that revives dead tissue.', category: 'B-CREATURE FEAT', minLevel: 6 },
-  { title: 'CANNIBAL HOLOCAUST', hint: 'Infamous documentary crew ventures deep into the Amazon basin.', category: 'VIDEO NASTY', minLevel: 6 },
-  { title: 'RABID', hint: 'David Cronenberg body horror triggered by experimental skin grafts.', category: 'VIDEO NASTY', minLevel: 6 },
-  { title: 'MY BLOODY VALENTINE', hint: 'Pickaxe-wielding killer terrorizes a small mining town on Valentine’s Day.', category: 'SLASHER', minLevel: 6 },
-  { title: 'SLEEPAWAY CAMP', hint: 'Serial killer strikes a summer camp leading to an infamous twist ending.', category: 'SLASHER', minLevel: 6 },
-  { title: 'THE BURNING', hint: 'Disfigured summer camp caretaker stalked by garden shears.', category: 'SLASHER', minLevel: 6 },
-  { title: 'THE RETURN OF THE LIVING DEAD', hint: 'Trioxin gas creates brain-eating punk rock zombies.', category: 'B-CREATURE FEAT', minLevel: 6 },
-
-  // --- LEVEL 7: Surrealism, Extreme Cinema & Body Nightmares ---
-  { title: 'PHANTOM ISLANDS', hint: 'Experimental Irish docu-fiction on IFI@Home exploring isolation and phantom terrain.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'ERASERHEAD', hint: 'David Lynch surreal industrial nightmare featuring a mutant infant.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'POSSESSION', hint: 'Andrzej Zulawski marital meltdown and tentacled entity in West Berlin.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'HOUSE', hint: 'Nobuhiko Obayashi psychedelic Japanese haunted house masterwork.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'VIDEODROME', hint: 'Cable TV executive discovers a hallucinatory broadcast signal.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
-  { title: 'LAST HOUSE ON THE LEFT', hint: 'Wes Craven controversial 1972 directorial debut revenge thriller.', category: 'VIDEO NASTY', minLevel: 7 },
-  { title: 'HOUSE BY THE CEMETERY', hint: 'Lucio Fulci horror about Dr Freudstein lurking in a cellar.', category: 'VIDEO NASTY', minLevel: 7 },
-  { title: 'ALTERED STATES', hint: 'Sensory deprivation chamber experiments lead to primal regression.', category: 'MIDNIGHT MOVIE', minLevel: 7 },
+    title: 'TETSUO THE IRON MAN', 
+    hint: 'Shinya Tsukamoto 1989 cyberpunk body-horror landmark shot on kinetic 16mm black-and-white stock.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
   { 
-  title: 'IT ENDS', 
-  hint: 'Alex Ullom cosmic horror feature where friends turn onto an infinitely stretching, hellish two-lane road.', 
-  category: 'MIDNIGHT MOVIE', 
-  minLevel: 7,
-  ifiUrl: 'https://www.ifihome.ie/film/it-ends/'
-},
+    title: 'NEKROMANTIK', 
+    hint: 'Jörg Buttgereit 1987 West German underground cult film centering on a corpse-cleanup worker and necrophilia.', 
+    category: 'VIDEO NASTY', 
+    minLevel: 9 
+  },
+  { 
+    title: 'I SPIT ON YOUR GRAVE', 
+    hint: 'Meir Zarchi controversial 1978 exploitation entry central to the Video Nasty ban list.', 
+    category: 'VIDEO NASTY', 
+    minLevel: 9 
+  },
+  { 
+    title: 'MAN BITES DOG', 
+    hint: '1992 Belgian dark mockumentary following a film crew tracking a charismatic serial killer.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
+  { 
+    title: 'EVIL DEAD TRAP', 
+    hint: 'Toshiharu Ikeda 1988 Japanese video nasty blending Giallo stalker mechanics with splatter and body horror.', 
+    category: 'VIDEO NASTY', 
+    minLevel: 9 
+  },
+  { 
+    title: 'SUDDENLY IN THE DARK', 
+    hint: '1981 South Korean gothic horror investigating psychological obsession, wooden dolls, and domestic paranoia.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
+  { 
+    title: 'THE REFLECTING SKIN', 
+    hint: 'Philip Ridley 1990 sun-drenched Midwestern gothic examining childhood innocence, vampirism, and trauma.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
+  { 
+    title: 'THE MAFIA KILLS ONLY IN SUMMER', 
+    hint: 'Obscure Italian dark satire weaving real historical violence through a coming-of-age framing.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 9 
+  },
 
-  // --- LEVEL 8+: Hardcore Archival & Underground Obscurities ---
-  { title: 'AUDITION', hint: 'Japanese film producer holds a fake casting call with tragic consequences.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
-  { title: 'THE BEYOND', hint: 'Lucio Fulci Gates of Hell entry set in a hotel sitting over hell.', category: 'VIDEO NASTY', minLevel: 8 },
-  { title: 'CANNIBAL FEROX', hint: 'Infamous 1981 exploitation film banned in 31 countries.', category: 'VIDEO NASTY', minLevel: 8 },
-  { title: 'ANGST', hint: 'Obscure Austrian masterpiece depicting an unhinged ex-con on a home invasion spree.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  { title: 'NEW YORK RIPPER', hint: 'Gritty Giallo featuring a razor killer with a duck voice.', category: 'VIDEO NASTY', minLevel: 9 },
-  { title: 'BLOOD FOR DRACULA', hint: 'Andy Warhol and Paul Morrissey cult horror satire.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  { title: 'SZAMAN', hint: 'Andrzej Zulawski psychological nightmare exploring Siberian shamanism.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
-  { title: 'A FIELD IN ENGLAND', hint: 'Ben Wheatley psychedelic English Civil War mystical trip.', category: 'MIDNIGHT MOVIE', minLevel: 10 }
+  // --- LEVEL 10: Structuralist Masterworks & Transgressive Peak ---
+  { title: 'SZAMAN', hint: 'Andrzej Żuławski extreme psychological nightmare exploring anthropology, obsession, and Siberian shamanism.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'A FIELD IN ENGLAND', hint: 'Ben Wheatley black-and-white psychedelic Civil War trip involving alchemy and field mushrooms.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'BEGOTTEN', hint: 'E. Elias Merhige 1989 experimental silent splatter art-film shot on degraded, high-contrast optical stock.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'THE STRANGE COLOR OF YOUR BODIES TEARS', hint: 'Hélène Cattet and Bruno Forzani hyper-stylized fetishistic homage to Giallo architecture and razor framing.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'DAUGHTERS OF DARKNESS', hint: 'Harry Kümel 1971 Belgian art-house erotic vampire masterpiece starring Delphine Seyrig in Ostend.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'THE WHITE REINDEER', hint: '1952 Finnish Golden Globe-winning folk horror following a lonely woman turned vampiric Arctic creature.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  // --- LEVEL 10 EXPANSION: Structuralist Masterworks & Transgressive Peak ---
+  { 
+    title: 'TAXIDERMIA', 
+    hint: 'György Pálfi surreal Hungarian multi-generational saga detailing obsession, taxidermy, and speed-eating.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'CLIMAX', 
+    hint: 'Gaspar Noé 2018 continuous-shot dance nightmare tracking a French troupe descending into madness after spiked sangria.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'THE HOLY MOUNTAIN', 
+    hint: 'Alejandro Jodorowsky 1973 mystical avant-garde masterpiece filled with esoteric symbolism and spiritual seeker rites.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'IN A GLASS CAGE', 
+    hint: 'Agustí Villaronga 1986 transgressive Spanish psychological study of an iron-lung-bound Nazi doctor and his young nurse.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'TROUBLE EVERY DAY', 
+    hint: 'Claire Denis 2001 French art-house entry examining cannibalistic desire through scientific affliction in Paris.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'ANTICHRIST', 
+    hint: 'Lars von Trier 2009 psychological horror exploring grief, nature, and despair inside an isolated cabin named Eden.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'BEYOND THE BLACK RAINBOW', 
+    hint: 'Panos Cosmatos 2010 retro-futuristic structuralist nightmare featuring analog synthesizers and neon-lit isolation.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'THE FALL OF THE HOUSE OF USHER', 
+    hint: 'Jean Epstein 1928 French silent avant-garde masterpiece featuring impressionistic slow-motion double exposures.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'SALO OR THE 120 DAYS OF SODOM', 
+    hint: 'Pier Paolo Pasolini 1975 transgressive structural adaptation of Sade set in fascist Italy.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
+  { 
+    title: 'HARD TO BE A GOD', 
+    hint: 'Aleksei German 2013 Soviet avant-garde masterwork depicting a medieval alien planet through tactile, mud-soaked imagery.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 10 
+  },
 ]
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-const getLevelTimer = (level: number) => {
-  if (level <= 3) return 45
-  if (level <= 6) return 30
-  if (level <= 9) return 20
-  return 12
+// Get target films needed to clear a reel tier (Capped at 5)
+const getTargetFilmsForReel = (reel: number): number => {
+  if (reel === 1) return 1
+  if (reel === 2) return 2
+  if (reel === 3) return 3
+  if (reel === 4) return 4
+  return 5
 }
 
 export default function Home() {
   const [hasStarted, setHasStarted] = useState<boolean>(false)
 
+  // Game Engine & Progression
   const [currentMovie, setCurrentMovie] = useState<MovieTrivia>(MOVIES[0])
   const [playedTitles, setPlayedTitles] = useState<string[]>([])
+  const [reel, setReel] = useState<number>(1)
+  const [filmsClearedInReel, setFilmsClearedInReel] = useState<number>(0)
   
+  // Guesses & Traps
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
   const [wrongGuesses, setWrongGuesses] = useState<number>(0)
   const [curseLetters, setCurseLetters] = useState<string[]>([])
-  const [hasConsultedThisLevel, setHasConsultedThisLevel] = useState<boolean>(false)
   
-  const [level, setLevel] = useState<number>(1)
+  // Master Continuous Timer & Score
+  const [globalTimeLeft, setGlobalTimeLeft] = useState<number>(60)
   const [score, setScore] = useState<number>(0)
   const [highScore, setHighScore] = useState<number>(0)
-  const [timeLeft, setTimeLeft] = useState<number>(45)
   
+  // Power-Up Inventory
+  const [rewindCount, setRewindCount] = useState<number>(1)
+  const [lightLeakCount, setLightLeakCount] = useState<number>(1)
+  const [shieldActive, setShieldActive] = useState<boolean>(false)
+  const [shieldInventory, setShieldInventory] = useState<number>(1)
+  
+  // Game States
   const [gameOver, setGameOver] = useState<boolean>(false)
-  const [gameWon, setGameWon] = useState<boolean>(false)
-  const [lastRoundBonus, setLastRoundBonus] = useState<number>(0)
+  const [filmWon, setFilmWon] = useState<boolean>(false)
+  const [reelClearedModal, setReelClearedModal] = useState<boolean>(false)
+  const [lastTimeAdded, setLastTimeAdded] = useState<number>(0)
   const [isNewRecord, setIsNewRecord] = useState<boolean>(false)
   
+  // Config & Audio
   const [musicOn, setMusicOn] = useState<boolean>(false)
   const [volume, setVolume] = useState<number>(0.25)
   const [trapFlash, setTrapFlash] = useState<boolean>(false)
+  const [jamWarning, setJamWarning] = useState<boolean>(false)
 
   const [highContrast, setHighContrast] = useState<boolean>(true)
   const [reduceMotion, setReduceMotion] = useState<boolean>(false)
@@ -203,24 +374,13 @@ export default function Home() {
     }
   }
 
-  const startNewGame = (nextLevel: boolean = false) => {
-    soundFx.playClick()
-    const newLevel = nextLevel ? level + 1 : 1
-    const currentPlayed = nextLevel ? playedTitles : []
-    
-    if (!nextLevel) {
-      setScore(0)
-      setIsNewRecord(false)
-    }
-    
-    setLevel(newLevel)
-    setTimeLeft(getLevelTimer(newLevel))
-    
-    let eligibleMovies = MOVIES.filter((m) => m.minLevel === newLevel)
+  // Load next movie title
+  const loadNextMovie = useCallback((targetReel: number, currentPlayed: string[]) => {
+    let eligibleMovies = MOVIES.filter((m) => m.minLevel === targetReel)
     let unplayedMovies = eligibleMovies.filter((m) => !currentPlayed.includes(m.title))
 
     if (unplayedMovies.length === 0) {
-      eligibleMovies = MOVIES.filter((m) => m.minLevel <= newLevel)
+      eligibleMovies = MOVIES.filter((m) => m.minLevel <= targetReel)
       unplayedMovies = eligibleMovies.filter((m) => !currentPlayed.includes(m.title))
       if (unplayedMovies.length === 0) {
         unplayedMovies = eligibleMovies.length > 0 ? eligibleMovies : MOVIES
@@ -230,17 +390,38 @@ export default function Home() {
     const movie = unplayedMovies[Math.floor(Math.random() * unplayedMovies.length)] || MOVIES[0]
     
     setCurrentMovie(movie)
-    setPlayedTitles([...currentPlayed, movie.title])
+    setPlayedTitles((prev) => [...prev, movie.title])
     setGuessedLetters([])
     setWrongGuesses(0)
-    setHasConsultedThisLevel(false)
-    setGameOver(false)
-    setGameWon(false)
+    setFilmWon(false)
 
-    const uniqueLetters = Array.from(new Set(movie.title.replace(/[^A-Z]/g, '')))
-    const count = newLevel >= 7 ? 2 : 1
-    const shuffled = [...uniqueLetters].sort(() => 0.5 - Math.random())
-    setCurseLetters(shuffled.slice(0, count))
+    // Cursed Nitrate Letters setup for Reel 4+
+    if (targetReel >= 4) {
+      const uniqueLetters = Array.from(new Set(movie.title.replace(/[^A-Z]/g, '')))
+      const count = targetReel >= 7 ? 2 : 1
+      const shuffled = [...uniqueLetters].sort(() => 0.5 - Math.random())
+      setCurseLetters(shuffled.slice(0, count))
+    } else {
+      setCurseLetters([])
+    }
+  }, [])
+
+  // Start new full session
+  const startNewGame = () => {
+    soundFx.playClick()
+    setScore(0)
+    setIsNewRecord(false)
+    setReel(1)
+    setFilmsClearedInReel(0)
+    setGlobalTimeLeft(60)
+    setRewindCount(1)
+    setLightLeakCount(1)
+    setShieldInventory(1)
+    setShieldActive(false)
+    setGameOver(false)
+    setReelClearedModal(false)
+    
+    loadNextMovie(1, [])
   }
 
   const handleStartGame = () => {
@@ -249,55 +430,174 @@ export default function Home() {
     if (musicOn) {
       soundFx.toggleAmbientMusic(true)
     }
-    startNewGame(false)
+    startNewGame()
   }
 
   const handleReturnToIntro = () => {
     soundFx.playClick()
     setGameOver(false)
-    setGameWon(false)
+    setFilmWon(false)
+    setReelClearedModal(false)
     setHasStarted(false)
   }
 
-  const handleConsultArchive = () => {
-    if (gameOver || gameWon || hasConsultedThisLevel || !currentMovie) return
-    soundFx.playTrapSnap()
+  // --- POWER-UP TRIGGERS ---
+  const useReelRewind = () => {
+    if (rewindCount <= 0 || gameOver || filmWon) return
+    soundFx.playClick()
+    setRewindCount((prev) => prev - 1)
+    setGlobalTimeLeft((prev) => prev + 10)
+  }
 
+  const useLightLeak = () => {
+    if (lightLeakCount <= 0 || gameOver || filmWon || !currentMovie) return
+    soundFx.playClick()
+
+    const vowels = ['A', 'E', 'I', 'O', 'U']
     const titleLetters = currentMovie.title.replace(/[^A-Z]/g, '').split('')
-    const unrevealed = titleLetters.filter((l) => !guessedLetters.includes(l))
+    const unrevealedVowels = vowels.filter((v) => titleLetters.includes(v) && !guessedLetters.includes(v))
 
-    if (unrevealed.length === 0) return
+    let letterToReveal = ''
+    if (unrevealedVowels.length > 0) {
+      letterToReveal = unrevealedVowels[Math.floor(Math.random() * unrevealedVowels.length)]
+    } else {
+      const unrevealed = titleLetters.filter((l) => !guessedLetters.includes(l))
+      if (unrevealed.length === 0) return
+      letterToReveal = unrevealed[Math.floor(Math.random() * unrevealed.length)]
+    }
 
-    const letterToReveal = unrevealed[Math.floor(Math.random() * unrevealed.length)]
+    setLightLeakCount((prev) => prev - 1)
     const newGuessed = [...guessedLetters, letterToReveal]
     setGuessedLetters(newGuessed)
-    setHasConsultedThisLevel(true)
 
-    setTimeLeft((prev) => Math.max(1, prev - 5))
-
+    // Check win condition
     const titleClean = currentMovie.title.replace(/[^A-Z]/g, '')
-    const isWon = titleClean.split('').every((l) => newGuessed.includes(l))
-    if (isWon) {
-      soundFx.playWin()
-      const roundBonus = 100 * level + timeLeft * 10
-      setLastRoundBonus(roundBonus)
-      setGameWon(true)
-      const newScore = score + roundBonus
-      setScore(newScore)
-      checkAndUpdateHighScore(newScore)
+    if (titleClean.split('').every((l) => newGuessed.includes(l))) {
+      handleFilmSolved(newGuessed)
     }
   }
 
-  useEffect(() => {
-    if (!hasStarted || gameOver || gameWon || timeLeft <= 0) return
+  const useNitrateShield = () => {
+    if (shieldInventory <= 0 || shieldActive || gameOver || filmWon) return
+    soundFx.playClick()
+    setShieldInventory((prev) => prev - 1)
+    setShieldActive(true)
+  }
 
-    if (timeLeft <= 10) {
-      const urgencyFactor = (11 - timeLeft) / 10
+  // Handle film clear logic
+  const handleFilmSolved = useCallback((updatedGuessed: string[]) => {
+    soundFx.playWin()
+    setFilmWon(true)
+
+    const isFlawless = wrongGuesses === 0
+    const timeAdd = isFlawless ? 25 : 15
+    setLastTimeAdded(timeAdd)
+    setGlobalTimeLeft((prev) => prev + timeAdd)
+
+    const filmScore = 150 * reel + (isFlawless ? 100 : 0)
+    const newScore = score + filmScore
+    setScore(newScore)
+    checkAndUpdateHighScore(newScore)
+
+    // Award bonus power-ups on flawless
+    if (isFlawless) {
+      setRewindCount((prev) => prev + 1)
+    }
+
+    const nextClearedCount = filmsClearedInReel + 1
+    const targetFilms = getTargetFilmsForReel(reel)
+
+    if (nextClearedCount >= targetFilms) {
+      // REEL CLEARED!
+      setTimeout(() => {
+        setReelClearedModal(true)
+        setGlobalTimeLeft((prev) => prev + 30) // Reel Clear Global Time Bonus
+        setLightLeakCount((prev) => prev + 1)
+      }, 1200)
+    } else {
+      // Next film in current reel
+      setFilmsClearedInReel(nextClearedCount)
+      setTimeout(() => {
+        loadNextMovie(reel, playedTitles)
+      }, 1600)
+    }
+  }, [wrongGuesses, reel, score, filmsClearedInReel, playedTitles, loadNextMovie])
+
+  // Advance to Next Reel Tier
+  const handleAdvanceNextReel = () => {
+    soundFx.playClick()
+    const nextReel = reel + 1
+    setReel(nextReel)
+    setFilmsClearedInReel(0)
+    setReelClearedModal(false)
+
+    // Award Shield on entering Reel 4
+    if (nextReel === 4) {
+      setShieldInventory((prev) => prev + 1)
+    }
+
+    loadNextMovie(nextReel, playedTitles)
+  }
+
+  // Handle Guess Logic
+  const handleGuess = useCallback((letter: string) => {
+    if (guessedLetters.includes(letter) || gameOver || filmWon || !currentMovie) return
+
+    soundFx.playClick()
+    const newGuessed = [...guessedLetters, letter]
+    setGuessedLetters(newGuessed)
+
+    const isCurse = curseLetters.includes(letter)
+    const isCorrect = currentMovie.title.includes(letter)
+
+    if (!isCorrect || isCurse) {
+      if (shieldActive) {
+        // Shield absorbs penalty!
+        soundFx.playClick()
+        setShieldActive(false)
+      } else {
+        soundFx.playTrapSnap()
+        setTrapFlash(true)
+        setTimeout(() => setTrapFlash(false), 250)
+
+        // Projector Jam Hazard on Reel 6+
+        if (reel >= 6 && !isCorrect) {
+          setJamWarning(true)
+          setGlobalTimeLeft((prev) => Math.max(0, prev - 3))
+          setTimeout(() => setJamWarning(false), 600)
+        }
+
+        const penalty = isCurse ? 2 : 1
+        const newWrong = wrongGuesses + penalty
+        setWrongGuesses(newWrong)
+
+        if (newWrong >= maxWrong) {
+          setGameOver(true)
+          soundFx.playGameOver()
+          checkAndUpdateHighScore(score)
+          return
+        }
+      }
+    }
+
+    // Check Win
+    const titleClean = currentMovie.title.replace(/[^A-Z]/g, '')
+    if (titleClean.split('').every((l) => newGuessed.includes(l))) {
+      handleFilmSolved(newGuessed)
+    }
+  }, [guessedLetters, gameOver, filmWon, currentMovie, curseLetters, shieldActive, reel, wrongGuesses, maxWrong, score, handleFilmSolved])
+
+  // Continuous Master Projection Clock
+  useEffect(() => {
+    if (!hasStarted || gameOver || filmWon || reelClearedModal || globalTimeLeft <= 0) return
+
+    if (globalTimeLeft <= 10) {
+      const urgencyFactor = (11 - globalTimeLeft) / 10
       soundFx.playHeartbeat(urgencyFactor)
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
+      setGlobalTimeLeft((prev) => {
         if (prev <= 1) {
           soundFx.playTrapSnap()
           soundFx.playGameOver()
@@ -310,16 +610,28 @@ export default function Home() {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [hasStarted, timeLeft, gameOver, gameWon, score])
+  }, [hasStarted, globalTimeLeft, gameOver, filmWon, reelClearedModal, score])
 
+  // Physical Keyboard Listeners (A-Z and 1, 2, 3 for Power-Ups)
   useEffect(() => {
-    if (gameWon) {
-      const timer = setTimeout(() => {
-        startNewGame(true)
-      }, 2400)
-      return () => clearInterval(timer)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!hasStarted || gameOver || filmWon || reelClearedModal) return
+      
+      const key = e.key.toUpperCase()
+      if (/^[A-Z]$/.test(key)) {
+        handleGuess(key)
+      } else if (e.key === '1') {
+        useReelRewind()
+      } else if (e.key === '2') {
+        useLightLeak()
+      } else if (e.key === '3') {
+        useNitrateShield()
+      }
     }
-  }, [gameWon])
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [hasStarted, gameOver, filmWon, reelClearedModal, handleGuess])
 
   const handleIntroMusicToggle = () => {
     const newState = !musicOn
@@ -333,74 +645,9 @@ export default function Home() {
     soundFx.setVolume(newVol)
   }
 
-  const handleGuess = useCallback((letter: string) => {
-    if (guessedLetters.includes(letter) || gameOver || gameWon || !currentMovie) return
-
-    soundFx.playClick()
-    const newGuessed = [...guessedLetters, letter]
-    setGuessedLetters(newGuessed)
-
-    const isCurse = curseLetters.includes(letter)
-
-    if (!currentMovie.title.includes(letter)) {
-      soundFx.playTrapSnap()
-      setTrapFlash(true)
-      setTimeout(() => setTrapFlash(false), 250)
-
-      const newWrong = wrongGuesses + 1
-      setWrongGuesses(newWrong)
-      if (newWrong >= maxWrong) {
-        setGameOver(true)
-        soundFx.playGameOver()
-        checkAndUpdateHighScore(score)
-      }
-    } else if (isCurse) {
-      soundFx.playTrapSnap()
-      setTrapFlash(true)
-      setTimeout(() => setTrapFlash(false), 250)
-
-      setWrongGuesses((prev) => {
-        const updated = Math.min(prev + 2, maxWrong)
-        if (updated >= maxWrong) {
-          setGameOver(true)
-          soundFx.playGameOver()
-          checkAndUpdateHighScore(score)
-        }
-        return updated
-      })
-    }
-
-    const titleClean = currentMovie.title.replace(/[^A-Z]/g, '')
-    const isWon = titleClean.split('').every((l) => newGuessed.includes(l))
-    if (isWon) {
-      soundFx.playWin()
-      const roundBonus = 100 * level + timeLeft * 10
-      setLastRoundBonus(roundBonus)
-      setGameWon(true)
-      const newScore = score + roundBonus
-      setScore(newScore)
-      checkAndUpdateHighScore(newScore)
-    }
-  }, [guessedLetters, gameOver, gameWon, currentMovie, curseLetters, wrongGuesses, maxWrong, level, timeLeft, score])
-
-  // Direct Keyboard Typing Listener
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!hasStarted || gameOver || gameWon) return
-      
-      const key = e.key.toUpperCase()
-      if (/^[A-Z]$/.test(key)) {
-        handleGuess(key)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [hasStarted, gameOver, gameWon, handleGuess])
-
   return (
     <main className={`h-[100dvh] w-screen bg-[#111113] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-3 relative overflow-hidden select-none transition-colors duration-100 ${
-      trapFlash ? 'bg-[#E31B23]/20' : ''
+      trapFlash ? 'bg-[#E31B23]/20' : jamWarning ? 'bg-amber-500/20' : ''
     }`}>
       {/* ILLUMINATED IFI PROJECTION SPOTLIGHT BEAM */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(227,27,35,0.12)_0%,rgba(0,0,0,0)_75%)] pointer-events-none z-10" />
@@ -409,7 +656,7 @@ export default function Home() {
       <div className="absolute inset-0 pointer-events-none z-50 opacity-10 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px]" />
       <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(227,27,35,0.05)_0%,rgba(17,17,19,0.95)_100%)]" />
 
-      {/* --- 35MM FILM PERFORATION BORDERS & EDGE-CODES --- */}
+      {/* --- 35MM FILM PERFORATION BORDERS --- */}
       <div className="absolute left-1 sm:left-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
         {Array.from({ length: 14 }).map((_, i) => (
           <div key={i} className="flex flex-col items-center space-y-1">
@@ -447,12 +694,11 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Swinging Sign Title Component */}
             <SwingingSign />
 
             <div className="space-y-2 max-w-xl px-2">
               <p className="text-zinc-200 font-sans text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow-sm font-medium">
-                Unravel classic horror titles frame-by-frame before the projection booth locks you in forever.
+                Unravel classic horror titles frame-by-frame before the global master projection clock drains completely.
               </p>
             </div>
 
@@ -503,16 +749,16 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-100 text-left pt-1">
                   <div>
-                    <p className="text-yellow-400 font-bold uppercase text-[11px]">1. OBJECTIVE</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Solve horror titles before the projection timer runs out.</p>
+                    <p className="text-yellow-400 font-bold uppercase text-[11px]">1. MASTER CLOCK</p>
+                    <p className="text-[10px] mt-0.5 text-zinc-300">Continuous global timer. Solve films fast to add +15s / +25s back.</p>
                   </div>
                   <div>
-                    <p className="text-[#E31B23] font-bold uppercase text-[11px]">2. TRAPS</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">6 wrong letter guesses spring the trap completely.</p>
+                    <p className="text-[#E31B23] font-bold uppercase text-[11px]">2. REEL PROGRESSION</p>
+                    <p className="text-[10px] mt-0.5 text-zinc-300">Solve target film count to clear reels (1 $\rightarrow$ 2 $\rightarrow$ 3 $\rightarrow$ 4 $\rightarrow$ capped at 5).</p>
                   </div>
                   <div>
-                    <p className="text-green-400 font-bold uppercase text-[11px]">3. ARCHIVE HINT</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Consult archive once per level to reveal a letter (-5s penalty).</p>
+                    <p className="text-green-400 font-bold uppercase text-[11px]">3. POWER-UPS</p>
+                    <p className="text-[10px] mt-0.5 text-zinc-300">Use Rewind (1), Light Leak (2), and Shield (3) to survive.</p>
                   </div>
                 </div>
               </div>
@@ -567,19 +813,19 @@ export default function Home() {
                 onClick={handleStartGame}
                 className="w-full py-4 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-[0_0_30px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg focus:outline-none focus:ring-4 focus:ring-red-400"
               >
-                ▶ PLAY FEATURE
+                ▶ START PROJECTION
               </button>
             </div>
           </div>
         ) : (
           <>
-            {/* ACTIVE GAMEPLAY HEADER */}
+            {/* MASTER GAMEPLAY HEADER WITH GLOBAL CONTINUOUS TIMER */}
             <div className="w-full relative shrink-0 bg-zinc-900/90 border border-zinc-800 rounded-lg shadow-lg overflow-hidden">
               <div 
                 className={`h-1.5 transition-all duration-1000 ease-linear ${
-                  timeLeft <= 10 ? 'bg-[#E31B23] shadow-[0_0_10px_rgba(227,27,35,1)]' : 'bg-yellow-400'
+                  globalTimeLeft <= 15 ? 'bg-[#E31B23] shadow-[0_0_10px_rgba(227,27,35,1)]' : 'bg-yellow-400'
                 }`}
-                style={{ width: `${(timeLeft / getLevelTimer(level)) * 100}%` }}
+                style={{ width: `${Math.min(100, (globalTimeLeft / 60) * 100)}%` }}
               />
 
               <div className="flex items-center justify-between px-3 py-1.5">
@@ -590,58 +836,60 @@ export default function Home() {
                   🏠 MENU
                 </button>
 
-                <div className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 font-mono">
+                <div className="flex items-center space-x-3 sm:space-x-6 md:space-x-8 font-mono">
+                  {/* Reel & Film Progress Counter */}
                   <div className="text-center">
-                    <span className="text-[9px] text-zinc-400 block uppercase tracking-widest font-bold">REEL</span>
-                    <span className="font-black text-amber-400 text-sm sm:text-base drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">{level}</span>
+                    <span className="text-[8px] text-zinc-400 block uppercase tracking-widest font-bold">REEL {reel}</span>
+                    <span className="font-black text-amber-400 text-xs sm:text-sm drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">
+                      FILM {filmsClearedInReel + 1}/{getTargetFilmsForReel(reel)}
+                    </span>
                   </div>
 
+                  {/* Master Global Continuous Clock */}
                   <div 
-                    className={`px-2.5 py-0.5 rounded border transition-all duration-300 ${
-                      timeLeft <= 10 
+                    className={`px-3 py-0.5 rounded border transition-all duration-300 ${
+                      globalTimeLeft <= 15 
                         ? 'bg-red-950/90 border-[#E31B23] shadow-[0_0_20px_rgba(227,27,35,0.8)]' 
                         : 'bg-black/60 border-zinc-700'
                     }`}
                   >
-                    <span className="text-[8px] text-zinc-400 block uppercase tracking-widest font-bold text-center">TIME LEFT</span>
+                    <span className="text-[8px] text-zinc-400 block uppercase tracking-widest font-bold text-center">MASTER CLOCK</span>
                     <span className={`font-black font-mono text-base sm:text-lg block text-center ${
-                      timeLeft <= 10 
+                      globalTimeLeft <= 15 
                         ? 'text-[#E31B23] animate-pulse drop-shadow-[0_0_15px_rgba(227,27,35,1)]' 
                         : 'text-yellow-400'
                     }`}>
-                      00:{String(timeLeft).padStart(2, '0')}
+                      {String(Math.floor(globalTimeLeft / 60)).padStart(2, '0')}:{String(globalTimeLeft % 60).padStart(2, '0')}
                     </span>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[9px] text-zinc-400 block uppercase tracking-widest font-bold">SCORE</span>
-                    <span className="font-black text-green-400 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]">
+                    <span className="text-[8px] text-zinc-400 block uppercase tracking-widest font-bold">SCORE</span>
+                    <span className="font-black text-green-400 text-xs sm:text-sm drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]">
                       {String(score).padStart(6, '0')}
-                    </span>
-                  </div>
-
-                  <div className="text-right hidden sm:block">
-                    <span className="text-[9px] text-yellow-500 block uppercase tracking-widest font-bold">BEST</span>
-                    <span className="font-black text-yellow-400 text-sm sm:text-base drop-shadow-[0_0_10px_rgba(234,179,8,0.6)]">
-                      {String(highScore).padStart(6, '0')}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* HIGH-IMPACT MOVIE CLUE / QUESTION MARQUIS */}
-            <div className="w-full relative my-1 shrink-0 rounded-xl bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-700/80 p-2.5 sm:p-3 text-center shadow-md">
+            {/* HIGH-IMPACT MOVIE CLUE & ACTIVE HAZARD BAR */}
+            <div className="w-full relative my-1 shrink-0 rounded-xl bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-700/80 p-2 sm:p-2.5 text-center shadow-md">
               <div className="flex items-center justify-between px-2 mb-1">
                 <div className="flex items-center space-x-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#E31B23] animate-ping" />
-                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-zinc-300 uppercase tracking-widest">
-                    ARCHIVE REEL CLUE
+                  <span className="text-[9px] font-mono font-black text-zinc-300 uppercase tracking-widest">
+                    ARCHIVE CLUE
                   </span>
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-green-400 uppercase tracking-wider px-2 py-0.5 bg-black border border-green-500/60 rounded-full shadow-sm">
+                  {shieldActive && (
+                    <span className="text-[9px] font-mono font-black text-blue-400 uppercase tracking-wider px-2 py-0.5 bg-blue-950 border border-blue-500 rounded-full animate-pulse">
+                      🛡️ SHIELD ACTIVE
+                    </span>
+                  )}
+                  <span className="text-[9px] font-mono font-black text-green-400 uppercase tracking-wider px-2 py-0.5 bg-black border border-green-500/60 rounded-full">
                     {currentMovie?.category}
                   </span>
                   <span className="text-[10px] font-mono text-zinc-400">
@@ -650,13 +898,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <p className="text-base sm:text-lg md:text-xl font-mono font-black text-amber-100 italic tracking-wide leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] px-2">
+              <p className="text-sm sm:text-base md:text-lg font-mono font-black text-amber-100 italic tracking-wide leading-snug drop-shadow px-2">
                 "{currentMovie?.hint}"
               </p>
             </div>
 
             {/* CINEMATIC HORROR CANVAS */}
-            <div className="w-full h-36 sm:h-44 md:h-52 relative my-0.5 shrink-0 overflow-hidden rounded-xl border border-zinc-800 shadow-xl bg-black">
+            <div className="w-full h-32 sm:h-40 md:h-48 relative my-0.5 shrink-0 overflow-hidden rounded-xl border border-zinc-800 shadow-xl bg-black">
               <div className="absolute inset-0 w-full h-full">
                 <HorrorScene
                   wrongGuesses={wrongGuesses}
@@ -666,25 +914,25 @@ export default function Home() {
                 />
               </div>
 
-              {timeLeft > 0 && timeLeft <= 10 && !gameOver && !gameWon && (
+              {globalTimeLeft > 0 && globalTimeLeft <= 10 && !gameOver && !filmWon && (
                 <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-20 overflow-hidden">
                   <div className="absolute inset-0 bg-red-900/20 animate-ping opacity-30" />
                   <div 
                     className="font-mono font-black text-[#E31B23] italic drop-shadow-[0_0_35px_rgba(227,27,35,1)] uppercase tracking-tighter transition-all duration-300"
                     style={{
-                      fontSize: `${Math.max(3, 9 - timeLeft)}rem`,
-                      transform: `scale(${1 + (11 - timeLeft) * 0.08})`,
-                      animation: `pulse ${Math.max(0.25, timeLeft * 0.08)}s infinite alternate`
+                      fontSize: `${Math.max(2.5, 8 - globalTimeLeft)}rem`,
+                      transform: `scale(${1 + (11 - globalTimeLeft) * 0.08})`,
+                      animation: `pulse ${Math.max(0.25, globalTimeLeft * 0.08)}s infinite alternate`
                     }}
                   >
-                    {timeLeft}
+                    {globalTimeLeft}
                   </div>
                 </div>
               )}
             </div>
 
-            {/* DEDICATED HIGH-VISIBILITY TILED LETTER SLOT BAR */}
-            <div className="w-full flex items-center justify-center py-2 px-3 my-0.5 bg-zinc-900/90 border border-zinc-800 rounded-xl shrink-0 shadow-md">
+            {/* DEDICATED TILED LETTER SLOT BAR */}
+            <div className="w-full flex items-center justify-center py-1.5 px-3 my-0.5 bg-zinc-900/90 border border-zinc-800 rounded-xl shrink-0 shadow-md">
               <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 px-1">
                 {currentMovie?.title.split('').map((char, index) => {
                   if (char === ' ') {
@@ -696,7 +944,7 @@ export default function Home() {
                     )
                   }
 
-                  const isRevealed = guessedLetters.includes(char) || gameOver || gameWon
+                  const isRevealed = guessedLetters.includes(char) || gameOver || filmWon
 
                   return (
                     <div
@@ -714,8 +962,51 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ENLARGED TOUCH KEYBOARD & PHYSICAL KEYBOARD LISTENER */}
-            <div className="w-full flex flex-col items-center space-y-2 shrink-0 pt-1">
+            {/* ENLARGED TOUCH KEYBOARD & POWER-UP INVENTORY TOOLBAR */}
+            <div className="w-full flex flex-col items-center space-y-1.5 shrink-0 pt-0.5">
+              {/* Active Power-Ups Bar */}
+              <div className="flex items-center justify-center gap-2 w-full max-w-xl px-1 font-mono text-xs">
+                <button
+                  onClick={useReelRewind}
+                  disabled={rewindCount <= 0 || gameOver || filmWon}
+                  className={`flex-1 py-1 px-2 rounded-lg border flex items-center justify-center space-x-1 font-bold transition-all ${
+                    rewindCount > 0
+                      ? 'bg-amber-950/80 border-amber-500/80 text-amber-300 hover:bg-amber-900 shadow-md active:scale-95'
+                      : 'bg-zinc-950 border-zinc-800 text-zinc-600 cursor-not-allowed'
+                  }`}
+                >
+                  <span>🎞️ REWIND (+10s)</span>
+                  <span className="bg-amber-500 text-black px-1.5 rounded-full text-[10px] font-black">{rewindCount}</span>
+                </button>
+
+                <button
+                  onClick={useLightLeak}
+                  disabled={lightLeakCount <= 0 || gameOver || filmWon}
+                  className={`flex-1 py-1 px-2 rounded-lg border flex items-center justify-center space-x-1 font-bold transition-all ${
+                    lightLeakCount > 0
+                      ? 'bg-yellow-950/80 border-yellow-500/80 text-yellow-300 hover:bg-yellow-900 shadow-md active:scale-95'
+                      : 'bg-zinc-950 border-zinc-800 text-zinc-600 cursor-not-allowed'
+                  }`}
+                >
+                  <span>💡 VOWEL LEAK</span>
+                  <span className="bg-yellow-500 text-black px-1.5 rounded-full text-[10px] font-black">{lightLeakCount}</span>
+                </button>
+
+                <button
+                  onClick={useNitrateShield}
+                  disabled={shieldInventory <= 0 || shieldActive || gameOver || filmWon}
+                  className={`flex-1 py-1 px-2 rounded-lg border flex items-center justify-center space-x-1 font-bold transition-all ${
+                    shieldInventory > 0 && !shieldActive
+                      ? 'bg-blue-950/80 border-blue-500/80 text-blue-300 hover:bg-blue-900 shadow-md active:scale-95'
+                      : 'bg-zinc-950 border-zinc-800 text-zinc-600 cursor-not-allowed'
+                  }`}
+                >
+                  <span>🛡️ SHIELD</span>
+                  <span className="bg-blue-500 text-black px-1.5 rounded-full text-[10px] font-black">{shieldInventory}</span>
+                </button>
+              </div>
+
+              {/* Enlarged On-Screen Keyboard */}
               <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 max-w-3xl px-1">
                 {ALPHABET.map((letter) => {
                   const isGuessed = guessedLetters.includes(letter)
@@ -723,8 +1014,8 @@ export default function Home() {
                     <button
                       key={letter}
                       onClick={() => handleGuess(letter)}
-                      disabled={isGuessed || gameOver || gameWon}
-                      className={`w-9 h-11 sm:w-11 sm:h-12 font-mono text-sm sm:text-base font-black transition-all flex items-center justify-center rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E31B23] active:scale-95 ${
+                      disabled={isGuessed || gameOver || filmWon}
+                      className={`w-9 h-10 sm:w-11 sm:h-11 font-mono text-sm sm:text-base font-black transition-all flex items-center justify-center rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E31B23] active:scale-95 ${
                         isGuessed
                           ? 'bg-zinc-950 text-zinc-700 border border-zinc-900 cursor-not-allowed opacity-40'
                           : 'bg-zinc-800 hover:bg-[#E31B23] text-zinc-100 hover:text-white border border-zinc-600 shadow-md hover:border-[#E31B23]'
@@ -735,78 +1026,63 @@ export default function Home() {
                   )
                 })}
               </div>
-
-              {!gameOver && !gameWon && (
-                <div className="w-full flex justify-center pt-1 px-1">
-                  <button
-                    onClick={handleConsultArchive}
-                    disabled={hasConsultedThisLevel}
-                    className={`w-full max-w-sm py-2 font-mono text-xs sm:text-sm font-black uppercase tracking-widest transition-all border rounded-lg shadow active:scale-95 ${
-                      hasConsultedThisLevel
-                        ? 'bg-zinc-900 text-zinc-600 border-zinc-800 cursor-not-allowed shadow-none'
-                        : 'bg-yellow-500 hover:bg-yellow-400 text-zinc-950 border-yellow-300 shadow-[0_0_15px_rgba(234,179,8,0.4)]'
-                    }`}
-                  >
-                    {hasConsultedThisLevel ? '📖 ARCHIVE CONSULTED (USED)' : '📖 CONSULT ARCHIVE (-5s Penalty)'}
-                  </button>
-                </div>
-              )}
             </div>
           </>
         )}
 
       </div>
 
-      {/* ENHANCED ROUND WON / LEVEL CLEARED OVERLAY */}
-      {gameWon && (
+      {/* REEL CLEARED INTERMISSION OVERLAY */}
+      {reelClearedModal && (
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="relative bg-zinc-900 border-2 border-green-500 p-6 sm:p-8 rounded-xl shadow-[0_0_50px_rgba(34,197,94,0.4)] text-center max-w-md w-full space-y-4">
+          <div className="relative bg-zinc-900 border-2 border-yellow-500 p-6 sm:p-8 rounded-xl shadow-[0_0_50px_rgba(234,179,8,0.4)] text-center max-w-md w-full space-y-4">
             
             <div className="py-1">
-              <span className="text-[10px] sm:text-xs font-mono font-black text-green-400 uppercase tracking-widest bg-green-950 px-3 py-1 rounded-full border border-green-600">
-                PROJECTION SUCCESSFUL
+              <span className="text-[10px] sm:text-xs font-mono font-black text-yellow-400 uppercase tracking-widest bg-yellow-950 px-3 py-1 rounded-full border border-yellow-600">
+                PROJECTION REEL CLEARED
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black font-mono tracking-tighter text-green-400 uppercase italic mt-2">
-                REEL {level} CLEARED!
+              <h2 className="text-3xl sm:text-5xl font-black font-mono tracking-tighter text-yellow-400 uppercase italic mt-2">
+                REEL {reel} COMPLETE!
               </h2>
             </div>
 
-            <div className="bg-zinc-950 border border-zinc-800 p-3 rounded-lg font-mono space-y-1.5 text-left text-xs sm:text-sm">
+            <div className="bg-zinc-950 border border-zinc-800 p-3.5 rounded-lg font-mono space-y-2 text-left text-xs sm:text-sm">
               <div className="flex justify-between text-zinc-300">
-                <span>SOLVED FILM:</span>
-                <span className="text-yellow-300 font-bold uppercase">{currentMovie?.title}</span>
+                <span>REEL REWARD BONUS:</span>
+                <span className="text-green-400 font-bold">+30s CLOCK TIME</span>
               </div>
               <div className="flex justify-between text-zinc-300">
-                <span>TIME REMAINING:</span>
-                <span className="text-yellow-400 font-bold">+{timeLeft}s</span>
+                <span>POWER-UP AWARDED:</span>
+                <span className="text-yellow-300 font-bold">+1 VOWEL LEAK</span>
               </div>
               <div className="flex justify-between text-zinc-300 pt-1 border-t border-zinc-800">
-                <span>ROUND BONUS:</span>
-                <span className="text-green-400 font-bold">+{lastRoundBonus} PTS</span>
+                <span>NEXT REEL TARGET:</span>
+                <span className="text-amber-400 font-bold">{getTargetFilmsForReel(reel + 1)} FILMS TO CLEAR</span>
               </div>
             </div>
 
-            <p className="text-zinc-400 font-mono text-[11px] animate-pulse pt-1">
-              Spooling next feature reel...
-            </p>
+            <button
+              onClick={handleAdvanceNextReel}
+              className="w-full py-3 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_25px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg"
+            >
+              ▶ ADVANCE TO REEL {reel + 1}
+            </button>
           </div>
         </div>
       )}
 
-      {/* GRAINY DISTRESSED GAME OVER SCREEN WITH SWINGING SIGN */}
+      {/* GAME OVER SCREEN */}
       {gameOver && (
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_10%,rgba(227,27,35,0.35)_100%)] animate-pulse" />
 
-          {/* SWINGING SIGNPOST HEADER */}
           <GameOverSign />
 
-          {/* GAME OVER STATS PANEL */}
           <div className="relative bg-zinc-900 border border-zinc-700 p-5 sm:p-6 rounded-xl shadow-2xl text-center max-w-md w-full space-y-4 relative z-10 overflow-hidden mt-1">
             
             <div className="relative z-10 space-y-1.5">
               <div className="inline-block bg-black/80 border border-zinc-800 px-4 py-1.5 rounded-lg font-mono text-xs font-black text-zinc-300 uppercase tracking-widest shadow">
-                REACHED REEL {level} • SCORE: <span className="text-green-400">{score}</span>
+                REACHED REEL {reel} • SCORE: <span className="text-green-400">{score}</span>
               </div>
 
               {isNewRecord && (
@@ -816,11 +1092,11 @@ export default function Home() {
               )}
             </div>
 
-            {/* Unsolved Movie Reveal (Conditional Stream Link) */}
+            {/* Unsolved Movie Reveal */}
             <div className="relative z-10 bg-black border border-zinc-800 p-3.5 rounded-xl font-mono text-zinc-200 shadow-md text-left space-y-2">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-[9px] text-zinc-400 uppercase tracking-[0.2em] font-black">
-                  🔍 ARCHIVE REEL REVEAL
+                  🔍 UNSOLVED ARCHIVE REEL
                 </span>
                 <span className="text-[9px] text-zinc-500">IFI COLLECTION</span>
               </div>
@@ -844,13 +1120,13 @@ export default function Home() {
               )}
             </div>
 
-            {/* Modal Controls */}
+            {/* Controls */}
             <div className="relative z-10 space-y-2 pt-1">
               <button
-                onClick={() => startNewGame(false)}
+                onClick={startNewGame}
                 className="w-full py-3 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_25px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg focus:outline-none focus:ring-4 focus:ring-red-400"
               >
-                ▶ PLAY FEATURE
+                ▶ RESTART PROJECTION
               </button>
 
               <button
