@@ -41,11 +41,26 @@ const MOVIES: MovieTrivia[] = [
   { title: 'SAW', hint: 'Jigsaw places victims in lethal mechanical test traps.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
   { title: 'POLTERGEIST', hint: 'Suburban family home built over a relocated cemetery.', category: 'MIDNIGHT MOVIE', minLevel: 2 },
   { title: 'DOCTOR SLEEP', hint: 'An adult Dan Torrance must protect a young girl with similar psychic abilities from a cult.', category: 'MIDNIGHT MOVIE', minLevel: 2, ifiUrl: 'https://www.ifihome.ie/film/doctor-sleep/'},
+  // --- LEVEL 2: Popular Thrillers & Contemporary Releases ---
+  { 
+    title: 'SINNERS', 
+    hint: 'Ryan Coogler Southern Gothic horror starring Michael B. Jordan as twin brothers facing a supernatural threat.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 2,
+    ifiUrl: 'https://www.ifihome.ie/film/sinners/' 
+  },
+  { 
+    title: 'DRACULA A LOVE TALE', 
+    hint: 'Luc Besson Gothic romantic reimagining starring Caleb Landry Jones as the cursed warrior Count.', 
+    category: 'MIDNIGHT MOVIE', 
+    minLevel: 2,
+    ifiUrl: 'https://www.ifihome.ie/film/dracula/' 
+  },
 
   // --- LEVEL 3: Archival Monster Features, Folk Horror & Suspense ---
   { title: 'GORGO', hint: '1961 monster feature in the IFI Horror Season where a captured sea beast brings its colossal mother to London.', category: 'B-CREATURE FEAT', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/gorgo/'},
   { title: 'THE OUTCASTS', hint: '1982 Irish folk horror landmark from the IFI Archive set in rural Ireland exploring witchcraft.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/the-outcasts/'},
-  { title: 'FUNNY GAMES', hint: 'Michael Haneke unsettling psychological thriller featured on IFI@Home about home intruders.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
+  { title: 'FUNNY GAMES', hint: 'Michael Haneke unsettling psychological thriller featured on IFI@Home about home intruders.', category: 'MIDNIGHT MOVIE', minLevel: 3, ifiUrl: 'https://www.ifihome.ie/film/funny-games/'},
   { title: 'ROSEMARY S BABY', hint: 'A Manhattan mother suspects her neighbors have sinister plans for her child.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'THE BLAIR WITCH PROJECT', hint: 'Film students vanish while investigating a Maryland legend.', category: 'MIDNIGHT MOVIE', minLevel: 3 },
   { title: 'THE BIRDS', hint: 'Hitchcock thriller where avian swarms attack a coastal town.', category: 'B-CREATURE FEAT', minLevel: 3 },
@@ -63,7 +78,7 @@ const MOVIES: MovieTrivia[] = [
 },
 
   // --- LEVEL 4: Art-House Masterpieces & IFI@Home Selections ---
-  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/red-rooms/'},
+  { title: 'RED ROOMS', hint: 'IFI Horror Season cyber-thriller surrounding a high-profile dark web murder trial.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/red-rooms-les-chambres-rouges/'},
   { title: 'SISTER MIDNIGHT', hint: 'IFI Horror Season dark comedy horror following a frustrated Indian bride absorbing feral impulses.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/sister-midnight/'},
   { title: 'HOLY ISLAND', hint: 'Surreal Irish feature on IFI@Home following two souls trapped in an eerie port town.', category: 'MIDNIGHT MOVIE', minLevel: 4, ifiUrl: 'https://www.ifihome.ie/film/holy-island/'},
   { title: 'SUSPIRIA', hint: 'Dario Argento German dance academy secretly run by a coven of witches.', category: 'MIDNIGHT MOVIE', minLevel: 4},
