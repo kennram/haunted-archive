@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import HorrorScene from '@/components/HorrorScene'
 import SwingingSign from '@/components/SwingingSign'
+import GameOverSign from '@/components/GameOverSign'
 import { soundFx } from '@/lib/audio'
 
 interface MovieTrivia {
@@ -342,9 +343,9 @@ export default function Home() {
     <main className={`h-[100dvh] w-screen bg-[#0c0a09] text-zinc-100 flex flex-col items-center justify-between p-2 md:p-3 relative overflow-hidden select-none transition-colors duration-100 ${
       trapFlash ? 'bg-red-950/80' : ''
     }`}>
-      {/* Scanline and CRT Ambient Overlays */}
-      <div className="absolute inset-0 pointer-events-none z-50 opacity-15 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_4px]" />
-      <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.15)_0%,rgba(12,10,9,0.95)_100%)]" />
+      {/* 35MM FILM GRAIN, DUST & CRT FLICKER OVERLAYS */}
+      <div className="absolute inset-0 pointer-events-none z-50 opacity-20 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.7)_50%)] bg-[length:100%_4px]" />
+      <div className="absolute inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.18)_0%,rgba(12,10,9,0.96)_100%)]" />
 
       {/* --- 35MM FILM PERFORATION BORDERS & EDGE-CODES --- */}
       <div className="absolute left-1 sm:left-3 top-0 bottom-0 w-6 flex flex-col justify-between py-2 pointer-events-none opacity-40 z-30 select-none">
@@ -564,17 +565,29 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full text-center space-y-0.5 py-1 px-3 bg-zinc-900/90 border border-red-900/80 rounded-lg shadow shrink-0">
-              <div className="flex justify-center items-center space-x-3">
-                <span className="text-[8px] uppercase font-mono tracking-widest text-green-400 font-black px-2 py-0.5 bg-black border border-green-500 rounded-full shadow">
-                  {currentMovie.category}
-                </span>
-                <span className="text-[10px] font-mono text-zinc-200">
-                  TRAPS: <strong className="text-red-500 font-black text-xs">{wrongGuesses}</strong> / {maxWrong}
-                </span>
+            {/* HIGH-IMPACT MOVIE CLUE / QUESTION MARQUIS */}
+            <div className="w-full relative my-1 shrink-0 rounded-xl bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border-2 border-amber-500/80 p-2.5 sm:p-3 text-center shadow-[0_0_25px_rgba(245,158,11,0.2)]">
+              {/* Header Label Row */}
+              <div className="flex items-center justify-between px-2 mb-1">
+                <div className="flex items-center space-x-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-amber-400 uppercase tracking-widest">
+                    ARCHIVE REEL CLUE
+                  </span>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-black text-green-400 uppercase tracking-wider px-2 py-0.5 bg-black border border-green-500/80 rounded-full shadow-sm">
+                    {currentMovie.category}
+                  </span>
+                  <span className="text-[10px] font-mono text-zinc-400">
+                    TRAPS: <strong className="text-red-500 font-black">{wrongGuesses}</strong>/{maxWrong}
+                  </span>
+                </div>
               </div>
 
-              <p className="text-xs sm:text-sm md:text-base font-black font-mono text-white italic tracking-wide leading-tight drop-shadow">
+              {/* Highlighted Question / Hint Text */}
+              <p className="text-base sm:text-lg md:text-xl font-mono font-black text-amber-100 italic tracking-wide leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] px-2">
                 "{currentMovie.hint}"
               </p>
             </div>
@@ -717,30 +730,20 @@ export default function Home() {
         </div>
       )}
 
-      {/* GOTHIC IFI@HOME GAME OVER MODAL OVERLAY */}
+      {/* GRAINY DISTRESSED GAME OVER SCREEN WITH SWINGING SIGN */}
       {gameOver && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
-          {/* Ominous Red Pulsing Vignette Overlay */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,rgba(185,28,28,0.35)_100%)] animate-pulse" />
+          {/* Intense Nitrate Red Vignette & Grain Blur Overlay */}
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_10%,rgba(185,28,28,0.45)_100%)] animate-pulse" />
+          <div className="absolute inset-0 pointer-events-none opacity-25 bg-[linear-gradient(rgba(255,255,255,0)_50%,rgba(0,0,0,0.8)_50%)] bg-[length:100%_4px]" />
 
-          {/* Dark Oak & Wrought Iron Framed Box */}
-          <div className="relative bg-[#1c120d] border-4 border-amber-900/80 p-6 sm:p-8 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.9)] text-center max-w-md w-full space-y-5 transition-all duration-300 relative z-10 overflow-hidden">
+          {/* SWINGING SIGNPOST HEADER */}
+          <GameOverSign />
+
+          {/* GAME OVER STATS PANEL */}
+          <div className="relative bg-[#1a110c] border-2 border-amber-900/80 p-5 sm:p-6 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.95)] text-center max-w-md w-full space-y-4 relative z-10 overflow-hidden mt-1">
             
-            {/* Subtle Wood Grain Overlay matching Intro Sign */}
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#451a03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none rounded-lg" />
-
-            {/* Title Header */}
-            <div className="relative z-10 space-y-1">
-              <p className="text-green-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] font-black">
-                PROJECTION BOOTH LOCKED
-              </p>
-              <h1 className="text-4xl sm:text-6xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[3px_3px_0px_#22c55e] italic leading-none pt-1">
-                GAME OVER
-              </h1>
-            </div>
-
-            {/* Score Stats */}
-            <div className="relative z-10 space-y-2 pt-1">
+            <div className="relative z-10 space-y-1.5">
               <div className="inline-block bg-black/80 border border-amber-900/60 px-4 py-1.5 rounded-lg font-mono text-xs font-black text-zinc-300 uppercase tracking-widest shadow">
                 REACHED REEL {level} • SCORE: <span className="text-green-400">{score}</span>
               </div>
@@ -752,26 +755,26 @@ export default function Home() {
               )}
             </div>
 
-            {/* Unsolved Title Reveal */}
-            <div className="relative z-10 bg-black/90 border border-zinc-800 p-3.5 rounded-xl font-mono text-zinc-200">
-              <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-black block mb-1">UNSOLVED FILM TITLE</span>
+            {/* Unsolved Movie Reveal */}
+            <div className="relative z-10 bg-black/90 border border-zinc-800 p-3 rounded-xl font-mono text-zinc-200">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-black block mb-0.5">UNSOLVED FILM TITLE</span>
               <span className="text-yellow-400 font-black tracking-widest text-base sm:text-xl uppercase drop-shadow-[0_0_12px_rgba(253,224,71,0.7)]">
                 {currentMovie.title}
               </span>
             </div>
 
-            {/* Action Buttons */}
-            <div className="relative z-10 space-y-2.5 pt-1">
+            {/* Modal Controls */}
+            <div className="relative z-10 space-y-2 pt-1">
               <button
                 onClick={() => startNewGame(false)}
-                className="w-full py-3.5 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
+                className="w-full py-3 bg-red-600 hover:bg-red-500 text-yellow-300 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.9)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-900 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
               >
                 ▶ PLAY FEATURE
               </button>
 
               <button
                 onClick={handleReturnToIntro}
-                className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-zinc-200 font-mono text-xs font-black uppercase tracking-widest border border-zinc-800 rounded-lg transition-all"
+                className="w-full py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-zinc-200 font-mono text-xs font-black uppercase tracking-widest border border-zinc-800 rounded-lg transition-all"
               >
                 🏠 MAIN MENU
               </button>
