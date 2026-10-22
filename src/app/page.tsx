@@ -113,61 +113,12 @@ const MOVIES: MovieTrivia[] = [
   { title: 'GANJA AND HESS', hint: 'Bill Gunn 1973 avant-garde Black horror masterpiece exploring addiction, religion, and ancient vampirism.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
   { title: 'BERBERIAN SOUND STUDIO', hint: 'Peter Strickland psychological nightmare following a sound engineer unravelling while mixing a Giallo.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
   { title: 'CURE', hint: 'Kiyoshi Kurosawa 1997 Japanese neo-noir masterpiece centering on hypnotically induced, X-marked murders.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
-  // --- LEVEL 8 EXPANSION: Hardcore Archival & Transgressive Cult ---
-  { 
-    title: 'KWAIDAN', 
-    hint: 'Masaki Kobayashi 1964 painted-set anthology depicting four traditional Japanese ghost folklore tales.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'ONIBABA', 
-    hint: 'Kaneto Shindo 1964 stark medieval drama following two women murdering stranded samurai in tall pampas grass.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'THE TENANT', 
-    hint: 'Roman Polanski 1976 paranoia trilogy entry following a quiet clerk assimilating into his predecessor’s suicide.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'THE DEVILS', 
-    hint: 'Ken Russell 1971 controversial historical drama detailing religious hysteria and exorcisms in 17th-century Loudun.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'VAMPYR', 
-    hint: 'Carl Theodor Dreyer 1932 dreamlike atmospheric masterwork tracking a traveler’s surreal encounter in Courtempierre.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'SISTERS', 
-    hint: 'Brian De Palma 1972 Hitchcock homage utilizing split-screen composition and split personalities.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'PEEPING TOM', 
-    hint: 'Michael Powell 1960 psychological horror examining voyeurism through a murderer who films his victims’ terror.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'THE HUNGER', 
-    hint: 'Tony Scott 1983 sleek gothic entry starring Catherine Deneuve and David Bowie as stylish urban vampires.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 8 
-  },
-  { 
-    title: 'LIZARD IN A WOMAN S SKIN', 
-    hint: 'Lucio Fulci 1971 psychedelic Giallo blending acid-trip hallucinations, London upper-class scandal, and dogs.', 
-    category: 'VIDEO NASTY', 
-    minLevel: 8 
-  },
+  { title: 'KWAIDAN', hint: 'Masaki Kobayashi 1964 painted-set anthology depicting four traditional Japanese ghost folklore tales.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'ONIBABA', hint: 'Kaneto Shindo 1964 stark medieval drama following two women murdering stranded samurai in tall pampas grass.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'THE TENANT', hint: 'Roman Polanski 1976 paranoia trilogy entry following a quiet clerk assimilating into his predecessor’s suicide.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'THE DEVILS', hint: 'Ken Russell 1971 controversial historical drama detailing religious hysteria and exorcisms in 17th-century Loudun.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'VAMPYR', hint: 'Carl Theodor Dreyer 1932 dreamlike atmospheric masterwork tracking a traveler’s surreal encounter in Courtempierre.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
+  { title: 'PEEPING TOM', hint: 'Michael Powell 1960 psychological horror examining voyeurism through a murderer who films his victims’ terror.', category: 'MIDNIGHT MOVIE', minLevel: 8 },
 
   // --- LEVEL 9: Extreme Underground & Film Movement Rarities ---
   { title: 'ANGST', hint: 'Gerald Kargl 1983 Austrian masterpiece featuring radical movement camerawork and real-time home invasion.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
@@ -177,61 +128,12 @@ const MOVIES: MovieTrivia[] = [
   { title: 'SANTA SANGRE', hint: 'Alejandro Jodorowsky surrealist psychodrama following a circus performer bound to his cult-leader mother.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
   { title: 'A PAGE OF MADNESS', hint: '1926 Japanese silent avant-garde masterpiece set in an asylum, utilizing radical montage and dreamscapes.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
   { title: 'NOVEMBER', hint: 'Rainer Sarnet stark black-and-white Estonian folk horror blending paganism and mechanical animism.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
-  // --- LEVEL 9 EXPANSION: Extreme Underground & Film Movement Rarities ---
-  { 
-    title: 'BENNY S VIDEO', 
-    hint: 'Michael Haneke early media-critique drama exploring an alienated teenager who records an unprovoked murder.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
-  { 
-    title: 'TETSUO THE IRON MAN', 
-    hint: 'Shinya Tsukamoto 1989 cyberpunk body-horror landmark shot on kinetic 16mm black-and-white stock.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
-  { 
-    title: 'NEKROMANTIK', 
-    hint: 'Jörg Buttgereit 1987 West German underground cult film centering on a corpse-cleanup worker and necrophilia.', 
-    category: 'VIDEO NASTY', 
-    minLevel: 9 
-  },
-  { 
-    title: 'I SPIT ON YOUR GRAVE', 
-    hint: 'Meir Zarchi controversial 1978 exploitation entry central to the Video Nasty ban list.', 
-    category: 'VIDEO NASTY', 
-    minLevel: 9 
-  },
-  { 
-    title: 'MAN BITES DOG', 
-    hint: '1992 Belgian dark mockumentary following a film crew tracking a charismatic serial killer.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
-  { 
-    title: 'EVIL DEAD TRAP', 
-    hint: 'Toshiharu Ikeda 1988 Japanese video nasty blending Giallo stalker mechanics with splatter and body horror.', 
-    category: 'VIDEO NASTY', 
-    minLevel: 9 
-  },
-  { 
-    title: 'SUDDENLY IN THE DARK', 
-    hint: '1981 South Korean gothic horror investigating psychological obsession, wooden dolls, and domestic paranoia.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
-  { 
-    title: 'THE REFLECTING SKIN', 
-    hint: 'Philip Ridley 1990 sun-drenched Midwestern gothic examining childhood innocence, vampirism, and trauma.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
-  { 
-    title: 'THE MAFIA KILLS ONLY IN SUMMER', 
-    hint: 'Obscure Italian dark satire weaving real historical violence through a coming-of-age framing.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 9 
-  },
+  { title: 'BENNY S VIDEO', hint: 'Michael Haneke early media-critique drama exploring an alienated teenager who records an unprovoked murder.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'TETSUO THE IRON MAN', hint: 'Shinya Tsukamoto 1989 cyberpunk body-horror landmark shot on kinetic 16mm black-and-white stock.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'NEKROMANTIK', hint: 'Jörg Buttgereit 1987 West German underground cult film centering on a corpse-cleanup worker and necrophilia.', category: 'VIDEO NASTY', minLevel: 9 },
+  { title: 'I SPIT ON YOUR GRAVE', hint: 'Meir Zarchi controversial 1978 exploitation entry central to the Video Nasty ban list.', category: 'VIDEO NASTY', minLevel: 9 },
+  { title: 'MAN BITES DOG', hint: '1992 Belgian dark mockumentary following a film crew tracking a charismatic serial killer.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
+  { title: 'THE REFLECTING SKIN', hint: 'Philip Ridley 1990 sun-drenched Midwestern gothic examining childhood innocence, vampirism, and trauma.', category: 'MIDNIGHT MOVIE', minLevel: 9 },
 
   // --- LEVEL 10: Structuralist Masterworks & Transgressive Peak ---
   { title: 'SZAMAN', hint: 'Andrzej Żuławski extreme psychological nightmare exploring anthropology, obsession, and Siberian shamanism.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
@@ -240,67 +142,15 @@ const MOVIES: MovieTrivia[] = [
   { title: 'THE STRANGE COLOR OF YOUR BODIES TEARS', hint: 'Hélène Cattet and Bruno Forzani hyper-stylized fetishistic homage to Giallo architecture and razor framing.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
   { title: 'DAUGHTERS OF DARKNESS', hint: 'Harry Kümel 1971 Belgian art-house erotic vampire masterpiece starring Delphine Seyrig in Ostend.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
   { title: 'THE WHITE REINDEER', hint: '1952 Finnish Golden Globe-winning folk horror following a lonely woman turned vampiric Arctic creature.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
-  // --- LEVEL 10 EXPANSION: Structuralist Masterworks & Transgressive Peak ---
-  { 
-    title: 'TAXIDERMIA', 
-    hint: 'György Pálfi surreal Hungarian multi-generational saga detailing obsession, taxidermy, and speed-eating.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'CLIMAX', 
-    hint: 'Gaspar Noé 2018 continuous-shot dance nightmare tracking a French troupe descending into madness after spiked sangria.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'THE HOLY MOUNTAIN', 
-    hint: 'Alejandro Jodorowsky 1973 mystical avant-garde masterpiece filled with esoteric symbolism and spiritual seeker rites.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'IN A GLASS CAGE', 
-    hint: 'Agustí Villaronga 1986 transgressive Spanish psychological study of an iron-lung-bound Nazi doctor and his young nurse.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'TROUBLE EVERY DAY', 
-    hint: 'Claire Denis 2001 French art-house entry examining cannibalistic desire through scientific affliction in Paris.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'ANTICHRIST', 
-    hint: 'Lars von Trier 2009 psychological horror exploring grief, nature, and despair inside an isolated cabin named Eden.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'BEYOND THE BLACK RAINBOW', 
-    hint: 'Panos Cosmatos 2010 retro-futuristic structuralist nightmare featuring analog synthesizers and neon-lit isolation.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'THE FALL OF THE HOUSE OF USHER', 
-    hint: 'Jean Epstein 1928 French silent avant-garde masterpiece featuring impressionistic slow-motion double exposures.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'SALO OR THE 120 DAYS OF SODOM', 
-    hint: 'Pier Paolo Pasolini 1975 transgressive structural adaptation of Sade set in fascist Italy.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
-  { 
-    title: 'HARD TO BE A GOD', 
-    hint: 'Aleksei German 2013 Soviet avant-garde masterwork depicting a medieval alien planet through tactile, mud-soaked imagery.', 
-    category: 'MIDNIGHT MOVIE', 
-    minLevel: 10 
-  },
+  { title: 'TAXIDERMIA', hint: 'György Pálfi surreal Hungarian multi-generational saga detailing obsession, taxidermy, and speed-eating.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'CLIMAX', hint: 'Gaspar Noé 2018 continuous-shot dance nightmare tracking a French troupe descending into madness after spiked sangria.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'THE HOLY MOUNTAIN', hint: 'Alejandro Jodorowsky 1973 mystical avant-garde masterpiece filled with esoteric symbolism and spiritual seeker rites.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'IN A GLASS CAGE', hint: 'Agustí Villaronga 1986 transgressive Spanish psychological study of an iron-lung-bound Nazi doctor and his young nurse.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'TROUBLE EVERY DAY', hint: 'Claire Denis 2001 French art-house entry examining cannibalistic desire through scientific affliction in Paris.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'ANTICHRIST', hint: 'Lars von Trier 2009 psychological horror exploring grief, nature, and despair inside an isolated cabin named Eden.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'BEYOND THE BLACK RAINBOW', hint: 'Panos Cosmatos 2010 retro-futuristic structuralist nightmare featuring analog synthesizers and neon-lit isolation.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'THE FALL OF THE HOUSE OF USHER', hint: 'Jean Epstein 1928 French silent avant-garde masterpiece featuring impressionistic slow-motion double exposures.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
+  { title: 'SALO OR THE 120 DAYS OF SODOM', hint: 'Pier Paolo Pasolini 1975 transgressive structural adaptation of Sade set in fascist Italy.', category: 'MIDNIGHT MOVIE', minLevel: 10 },
 ]
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -339,11 +189,11 @@ export default function Home() {
   const [shieldActive, setShieldActive] = useState<boolean>(false)
   const [shieldInventory, setShieldInventory] = useState<number>(1)
   
-  // Game States
+  // Game States & Brand Touchpoints
   const [gameOver, setGameOver] = useState<boolean>(false)
   const [filmWon, setFilmWon] = useState<boolean>(false)
   const [reelClearedModal, setReelClearedModal] = useState<boolean>(false)
-  const [lastTimeAdded, setLastTimeAdded] = useState<number>(0)
+  const [lastSolvedIfiMovie, setLastSolvedIfiMovie] = useState<MovieTrivia | null>(null)
   const [isNewRecord, setIsNewRecord] = useState<boolean>(false)
   
   // Config & Audio
@@ -420,6 +270,7 @@ export default function Home() {
     setShieldActive(false)
     setGameOver(false)
     setReelClearedModal(false)
+    setLastSolvedIfiMovie(null)
     
     loadNextMovie(1, [])
   }
@@ -489,9 +340,12 @@ export default function Home() {
     soundFx.playWin()
     setFilmWon(true)
 
+    if (currentMovie.ifiUrl) {
+      setLastSolvedIfiMovie(currentMovie)
+    }
+
     const isFlawless = wrongGuesses === 0
     const timeAdd = isFlawless ? 25 : 15
-    setLastTimeAdded(timeAdd)
     setGlobalTimeLeft((prev) => prev + timeAdd)
 
     const filmScore = 150 * reel + (isFlawless ? 100 : 0)
@@ -499,7 +353,6 @@ export default function Home() {
     setScore(newScore)
     checkAndUpdateHighScore(newScore)
 
-    // Award bonus power-ups on flawless
     if (isFlawless) {
       setRewindCount((prev) => prev + 1)
     }
@@ -519,9 +372,10 @@ export default function Home() {
       setFilmsClearedInReel(nextClearedCount)
       setTimeout(() => {
         loadNextMovie(reel, playedTitles)
+        setFilmWon(false)
       }, 1600)
     }
-  }, [wrongGuesses, reel, score, filmsClearedInReel, playedTitles, loadNextMovie])
+  }, [currentMovie, wrongGuesses, reel, score, filmsClearedInReel, playedTitles, loadNextMovie])
 
   // Advance to Next Reel Tier
   const handleAdvanceNextReel = () => {
@@ -686,136 +540,191 @@ export default function Home() {
       <div className="relative z-20 w-full max-w-4xl h-full flex flex-col justify-between py-1 my-auto px-6 sm:px-10">
         {!hasStarted ? (
           /* --- IFI BRANDED INTRO SCREEN --- */
-          <div className="w-full h-full flex flex-col items-center justify-center text-center space-y-4 sm:space-y-5 my-auto relative">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#E31B23]/10 border border-[#E31B23]/30 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-[#E31B23] animate-pulse" />
-              <span className="tracking-widest font-mono text-xs sm:text-sm font-black text-[#E31B23] uppercase">
-                IRISH FILM INSTITUTE PRESENTS
-              </span>
-            </div>
+          <div className="w-full h-full flex flex-col justify-between items-center text-center py-4 px-2 relative z-20">
+            
+            {/* 1. TOP HEADER: BRANDING & LOGO */}
+            <div className="flex flex-col items-center space-y-3 pt-2">
+              <a 
+                href="https://www.ifihome.ie/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105 focus:outline-none"
+              >
+                <img 
+                  src="/ifi-home-logo.png" 
+                  alt="IFI@Home" 
+                  className="h-10 sm:h-12 w-auto object-contain drop-shadow-md"
+                />
+              </a>
 
-            <SwingingSign />
-
-            <div className="space-y-2 max-w-xl px-2">
-              <p className="text-zinc-200 font-sans text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow-sm font-medium">
-                Test your horror film knowledge and clear as many levels as you can. Grab your power-ups, outrun the timer, and survive the vault!
-              </p>
-            </div>
-
-            {highScore > 0 && (
-              <div className="bg-zinc-900 border border-yellow-500/50 px-5 py-2 rounded-xl font-mono text-xs md:text-sm text-yellow-400 font-black tracking-widest shadow-[0_0_20px_rgba(234,179,8,0.25)] animate-pulse">
-                🏆 ALL-TIME RECORD: {String(highScore).padStart(6, '0')} PTS
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#E31B23]/15 border border-[#E31B23]/40 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#E31B23] animate-pulse" />
+                <span className="tracking-widest font-mono text-xs sm:text-sm font-black text-[#E31B23] uppercase">
+                  IRISH FILM INSTITUTE PRESENTS
+                </span>
               </div>
-            )}
-
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-              <button
-                onClick={handleIntroMusicToggle}
-                className={`px-3 py-1.5 font-mono text-xs font-black uppercase tracking-widest rounded-lg border transition-all ${
-                  musicOn
-                    ? 'bg-[#E31B23]/20 text-red-300 border-[#E31B23] shadow-[0_0_15px_rgba(227,27,35,0.4)]'
-                    : 'bg-zinc-900 text-zinc-300 border-zinc-700'
-                }`}
-              >
-                {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
-              </button>
-
-              <button
-                onClick={() => {
-                  setShowSettingsMenu(!showSettingsMenu)
-                  setShowRulesMenu(false)
-                }}
-                className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white font-mono text-xs font-black uppercase tracking-wider transition-all border border-zinc-700 rounded-lg shadow"
-              >
-                ⚙️ CONFIG
-              </button>
-
-              <button
-                onClick={() => {
-                  setShowRulesMenu(!showRulesMenu)
-                  setShowSettingsMenu(false)
-                }}
-                className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-green-400 hover:text-green-300 font-mono text-xs font-black uppercase tracking-wider transition-all border border-green-500/80 rounded-lg shadow"
-              >
-                📜 RULES
-              </button>
             </div>
 
-            {showRulesMenu && (
-              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border border-green-500/80 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
-                <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
-                  <span className="text-green-400 font-bold uppercase tracking-widest">ARCHIVE INSTRUCTIONS</span>
-                  <button onClick={() => setShowRulesMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-100 text-left pt-1">
-                  <div>
-                    <p className="text-yellow-400 font-bold uppercase text-[11px]">1. MASTER CLOCK</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Continuous global timer. Solve films fast to add +15s / +25s back.</p>
-                  </div>
-                  <div>
-                    <p className="text-[#E31B23] font-bold uppercase text-[11px]">2. REEL PROGRESSION</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Solve target film count to clear reels (1 $\rightarrow$ 2 $\rightarrow$ 3 $\rightarrow$ 4 $\rightarrow$ capped at 5).</p>
-                  </div>
-                  <div>
-                    <p className="text-green-400 font-bold uppercase text-[11px]">3. POWER-UPS</p>
-                    <p className="text-[10px] mt-0.5 text-zinc-300">Use Rewind (1), Light Leak (2), and Shield (3) to survive.</p>
-                  </div>
-                </div>
+            {/* 2. CENTER HERO: SIGNBOARD, DESCRIPTION & START CTA */}
+            <div className="flex flex-col items-center space-y-4 max-w-xl w-full my-auto">
+              <div className="scale-95 sm:scale-100 transition-transform">
+                <SwingingSign />
               </div>
-            )}
 
-            {showSettingsMenu && (
-              <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border border-zinc-700 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
-                <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
-                  <span className="text-zinc-200 font-bold uppercase tracking-widest">CONFIGURATION</span>
-                  <button onClick={() => setShowSettingsMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
+              <div className="space-y-2 px-4 max-w-lg">
+                <p className="text-zinc-200 font-sans text-xs sm:text-sm md:text-base uppercase tracking-wider leading-relaxed mx-auto drop-shadow-sm font-medium">
+                  Test your horror film knowledge and clear as many levels as you can. Keep the projector running, outrun the clock, and try not to lose your head!
+                </p>
+              </div>
+
+              {highScore > 0 && (
+                <div className="bg-zinc-900/90 border border-yellow-500/60 px-4 py-1.5 rounded-xl font-mono text-xs md:text-sm text-yellow-400 font-black tracking-widest shadow-[0_0_20px_rgba(234,179,8,0.2)] animate-pulse">
+                  🏆 ALL-TIME RECORD: {String(highScore).padStart(6, '0')} PTS
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <p className="text-zinc-100 font-bold uppercase text-[11px]">Audio System</p>
-                    <button
-                      onClick={handleIntroMusicToggle}
-                      className={`px-3 py-1 font-bold text-xs rounded ${musicOn ? 'bg-[#E31B23] text-white' : 'bg-zinc-800 text-zinc-200 border border-zinc-700'}`}
-                    >
-                      {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
-                    </button>
+              )}
 
-                    <div className="pt-2 space-y-1">
-                      <div className="flex justify-between text-[10px] text-zinc-300 font-bold">
-                        <span>VOLUME</span>
-                        <span>{Math.round(volume * 100)}%</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.05"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                        className="w-full accent-[#E31B23] cursor-pointer"
-                      />
+              {/* PRIMARY CTA */}
+              <div className="w-full max-w-xs pt-2">
+                <button
+                  onClick={handleStartGame}
+                  className="w-full py-3.5 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-lg font-black uppercase tracking-widest shadow-[0_0_30px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg focus:outline-none"
+                >
+                  ▶ START PROJECTION
+                </button>
+              </div>
+
+              {/* SECONDARY CONTROLS TOOLBAR */}
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+                <a
+                  href="https://www.ifihome.ie/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-red-400 font-mono text-xs font-black uppercase tracking-wider transition-all border border-red-900/60 rounded-lg shadow-sm flex items-center space-x-1"
+                >
+                  <span>🎟️ BROWSE IFI@HOME</span>
+                  <span className="text-[10px]">↗</span>
+                </a>
+
+                <button
+                  onClick={handleIntroMusicToggle}
+                  className={`px-3 py-1.5 font-mono text-xs font-black uppercase tracking-widest rounded-lg border transition-all ${
+                    musicOn
+                      ? 'bg-[#E31B23]/20 text-red-300 border-[#E31B23] shadow-[0_0_15px_rgba(227,27,35,0.4)]'
+                      : 'bg-zinc-900 text-zinc-300 border-zinc-700'
+                  }`}
+                >
+                  {musicOn ? 'AUDIO: ON' : 'AUDIO: OFF'}
+                </button>
+
+                <button
+                  onClick={() => {
+                    setShowSettingsMenu(!showSettingsMenu)
+                    setShowRulesMenu(false)
+                  }}
+                  className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-mono text-xs font-black uppercase tracking-wider transition-all border border-zinc-700 rounded-lg shadow-sm"
+                >
+                  ⚙️ CONFIG
+                </button>
+
+                <button
+                  onClick={() => {
+                    setShowRulesMenu(!showRulesMenu)
+                    setShowSettingsMenu(false)
+                  }}
+                  className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-green-400 font-mono text-xs font-black uppercase tracking-wider transition-all border border-green-500/80 rounded-lg shadow-sm"
+                >
+                  📜 RULES
+                </button>
+              </div>
+
+              {showRulesMenu && (
+                <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border border-green-500/80 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl">
+                  <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
+                    <span className="text-green-400 font-bold uppercase tracking-widest">ARCHIVE INSTRUCTIONS</span>
+                    <button onClick={() => setShowRulesMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-100 text-left pt-1">
+                    <div>
+                      <p className="text-yellow-400 font-bold uppercase text-[11px]">1. MASTER CLOCK</p>
+                      <p className="text-[10px] mt-0.5 text-zinc-300">Continuous global timer. Solve films fast to add +15s / +25s back.</p>
+                    </div>
+                    <div>
+                      <p className="text-[#E31B23] font-bold uppercase text-[11px]">2. REEL PROGRESSION</p>
+                      <p className="text-[10px] mt-0.5 text-zinc-300">Solve target film count to clear reels (1 → 2 → 3 → 4 → capped at 5).</p>
+                    </div>
+                    <div>
+                      <p className="text-green-400 font-bold uppercase text-[11px]">3. POWER-UPS</p>
+                      <p className="text-[10px] mt-0.5 text-zinc-300">Use Rewind (1), Light Leak (2), and Shield (3) to survive.</p>
                     </div>
                   </div>
+                </div>
+              )}
 
-                  <div className="space-y-2">
-                    <p className="text-zinc-100 font-bold uppercase text-[11px]">Accessibility</p>
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" checked={highContrast} onChange={(e) => setHighContrast(e.target.checked)} className="accent-[#E31B23] w-4 h-4" />
-                      <span className="text-[11px]">High Contrast Mode</span>
-                    </label>
+              {showSettingsMenu && (
+                <div className="absolute inset-x-2 top-2 z-40 bg-zinc-900/98 border border-zinc-700 p-4 space-y-3 font-mono text-xs shadow-2xl rounded-xl text-left">
+                  <div className="flex justify-between items-center pb-2 border-b border-zinc-800">
+                    <span className="text-zinc-200 font-bold uppercase tracking-widest">CONFIGURATION</span>
+                    <button onClick={() => setShowSettingsMenu(false)} className="text-zinc-200 hover:text-white font-bold">✕ CLOSE</button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <p className="text-zinc-100 font-bold uppercase text-[11px]">Audio System</p>
+                      <button
+                        onClick={handleIntroMusicToggle}
+                        className={`px-3 py-1 font-bold text-xs rounded ${musicOn ? 'bg-[#E31B23] text-white' : 'bg-zinc-800 text-zinc-200 border border-zinc-700'}`}
+                      >
+                        {musicOn ? 'PROJECTOR AUDIO: ON' : 'PROJECTOR AUDIO: OFF'}
+                      </button>
+
+                      <div className="pt-2 space-y-1">
+                        <div className="flex justify-between text-[10px] text-zinc-300 font-bold">
+                          <span>VOLUME</span>
+                          <span>{Math.round(volume * 100)}%</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.05"
+                          value={volume}
+                          onChange={handleVolumeChange}
+                          className="w-full accent-[#E31B23] cursor-pointer"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <p className="text-zinc-100 font-bold uppercase text-[11px]">Accessibility</p>
+                      <label className="flex items-center space-x-2 cursor-pointer">
+                        <input type="checkbox" checked={highContrast} onChange={(e) => setHighContrast(e.target.checked)} className="accent-[#E31B23] w-4 h-4" />
+                        <span className="text-[11px]">High Contrast Mode</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-
-            <div className="w-full max-w-xs pt-2 px-4">
-              <button
-                onClick={handleStartGame}
-                className="w-full py-4 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-[0_0_30px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg focus:outline-none focus:ring-4 focus:ring-red-400"
-              >
-                ▶ START PROJECTION
-              </button>
+              )}
             </div>
+
+            {/* 3. FOOTER: FUNDING & ARTS COUNCIL LOGO */}
+            <div className="pb-2 pt-3 border-t border-zinc-800/80 w-full max-w-md flex flex-col items-center justify-center space-y-1.5">
+              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">
+                SUPPORTED BY THE ARTS COUNCIL / AN CHOMHAIRLE EALAÍON
+              </span>
+              
+              <a 
+                href="https://www.artscouncil.ie/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <img 
+                  src="/arts-council-logo.png" 
+                  alt="The Arts Council / An Chomhairle Ealaíon" 
+                  className="h-8 sm:h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all"
+                />
+              </a>
+            </div>
+
           </div>
         ) : (
           <>
@@ -901,6 +810,21 @@ export default function Home() {
               <p className="text-sm sm:text-base md:text-lg font-mono font-black text-amber-100 italic tracking-wide leading-snug drop-shadow px-2">
                 "{currentMovie?.hint}"
               </p>
+
+              {/* IN-GAME SOLVED FILM STREAM BADGE TOUCHPOINT */}
+              {filmWon && currentMovie?.ifiUrl && (
+                <div className="mt-1.5 pt-1.5 border-t border-zinc-800 flex items-center justify-center space-x-2 animate-in fade-in duration-300">
+                  <span className="text-[10px] font-mono font-bold text-yellow-400">FILM UNLOCKED!</span>
+                  <a
+                    href={currentMovie.ifiUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-2.5 py-0.5 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-[10px] font-black uppercase tracking-wider rounded transition-all shadow"
+                  >
+                    🎟️ STREAM ON IFI@HOME ↗
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* CINEMATIC HORROR CANVAS */}
@@ -1061,9 +985,32 @@ export default function Home() {
               </div>
             </div>
 
+            {/* IFI@HOME STREAMING SPOTLIGHT FOR SOLVED FILMS */}
+            {lastSolvedIfiMovie && lastSolvedIfiMovie.ifiUrl && (
+              <div className="bg-red-950/40 border border-[#E31B23]/60 p-3 rounded-lg font-mono text-left space-y-1.5 shadow-lg">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-black text-[#E31B23] uppercase tracking-widest">
+                    🎟️ FEATURED ARCHIVE STREAM
+                  </span>
+                  <span className="text-[9px] text-zinc-400 uppercase">IFI@HOME</span>
+                </div>
+                <p className="text-xs font-bold text-white uppercase tracking-wider">
+                  {lastSolvedIfiMovie.title}
+                </p>
+                <a
+                  href={lastSolvedIfiMovie.ifiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full py-2 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-xs font-black uppercase tracking-wider rounded transition-all shadow-md mt-1"
+                >
+                  STREAM THIS FILM ON IFI@HOME ↗
+                </a>
+              </div>
+            )}
+
             <button
               onClick={handleAdvanceNextReel}
-              className="w-full py-3 bg-[#E31B23] hover:bg-[#c4131b] text-white font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-[0_0_25px_rgba(227,27,35,0.6)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-950 rounded-lg"
+              className="w-full py-3 bg-zinc-100 hover:bg-white text-zinc-950 font-mono text-base sm:text-lg font-black uppercase tracking-widest shadow-lg transition-all hover:scale-105 active:scale-95 rounded-lg"
             >
               ▶ ADVANCE TO REEL {reel + 1}
             </button>
