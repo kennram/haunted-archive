@@ -19,10 +19,10 @@ export default function SwingingSign() {
           
           <div className="relative z-10 space-y-1">
             <h1 className="text-4xl sm:text-6xl font-black font-mono tracking-tighter text-red-500 uppercase drop-shadow-[3px_3px_0px_#22c55e] italic leading-none">
-              HAUNTED CINEMA
+              HAUNTED ARCHIVE
             </h1>
             <p className="text-green-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] font-black pt-1">
-              IFI@HOME HORROR COLLECTION
+              FAST PACED HORROR ARCADE
             </p>
           </div>
         </div>
