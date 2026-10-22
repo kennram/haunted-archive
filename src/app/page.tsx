@@ -698,7 +698,7 @@ export default function Home() {
 
             <div className="space-y-2 max-w-xl px-2">
               <p className="text-zinc-200 font-sans text-xs sm:text-sm md:text-base uppercase tracking-widest leading-relaxed mx-auto drop-shadow-sm font-medium">
-                Test your horror movie knowledge against a ticking projection clock. Spell out titles to earn extra time, activate power-ups, and clear as many film reels as you can.
+                Test your horror film knowledge and clear as many levels as you can. Grab your power-ups, outrun the timer, and survive the vault!
               </p>
             </div>
 
